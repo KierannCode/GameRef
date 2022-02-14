@@ -1,30 +1,25 @@
+package fr.orsys.groupe3.gamerefback.business;
 
-import java.util.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.Setter;
 
-/**
- * 
- */
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import java.util.List;
+
+@Entity
+@Getter
+@Setter
 public class Platform {
-
-    /**
-     * Default constructor
-     */
-    public Platform() {
-    }
-
-    /**
-     * 
-     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    /**
-     * 
-     */
+    @NotBlank(message = "Merci de saisir un nom")
     private String name;
 
-    /**
-     * 
-     */
-    private Set<Game> games;
-
+    @JsonIgnore
+    @ManyToMany(mappedBy = "platforms")
+    private List<Game> games;
 }

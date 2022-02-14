@@ -1,22 +1,16 @@
+package fr.orsys.groupe3.gamerefback.business;
 
-import java.util.*;
+import lombok.Getter;
+import lombok.Setter;
 
-/**
- * 
- */
+import javax.persistence.Entity;
+import javax.validation.constraints.NotBlank;
+
+@Entity
+@Getter
+@Setter
 public class Moderator extends User {
 
-    /**
-     * Default constructor
-     */
-    public Moderator() {
-    }
-
-    /**
-     * 
-     */
+    @NotBlank(message = "Merci de renseigner un numéro de téléphone")
     private String phoneNumber;
-
-
-
 }
