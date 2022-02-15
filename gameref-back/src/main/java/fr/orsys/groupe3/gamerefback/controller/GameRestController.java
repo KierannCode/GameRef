@@ -12,19 +12,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.data.domain.Pageable;
 
+import fr.orsys.groupe3.gamerefback.dto.GameDto;
 
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
-@AllArgsConstructor
+
 @RestController
 @RequestMapping("/api")
+@AllArgsConstructor
 public class GameRestController {
     private static final int GAMES_BY_PAGE = 5;
 
-    private final GameService gameService;
+    private GameService gameService;
 
     @GetMapping("/games")
-    public Page<Game> getGames(@PageableDefault(size = GAMES_BY_PAGE, sort="id", direction = Sort.Direction.DESC) Pageable pageable) throws NotFoundException {
+    public Page<Game> getGames(@PageableDefault(size = GAMES_BY_PAGE, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) throws NotFoundException {
         return gameService.getGames(pageable);
+    }
+
+    @PatchMapping("/game/{id}")
+    public Game updateGame(@PathVariable Long id, @RequestBody GameDto dto) throws NotFoundException {
+        System.out.println("Hello from update");
+        return gameService.updateGame(id, dto);
     }
 }
