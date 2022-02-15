@@ -3,6 +3,7 @@ package fr.orsys.groupe3.gamerefback.service.impl;
 import fr.orsys.groupe3.gamerefback.business.AgeRating;
 import fr.orsys.groupe3.gamerefback.dao.AgeRatingDao;
 import fr.orsys.groupe3.gamerefback.dto.AgeRatingDto;
+import fr.orsys.groupe3.gamerefback.exception.NotFoundException;
 import fr.orsys.groupe3.gamerefback.mapper.AgeRatingMapper;
 import fr.orsys.groupe3.gamerefback.service.AgeRatingService;
 import lombok.AllArgsConstructor;
@@ -27,5 +28,10 @@ public class AgeRatingServiceImpl implements AgeRatingService {
     @Override
     public List<AgeRating> getAgeRatings() {
         return ageRatingDao.findAll();
+    }
+
+    @Override
+    public AgeRating getAgeRating(Long id) throws NotFoundException {
+        return ageRatingDao.findById(id).orElseThrow(() -> new NotFoundException("No ageRating found with id " + id));
     }
 }
