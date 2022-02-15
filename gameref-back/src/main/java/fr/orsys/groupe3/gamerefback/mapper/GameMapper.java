@@ -22,19 +22,37 @@ public class GameMapper {
     private UserService userService;
 
     public Game mapGame(Game game, GameDto dto) throws NotFoundException {
-        List<Platform> platforms = new ArrayList<>();
-        for (Long platformId : dto.getPlatformIds()) {
-            platforms.add(platformService.getPlatform(platformId));
+        if (dto.getName() != null) {
+            game.setName(dto.getName());
         }
-        game.setName(dto.getName());
-        game.setDescription(dto.getDescription());
-        game.setReleaseDate(dto.getReleaseDate());
-        game.setAgeRating(ageRatingService.getAgeRating(dto.getAgeRatingId()));
-        game.setEditor(editorService.getEditor(dto.getEditorId()));
-        game.setCategory(categoryService.getCategory(dto.getCategoryId()));
-        game.setEconomicModel(economicModelService.getEconomicModel(dto.getEconomicModelId()));
-        game.setModerator(userService.getModerator(dto.getModeratorId()));
-        game.setPlatforms(platforms);
+        if (dto.getDescription() != null) {
+            game.setDescription(dto.getDescription());
+        }
+        if (dto.getReleaseDate() != null) {
+            game.setReleaseDate(dto.getReleaseDate());
+        }
+        if (dto.getAgeRatingId() != null) {
+            game.setAgeRating(ageRatingService.getAgeRating(dto.getAgeRatingId()));
+        }
+        if (dto.getEditorId() != null) {
+            game.setEditor(editorService.getEditor(dto.getEditorId()));
+        }
+        if (dto.getCategoryId() != null) {
+            game.setCategory(categoryService.getCategory(dto.getCategoryId()));
+        }
+        if (dto.getEconomicModelId() != null) {
+            game.setEconomicModel(economicModelService.getEconomicModel(dto.getEconomicModelId()));
+        }
+        if (dto.getPlatformIds() != null) {
+            List<Platform> platforms = new ArrayList<>();
+            for (Long platformId : dto.getPlatformIds()) {
+                platforms.add(platformService.getPlatform(platformId));
+            }
+            game.setPlatforms(platforms);
+        }
+        if (dto.getModeratorId() != null) {
+            game.setModerator(userService.getModerator(dto.getModeratorId()));
+        }
         return game;
     }
 }
