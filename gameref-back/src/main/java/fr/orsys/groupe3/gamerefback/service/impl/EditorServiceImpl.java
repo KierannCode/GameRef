@@ -1,4 +1,4 @@
-package fr.orsys.groupe3.gamerefback.serviceImpl;
+package fr.orsys.groupe3.gamerefback.service.impl;
 
 import fr.orsys.groupe3.gamerefback.service.EditorService;
 import org.springframework.stereotype.Service;
