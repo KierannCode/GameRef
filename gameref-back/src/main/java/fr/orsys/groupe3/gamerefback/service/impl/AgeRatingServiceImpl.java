@@ -8,6 +8,8 @@ import fr.orsys.groupe3.gamerefback.service.AgeRatingService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class AgeRatingServiceImpl implements AgeRatingService {
@@ -20,5 +22,10 @@ public class AgeRatingServiceImpl implements AgeRatingService {
         AgeRating ageRating = new AgeRating();
         ageRatingMapper.mapAgeRating(ageRating, dto);
         return ageRatingDao.save(ageRating);
+    }
+
+    @Override
+    public List<AgeRating> getAgeRatings() {
+        return ageRatingDao.findAll();
     }
 }

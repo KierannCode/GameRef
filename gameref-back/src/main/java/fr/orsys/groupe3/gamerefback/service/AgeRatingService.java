@@ -4,7 +4,10 @@ import fr.orsys.groupe3.gamerefback.business.AgeRating;
 import fr.orsys.groupe3.gamerefback.dto.AgeRatingDto;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface AgeRatingService {
-    public AgeRating createAgeRating(AgeRatingDto dto);
+    AgeRating createAgeRating(AgeRatingDto dto);
+    List<AgeRating> getAgeRatings();
 }
