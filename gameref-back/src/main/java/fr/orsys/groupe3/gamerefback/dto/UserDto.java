@@ -1,7 +1,12 @@
 package fr.orsys.groupe3.gamerefback.dto;
 
-import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-@AllArgsConstructor
-public class UserDto {
+@Getter
+@Setter
+public abstract class UserDto {
+    protected String pseudo;
+    protected String password;
+    protected String email;
 }
