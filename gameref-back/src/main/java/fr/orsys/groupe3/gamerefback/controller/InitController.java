@@ -12,6 +12,7 @@ import fr.orsys.groupe3.gamerefback.service.AgeRatingService;
 import fr.orsys.groupe3.gamerefback.service.GameService;
 import fr.orsys.groupe3.gamerefback.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 
 import javax.annotation.PostConstruct;
@@ -113,10 +114,27 @@ public class InitController {
         if (gameService.getGames().isEmpty()) {
             GameDto game1 = new GameDto("FFXIV", "Un super mmo", LocalDate.of(2010, 1, 1), 1L, 1L, 1L, Arrays.asList(1L, 2L), 1L, 4L);
             GameDto game2 = new GameDto("Tomb Raider", "Une archéologue avec deux flingues", LocalDate.of(2000, 1, 1), 2L, 2L, 2L, Arrays.asList(1L), 1L, 5L);
-
+            GameDto game3 = new GameDto("FFXIV", "Un super mmo", LocalDate.of(2010, 1, 1), 1L, 1L, 1L, Arrays.asList(1L, 2L), 1L, 4L);
+            GameDto game4 = new GameDto("Tomb Raider", "Une archéologue avec deux flingues", LocalDate.of(2000, 1, 1), 2L, 2L, 2L, Arrays.asList(1L), 1L, 5L);
+            GameDto game5 = new GameDto("FFXIV", "Un super mmo", LocalDate.of(2010, 1, 1), 1L, 1L, 1L, Arrays.asList(1L, 2L), 1L, 4L);
+            GameDto game6 = new GameDto("Tomb Raider", "Une archéologue avec deux flingues", LocalDate.of(2000, 1, 1), 2L, 2L, 2L, Arrays.asList(1L), 1L, 5L);
+            GameDto game7 = new GameDto("FFXIV", "Un super mmo", LocalDate.of(2010, 1, 1), 1L, 1L, 1L, Arrays.asList(1L, 2L), 1L, 4L);
+            GameDto game8 = new GameDto("Tomb Raider", "Une archéologue avec deux flingues", LocalDate.of(2000, 1, 1), 2L, 2L, 2L, Arrays.asList(1L), 1L, 5L);
+            GameDto game9 = new GameDto("FFXIV", "Un super mmo", LocalDate.of(2010, 1, 1), 1L, 1L, 1L, Arrays.asList(1L, 2L), 1L, 4L);
+            GameDto game10 = new GameDto("Tomb Raider", "Une archéologue avec deux flingues", LocalDate.of(2000, 1, 1), 2L, 2L, 2L, Arrays.asList(1L), 1L, 5L);
+            GameDto game11 = new GameDto("FFXIV", "Un super mmo", LocalDate.of(2010, 1, 1), 1L, 1L, 1L, Arrays.asList(1L, 2L), 1L, 4L);
+            GameDto game12 = new GameDto("Tomb Raider", "Une archéologue avec deux flingues", LocalDate.of(2000, 1, 1), 2L, 2L, 2L, Arrays.asList(1L), 1L, 5L);
             try {
                 gameService.createGame(game1);
                 gameService.createGame(game2);
+                gameService.createGame(game3);
+                gameService.createGame(game4);
+                gameService.createGame(game5);
+                gameService.createGame(game6);
+                gameService.createGame(game7);
+                gameService.createGame(game8);
+                gameService.createGame(game9);
+                gameService.createGame(game10);
             } catch (NotFoundException e) {
                 e.printStackTrace();
             }
