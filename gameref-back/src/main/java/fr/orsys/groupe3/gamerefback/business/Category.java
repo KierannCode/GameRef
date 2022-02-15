@@ -10,20 +10,18 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
 
+@Entity
 @Getter
 @Setter
-@Entity
 public class Category {
-
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message="Merci de donner un nom à cette catégorie")
+    @NotBlank(message = "Merci de donner un nom à cette catégorie")
     private String name;
 
     @JsonIgnore
     @OneToMany(mappedBy = "category")
     private List<Game> games;
-
 }

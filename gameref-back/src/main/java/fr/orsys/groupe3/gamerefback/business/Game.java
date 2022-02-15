@@ -54,5 +54,4 @@ public class Game {
 
     @ManyToOne
     private Moderator moderator;
-
 }

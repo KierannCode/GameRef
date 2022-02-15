@@ -19,7 +19,7 @@ public class Player extends User {
     @Past
     private LocalDate dateOfBirth;
 
-    @OneToMany(mappedBy="player")
+    @OneToMany(mappedBy = "player")
     @JsonIgnore
     private List<Review> reviews;
 }

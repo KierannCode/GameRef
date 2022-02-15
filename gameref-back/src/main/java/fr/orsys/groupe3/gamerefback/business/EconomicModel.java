@@ -4,15 +4,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
 
+@Entity
 @Getter
 @Setter
-@Entity
 public class EconomicModel {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,5 +23,4 @@ public class EconomicModel {
     @JsonIgnore
     @OneToMany(mappedBy = "economicModel")
     private List<Game> games;
-
 }

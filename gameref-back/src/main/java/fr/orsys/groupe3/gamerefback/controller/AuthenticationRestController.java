@@ -7,5 +7,5 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api")
-public class UserRestController {
+public class AuthenticationRestController {
 }

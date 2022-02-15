@@ -8,11 +8,10 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
 
+@Entity
 @Getter
 @Setter
-@Entity
 public class Editor {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,5 +22,4 @@ public class Editor {
     @JsonIgnore
     @OneToMany(mappedBy = "editor")
     public List<Game> games;
-
 }
