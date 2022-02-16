@@ -4,12 +4,11 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-menu-principal',
-  templateUrl: './menu-principal.component.html',
-  styleUrls: ['./menu-principal.component.css']
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css']
 })
-export class MenuPrincipalComponent {
-
+export class NavbarComponent {
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -17,5 +16,4 @@ export class MenuPrincipalComponent {
     );
 
   constructor(private breakpointObserver: BreakpointObserver) {}
-
 }
