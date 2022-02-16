@@ -13,7 +13,7 @@ Cette application sera séparée dans 2 sections principales :
 - Une partie front, en Angular 
 
 
-## Orgnisation du repo
+## Organisation du repo
 Au vu de la durée du projet et l'implication de tous à chaque niveau du code, nous avons décidé de ne faire qu'un seul repo pour l'ensemble du projet.  
 Nous avons donc 3 dossiers :
 - [conception](./conception) qui contient tout ce qui touche à la préparation de l'application (maquettage, diagramme ERR, etc...) 
@@ -21,8 +21,8 @@ Nous avons donc 3 dossiers :
 - [gameref-front](./gamere-front) pour la partie Angular
 
 ## Fonctionnalités principales implémentées
-[X] CRUD des Jeux  
-[ ] Ajout des avis  
+[x] CRUD des Jeux  
+[X] Ajout des avis  
 [ ] Modération des avis  
 [ ] Système de connexion  
 [ ] Tests basiques

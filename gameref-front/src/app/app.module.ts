@@ -11,29 +11,27 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { AvisComponent } from './avis/avis.component';
-import { EditeursComponent } from './editeurs/editeurs.component';
-import { PlateformesComponent } from './plateformes/plateformes.component';
-import { ConnexionComponent } from './connexion/connexion.component';
-import { JeuxComponent } from './jeux/jeux.component';
+import { LoginComponent } from './login/login.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { ReviewListComponent } from './review/review-list/review-list.component';
+import { ReviewItemComponent } from './review/review-item/review-item.component';
+import { GameItemComponent } from './game/game-item/game-item.component';
 
 const routes: Routes = [
-  { path: '', component: ConnexionComponent },  // ce qui correspond http://localhost:4200
-  { path: 'avis', component: AvisComponent },   // ce qui correspond http://localhost:4200/avis
-  {path: 'jeux' , component: JeuxComponent },
-  { path: 'editeurs', component: EditeursComponent },
-  { path: 'plateformes', component: PlateformesComponent },
+  { path: '', component: LoginComponent },  // ce qui correspond http://localhost:4200
+  { path: 'avis', component: ReviewListComponent },   // ce qui correspond http://localhost:4200/avis
+  { path: 'jeux' , component: GameListComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuPrincipalComponent,
-    AvisComponent,
-    EditeursComponent,
-    JeuxComponent,
-    PlateformesComponent,
-    ConnexionComponent
+    LoginComponent,
+    NavbarComponent,
+    ReviewListComponent,
+    ReviewItemComponent,
+    GameItemComponent
   ],
   imports: [
     BrowserModule,
