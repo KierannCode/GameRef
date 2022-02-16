@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Game } from 'src/app/model/Game';
+import { GameService } from 'src/app/service/game.service';
 import { CreateGameDialogComponent } from '../create-game-dialog/create-game-dialog.component';
 
 @Component({
@@ -9,9 +11,14 @@ import { CreateGameDialogComponent } from '../create-game-dialog/create-game-dia
 })
 export class GameListComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  games!: Array<Game>;
+
+  constructor(private dialog: MatDialog, private gameService: GameService) { }
 
   ngOnInit(): void {
+    this.gameService.getGames().subscribe(val => {this.games = val;
+      console.log(this.games);
+    });
   }
 
   openCreateGameDialog(): void {

@@ -19,6 +19,8 @@ import { CreateGameDialogComponent } from './game/create-game-dialog/create-game
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { ReviewListComponent } from './review/review-list/review-list.component';
+import { HttpClientModule } from '@angular/common/http'
+import { GameItemComponent } from './game/game-item/game-item.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },  // ce qui correspond http://localhost:4200
@@ -33,6 +35,7 @@ const routes: Routes = [
     ReviewListComponent,
     LoginComponent,
     GameListComponent,
+    GameItemComponent,
     CreateGameDialogComponent
   ],
   imports: [
@@ -50,6 +53,7 @@ const routes: Routes = [
     MatFormFieldModule,
     MatDialogModule,
     FormsModule,
+    HttpClientModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],
