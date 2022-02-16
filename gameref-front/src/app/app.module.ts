@@ -11,16 +11,21 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { AvisComponent } from './avis/avis.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule} from '@angular/material/form-field';
+import { AvisComponent } from './review/avis.component';
 import { EditeursComponent } from './editeurs/editeurs.component';
 import { PlateformesComponent } from './plateformes/plateformes.component';
 import { ConnexionComponent } from './connexion/connexion.component';
-import { JeuxComponent } from './jeux/jeux.component';
+import { FormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { GameListComponent } from './game/game-list/game-list.component';
+import { CreateGameDialogComponent } from './game/create-game-dialog/create-game-dialog.component';
 
 const routes: Routes = [
   { path: '', component: ConnexionComponent },  // ce qui correspond http://localhost:4200
   { path: 'avis', component: AvisComponent },   // ce qui correspond http://localhost:4200/avis
-  {path: 'jeux' , component: JeuxComponent },
+  { path: 'jeux' , component: GameListComponent },
   { path: 'editeurs', component: EditeursComponent },
   { path: 'plateformes', component: PlateformesComponent },
 ];
@@ -31,9 +36,10 @@ const routes: Routes = [
     MenuPrincipalComponent,
     AvisComponent,
     EditeursComponent,
-    JeuxComponent,
     PlateformesComponent,
-    ConnexionComponent
+    ConnexionComponent,
+    GameListComponent,
+    CreateGameDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -46,9 +52,11 @@ const routes: Routes = [
     MatIconModule,
     MatButtonModule,
     MatListModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatDialogModule,
+    FormsModule,
     RouterModule.forRoot(routes)
-    
-
   ],
   providers: [],
   bootstrap: [AppComponent]

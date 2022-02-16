@@ -27,7 +27,7 @@ public class Game {
     private String description;
 
     @NotNull(message = "Merci de rentrer une date de sortie")
-    @Past
+    @Past(message = "La date de sortie doit être antérieure à aujourd'hui")
     private LocalDate releaseDate;
 
     @Transient
