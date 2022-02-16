@@ -1,4 +1,4 @@
-package fr.orsys.groupe3.gamerefback.dao.controller;
+package fr.orsys.groupe3.gamerefback.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;

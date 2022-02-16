@@ -1,4 +1,4 @@
-package fr.orsys.groupe3.gamerefback.dao.controller;
+package fr.orsys.groupe3.gamerefback.controller;
 
 import fr.orsys.groupe3.gamerefback.dto.*;
 import fr.orsys.groupe3.gamerefback.exception.NotFoundException;
