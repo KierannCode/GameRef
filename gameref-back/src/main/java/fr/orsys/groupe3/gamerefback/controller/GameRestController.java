@@ -21,7 +21,6 @@ import org.springframework.data.domain.Pageable;
 public class GameRestController {
 
     private GameService gameService;
-    private static final int GAMES_BY_PAGE = 5;
 
     // Ajout d'un jeu
     @PostMapping("/game")
@@ -37,7 +36,7 @@ public class GameRestController {
     }
 
     @GetMapping("/games")
-    public Page<Game> getGames(@PageableDefault(size = GAMES_BY_PAGE, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) throws NotFoundException {
+    public Page<Game> getGames(Pageable pageable) throws NotFoundException {
         return gameService.getGames(pageable);
     }
 
