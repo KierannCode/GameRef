@@ -26,9 +26,7 @@ public class ReviewServiceImpl implements ReviewService {
         Review review = new Review();
         reviewMapper.mapReview(review, dto);
         review.setDescription(dto.getDescription());
-        review.setSubmitDate(dto.getSubmitDate());
         review.setRating(dto.getRating());
-        review.setModerationDate(dto.getModerationDate());
         return reviewDao.save(review);
     }
 

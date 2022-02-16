@@ -39,7 +39,7 @@ public class ReviewRestController {
         return reviewService.getReviews(pageable);
     }
 
-    @PatchMapping("/game/{id}")
+    @PatchMapping("/reviews/{id}")
     public Review updateReview(@PathVariable Long id, @RequestBody ReviewDto dto) throws NotFoundException {
         return reviewService.updateReview(id, dto);
 
