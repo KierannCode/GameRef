@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { GameData } from '../../model/GameData';
+import { Game } from '../../model/Game';
 
 @Component({
   selector: 'app-create-game-dialog',
@@ -10,7 +10,7 @@ import { GameData } from '../../model/GameData';
 export class CreateGameDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<CreateGameDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public game: GameData,
+    @Inject(MAT_DIALOG_DATA) public game: Game,
   ) {}
 
   onClose(): void {
