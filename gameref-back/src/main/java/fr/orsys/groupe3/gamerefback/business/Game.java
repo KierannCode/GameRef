@@ -38,18 +38,22 @@ public class Game {
     private List<Review> reviews;
 
     @ManyToOne
+    @NotNull(message = "Merci de sélectionner une classification")
     private AgeRating ageRating;
 
     @ManyToOne
+    @NotNull(message = "Merci de sélectionner une catégorie")
     private Category category;
 
     @ManyToOne
+    @NotNull(message = "Merci de sélectionner un éditeur")
     private Editor editor;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Platform> platforms;
 
     @ManyToOne
+    @NotNull(message = "Merci de sélectionner un modèle économique")
     private EconomicModel economicModel;
 
     @ManyToOne
