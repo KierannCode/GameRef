@@ -18,7 +18,7 @@ export class GameItemComponent implements OnInit {
 
   openModifyGameDialog(): void {
     const dialogRef = this.dialog.open(UpdateGameDialogComponent, {
-      width: '250px',
+      width: '500px',
       data: this.game
     });
   }
