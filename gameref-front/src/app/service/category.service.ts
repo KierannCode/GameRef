@@ -8,9 +8,12 @@ import { Category } from '../model/Category';
 })
 export class CategoryService {
 
+
   private API_URL = "http://localhost:8080/api";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    
+   }
 
   getCategories(): Observable<Array<Category>> {
     let url = `${this.API_URL}/categories`;

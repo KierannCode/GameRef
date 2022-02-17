@@ -10,8 +10,9 @@ import { UpdateGameDialogComponent } from '../update-game-dialog/update-game-dia
 })
 export class GameItemComponent implements OnInit {
   @Input() game!: Game;
-
-  constructor(private dialog: MatDialog) { }
+  
+  constructor(private dialog: MatDialog
+    ) { }
 
   ngOnInit(): void {
   }
@@ -23,5 +24,7 @@ export class GameItemComponent implements OnInit {
     });
   }
 
-  deleteGame(): void {}
+  deleteGame(): void {
+    
+  }
 }

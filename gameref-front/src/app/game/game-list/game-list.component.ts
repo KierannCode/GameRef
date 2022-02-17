@@ -23,7 +23,7 @@ export class GameListComponent implements OnInit {
 
   openCreateGameDialog(): void {
     const dialogRef = this.dialog.open(CreateGameDialogComponent, {
-      width: '250px',
+      width: '500px',
       data: {},
     });
   }

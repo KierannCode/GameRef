@@ -8,9 +8,12 @@ import { Editor } from '../model/Editor';
 })
 export class EditorService {
 
+
   private API_URL = "http://localhost:8080/api";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    
+  }
 
   getEditors(): Observable<Array<Editor>> {
     let url = `${this.API_URL}/editors`;
