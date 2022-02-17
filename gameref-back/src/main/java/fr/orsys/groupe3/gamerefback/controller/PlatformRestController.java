@@ -1,6 +1,5 @@
 package fr.orsys.groupe3.gamerefback.controller;
 
-import fr.orsys.groupe3.gamerefback.business.Category;
 import fr.orsys.groupe3.gamerefback.business.Platform;
 import fr.orsys.groupe3.gamerefback.service.PlatformService;
 import lombok.AllArgsConstructor;

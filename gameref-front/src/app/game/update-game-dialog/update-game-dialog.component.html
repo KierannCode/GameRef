@@ -2,7 +2,18 @@
 <div mat-dialog-content>
   <mat-form-field appearance="fill">
     <mat-label>Nom du jeu</mat-label>
-    <input matInput type="text" value={{game.name}} (change)="setName($event)">
+    <input matInput type="text" [ngModel]="game.name" (ngModelChange)="this.dto.name = $event">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Éditeur</mat-label>
+    <mat-select [ngModel]="game.editor.id" (ngModelChange)="this.dto.editorId = $event">
+      <mat-option *ngFor="let editor of editors" [value]="editor.id">{{editor.name}}</mat-option>
+    </mat-select>
+    <mat-selection-list [ngModel]="gamePlatformIds" (ngModelChange)="this.dto.platformIds = $event">
+      <mat-list-option *ngFor="let platform of platforms" [value]="platform.id">
+        {{platform.name}}
+      </mat-list-option>
+    </mat-selection-list>
   </mat-form-field>
 </div>
 <div mat-dialog-actions>

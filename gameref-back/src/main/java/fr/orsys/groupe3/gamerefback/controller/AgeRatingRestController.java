@@ -1,7 +1,6 @@
 package fr.orsys.groupe3.gamerefback.controller;
 
 import fr.orsys.groupe3.gamerefback.business.AgeRating;
-import fr.orsys.groupe3.gamerefback.business.Editor;
 import fr.orsys.groupe3.gamerefback.service.AgeRatingService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
