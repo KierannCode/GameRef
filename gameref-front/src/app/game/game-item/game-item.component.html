@@ -1,3 +1,41 @@
-{{game.name}}
-<button mat-raised-button (click)="openModifyGameDialog()">Modifier le jeu</button>
-<button mat-raised-button (click)="deleteGame()">Modifier le jeu</button>
+<mat-card class="card">
+    <mat-card-title>
+        <p>{{ game.name }}</p>
+        <img src="../../../assets/img/pegi/{{game.ageRating.slug}}.png" alt="" class="agerating-icon">
+    </mat-card-title>
+    <mat-card-subtitle>
+        <p>{{ game.editor.name }}</p>
+        <div class="platform-icons">
+            <mat-card-content *ngFor="let platform of game.platforms">
+                <img src="../../../assets/img/platform/{{platform.name}}.png" alt="" class="platform-icon">
+            </mat-card-content>
+        </div>
+    </mat-card-subtitle>
+    <mat-card-content>
+        <div>
+            <p class="bold">Date de sortie : </p>
+            <p>{{ game.releaseDate }}</p>
+        </div>
+        <div>
+            <p class="bold">Classification :</p>
+            <p>{{ game.ageRating.name }}</p>
+        </div>
+        <div>
+            <p class="bold">Genre :</p>
+            <p>{{ game.category.name }}</p>
+        </div>
+        <div>
+            <p class="bold">Modèle économique :</p>
+            <p>{{ game.economicModel.name }}</p>
+        </div>
+        <div>
+            <p class="bold">Modérateur : </p>
+            <p>{{ game.moderator.pseudo }}</p>
+        </div>
+        <p class="italic description">{{ game.description }}</p>
+      </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button (click)="openModifyGameDialog()">Modifier le jeu</button>
+        <button mat-raised-button (click)="deleteGame()">Supprimer le jeu</button> 
+    </mat-card-actions>
+</mat-card> 

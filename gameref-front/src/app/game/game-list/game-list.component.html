@@ -1,6 +1,8 @@
 <h2>Liste des jeux</h2>
 
 <button mat-raised-button (click)="openCreateGameDialog()">Ajouter un jeu</button>
-<div *ngFor="let game of games">
-    <app-game-item [game]="game"></app-game-item>
+<div id="game-list">
+    <div *ngFor="let game of games">
+        <app-game-item [game]="game"></app-game-item>
+    </div>
 </div>

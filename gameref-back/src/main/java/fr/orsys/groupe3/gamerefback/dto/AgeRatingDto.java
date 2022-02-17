@@ -9,4 +9,5 @@ import lombok.Setter;
 @AllArgsConstructor
 public class AgeRatingDto {
     private String name;
+    private String slug;
 }

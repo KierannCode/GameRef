@@ -1,9 +1,10 @@
-import { Platform } from "@angular/cdk/platform";
 import { AgeRating } from "./AgeRating";
 import { Category } from "./Category";
 import { EconomicModel } from "./EconomicModel";
 import { Editor } from "./Editor";
 import { Moderator } from "./Moderator";
+import { Platform } from "./Platform";
+
 
 export interface Game {
     id: number;
@@ -14,6 +15,6 @@ export interface Game {
     moderator: Moderator;
     category: Category;
     economicModel: EconomicModel;
-    platform: Platform;
+    platforms: Array<Platform>;
     editor: Editor;
 }

@@ -21,6 +21,7 @@ import { LoginComponent } from './login/login.component';
 import { ReviewListComponent } from './review/review-list/review-list.component';
 import { HttpClientModule } from '@angular/common/http'
 import { GameItemComponent } from './game/game-item/game-item.component';
+import { MatCard, MatCardActions, MatCardModule } from '@angular/material/card';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },  // ce qui correspond http://localhost:4200
@@ -52,6 +53,7 @@ const routes: Routes = [
     MatInputModule,
     MatFormFieldModule,
     MatDialogModule,
+    MatCardModule,
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes)
