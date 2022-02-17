@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 public class AgeRatingMapper {
     public AgeRating mapAgeRating(AgeRating ageRating, AgeRatingDto dto) {
         ageRating.setName(dto.getName());
-        ageRating.setSlug(dto.getSlug());
         return ageRating;
     }
 }

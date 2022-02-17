@@ -21,11 +21,13 @@ Nous avons donc 3 dossiers :
 - [gameref-front](./gamere-front) pour la partie Angular
 
 ## Fonctionnalités principales implémentées
-[x] CRUD des Jeux  
-[X] Ajout des avis  
+[X] CRUD des Jeux  
+[ ] Ajout des avis  
 [ ] Modération des avis  
 [ ] Système de connexion  
 [ ] Tests basiques
+[X] Pagination
+
 
 ## Fonctionnalités secondaires implémentées
 [ ] Système d'insciption  
