@@ -46,11 +46,11 @@ public class InitController {
 
     public void initAgeRatings() {
         if (ageRatingService.getAgeRatings().isEmpty()) {
-            ageRatingService.createAgeRating(new AgeRatingDto("PEGI 3", "pegi3"));
-            ageRatingService.createAgeRating(new AgeRatingDto("PEGI 7", "pegi7"));
-            ageRatingService.createAgeRating(new AgeRatingDto("PEGI 12", "pegi12"));
-            ageRatingService.createAgeRating(new AgeRatingDto("PEGI 16", "pegi16"));
-            ageRatingService.createAgeRating(new AgeRatingDto("PEGI 18", "pegi18"));
+            ageRatingService.createAgeRating(new AgeRatingDto("PEGI 3"));
+            ageRatingService.createAgeRating(new AgeRatingDto("PEGI 7"));
+            ageRatingService.createAgeRating(new AgeRatingDto("PEGI 12"));
+            ageRatingService.createAgeRating(new AgeRatingDto("PEGI 16"));
+            ageRatingService.createAgeRating(new AgeRatingDto("PEGI 18"));
         }
     }
 
@@ -89,7 +89,6 @@ public class InitController {
             editorService.createEditor(new EditorDto("Mojang Studios"));
             editorService.createEditor(new EditorDto("Team Cherry"));
             editorService.createEditor(new EditorDto("Bandai Namco"));
-
         }
     }
 

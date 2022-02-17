@@ -1,20 +1,64 @@
 <h1 mat-dialog-title>Modifier le jeu</h1>
-<div mat-dialog-content>
+<div mat-dialog-content layout="column">
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Nom du jeu</mat-label>
+      <input matInput type="text" [ngModel]="game.name" (ngModelChange)="this.dto.name = $event">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Classification</mat-label>
+      <mat-select [ngModel]="game.ageRating.id" (ngModelChange)="this.dto.ageRatingId = $event">
+        <mat-option *ngFor="let ageRating of ageRatings" [value]="ageRating.id">{{ageRating.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Éditeur</mat-label>
+      <mat-select [ngModel]="game.editor.id" (ngModelChange)="this.dto.editorId = $event">
+        <mat-option *ngFor="let editor of editors" [value]="editor.id">{{editor.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Plateformes</mat-label>
+      <mat-select [ngModel]="gamePlatformIds" (ngModelChange)="this.dto.platformIds = $event" multiple>
+        <mat-option *ngFor="let platform of platforms" [value]="platform.id">{{platform.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
   <mat-form-field appearance="fill">
-    <mat-label>Nom du jeu</mat-label>
-    <input matInput type="text" [ngModel]="game.name" (ngModelChange)="this.dto.name = $event">
+    <mat-label>Date de sortie</mat-label>
+    <input matInput [ngModel]="game.releaseDate" (ngModelChange)="dto.releaseDate = $event" [matDatepicker]="picker">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
-  <mat-form-field>
-    <mat-label>Éditeur</mat-label>
-    <mat-select [ngModel]="game.editor.id" (ngModelChange)="this.dto.editorId = $event">
-      <mat-option *ngFor="let editor of editors" [value]="editor.id">{{editor.name}}</mat-option>
-    </mat-select>
-    <mat-selection-list [ngModel]="gamePlatformIds" (ngModelChange)="this.dto.platformIds = $event">
-      <mat-list-option *ngFor="let platform of platforms" [value]="platform.id">
-        {{platform.name}}
-      </mat-list-option>
-    </mat-selection-list>
-  </mat-form-field>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Genre</mat-label>
+      <mat-select [ngModel]="game.category.id" (ngModelChange)="this.dto.categoryId= $event">
+        <mat-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Modèle économique</mat-label>
+      <mat-select [ngModel]="game.economicModel.id" (ngModelChange)="this.dto.economicModelId= $event">
+        <mat-option *ngFor="let economicModel of economicModels" [value]="economicModel.id">{{economicModel.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput rows="3" [ngModel]="game.description" (ngModelChange)="this.dto.description = $event"></textarea>
+    </mat-form-field>
+  </div>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onClose()">Fermer</button>

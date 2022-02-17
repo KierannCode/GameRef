@@ -18,9 +18,6 @@ public class AgeRating {
     @NotBlank(message = "Merci de donner un nom à cette classification")
     private String name;
 
-    @NotBlank(message = "Merci de donner un slug à cette classification")
-    private String slug;
-
     @JsonIgnore
     @OneToMany(mappedBy = "ageRating")
     private List<Game> games;

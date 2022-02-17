@@ -16,7 +16,7 @@ export class EconomicModelService {
   }
 
   getEconomicModels(): Observable<Array<EconomicModel>> {
-    let url = `${this.API_URL}/ecomodels`;
+    let url = `${this.API_URL}/economicModels`;
     return this.http.get<Array<EconomicModel>>(url);
   }
 }

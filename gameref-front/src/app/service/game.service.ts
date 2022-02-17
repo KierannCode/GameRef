@@ -13,14 +13,15 @@ export class GameService {
   private API_URL = "http://localhost:8080/api";
   private pageSize = 5;
 
+
   constructor(private http: HttpClient) { }
 
-  getGames(page: number = 0, sort: string = "id", descending: boolean = true): Observable<Array<Game>> {
+  getGames(page: number = 0, sort: string = "id", descending: boolean = true): Observable<Page<Game>> {
     let url = `${this.API_URL}/games?page=${encodeURIComponent(page)}&size=${encodeURIComponent(this.pageSize)}&sort=${encodeURIComponent(sort)}`;
     if (descending) {
       url += `,${encodeURIComponent('desc')}`;
     }
-    return this.http.get<Page<Game>>(url).pipe(pluck('content'));
+    return this.http.get<Page<Game>>(url);
   }
 
   create(data: any): Observable<any> {
@@ -31,6 +32,7 @@ export class GameService {
   }
   
   updateGame(id: number, dto: GameDto): Observable<any> {
+    dto.releaseDate?.setHours(dto.releaseDate?.getUTCHours());
     return this.http.patch(`${this.API_URL}/game/${encodeURIComponent(id)}`, dto);
   }
 }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule, Routes} from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,8 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
-
-import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { GameListComponent } from './game/game-list/game-list.component';
@@ -22,16 +21,18 @@ import { HttpClientModule } from '@angular/common/http'
 import { GameItemComponent } from './game/game-item/game-item.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatPaginatorModule }from '@angular/material/paginator';
 import { UpdateGameDialogComponent } from './game/update-game-dialog/update-game-dialog.component';
 import { NavbarComponent } from './navbar/navbar.component';
-
 
 
 const routes: Routes = [
   { path: '', component: LoginComponent },  // ce qui correspond http://localhost:4200
   { path: 'avis', component: ReviewListComponent },   // ce qui correspond http://localhost:4200/avis
-  { path: 'jeux' , component: GameListComponent }
+  { path: 'jeux', component: GameListComponent }
 ];
 
 @NgModule({
@@ -55,12 +56,15 @@ const routes: Routes = [
     MatIconModule,
     MatButtonModule,
     MatListModule,
-    MatInputModule,
     MatFormFieldModule,
+    MatInputModule,
     MatDialogModule,
     MatCardModule,
     MatSelectModule,
     MatSidenavModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatPaginatorModule,
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes)

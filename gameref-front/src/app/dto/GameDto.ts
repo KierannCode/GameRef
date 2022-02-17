@@ -1,7 +1,7 @@
 export interface GameDto {
     name?: string;
     description?: string;
-    releaseDate?: string;
+    releaseDate?: Date;
     ageRatingId?: number;
     categoryId?: number;
     editorId?: number;
