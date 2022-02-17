@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, pluck } from 'rxjs';
+import { Observable, pluck } from 'rxjs';
+import { GameDto } from '../dto/GameDto';
 import { Game } from '../model/Game';
-import { Page } from './page';
+import { Page } from './Page';
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +28,9 @@ export class GameService {
   }
   delete(id: any): Observable<any> {
     return this.http.delete(`${this.API_URL}/${id}`);
+  }
+  
+  updateGame(id: number, dto: GameDto): Observable<any> {
+    return this.http.patch(`${this.API_URL}/game/${encodeURIComponent(id)}`, dto);
   }
 }

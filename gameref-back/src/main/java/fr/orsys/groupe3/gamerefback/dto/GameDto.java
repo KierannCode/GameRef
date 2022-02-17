@@ -19,5 +19,4 @@ public class GameDto {
     private Long editorId;
     private List<Long> platformIds;
     private Long economicModelId;
-    private Long moderatorId;
 }

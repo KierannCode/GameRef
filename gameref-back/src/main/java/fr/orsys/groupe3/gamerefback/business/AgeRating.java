@@ -15,8 +15,11 @@ public class AgeRating {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Merci de donner un nom à ce jeu")
+    @NotBlank(message = "Merci de donner un nom à cette classification")
     private String name;
+
+    @NotBlank(message = "Merci de donner un slug à cette classification")
+    private String slug;
 
     @JsonIgnore
     @OneToMany(mappedBy = "ageRating")

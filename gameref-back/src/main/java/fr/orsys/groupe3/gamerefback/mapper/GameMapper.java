@@ -50,9 +50,6 @@ public class GameMapper {
             }
             game.setPlatforms(platforms);
         }
-        if (dto.getModeratorId() != null) {
-            game.setModerator(userService.getModerator(dto.getModeratorId()));
-        }
         return game;
     }
 }

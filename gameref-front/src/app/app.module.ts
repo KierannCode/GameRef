@@ -17,11 +17,14 @@ import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { GameListComponent } from './game/game-list/game-list.component';
 import { CreateGameDialogComponent } from './game/create-game-dialog/create-game-dialog.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { ReviewListComponent } from './review/review-list/review-list.component';
 import { HttpClientModule } from '@angular/common/http'
 import { GameItemComponent } from './game/game-item/game-item.component';
+import { MatCard, MatCardActions, MatCardModule } from '@angular/material/card';
+import { UpdateGameDialogComponent } from './game/update-game-dialog/update-game-dialog.component';
+import { NavbarComponent } from './navbar/navbar.component';
+
 
 
 const routes: Routes = [
@@ -38,7 +41,8 @@ const routes: Routes = [
     LoginComponent,
     GameListComponent,
     GameItemComponent,
-    CreateGameDialogComponent
+    CreateGameDialogComponent,
+    UpdateGameDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +61,7 @@ const routes: Routes = [
     
     MatNavList,
     MatSidenavContent,
+    MatCardModule,
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes)

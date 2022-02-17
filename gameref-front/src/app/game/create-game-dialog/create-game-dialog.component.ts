@@ -14,7 +14,7 @@ export class CreateGameDialogComponent {
   submitted = false ;
   constructor(private gameService: GameService,
     public dialogRef: MatDialogRef<CreateGameDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public game: Game,
+    @Inject(MAT_DIALOG_DATA) public game: Game
   ) {}
 
   onClose(): void {
