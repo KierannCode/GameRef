@@ -21,4 +21,11 @@ export class GameService {
     }
     return this.http.get<Page<Game>>(url).pipe(pluck('content'));
   }
+
+  create(data: any): Observable<any> {
+    return this.http.post(`${this.API_URL}/game`, data);
+  }
+  delete(id: any): Observable<any> {
+    return this.http.delete(`${this.API_URL}/${id}`);
+  }
 }
