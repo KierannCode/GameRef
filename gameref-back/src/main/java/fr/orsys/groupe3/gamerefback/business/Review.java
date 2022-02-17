@@ -30,6 +30,7 @@ public class Review {
     private LocalDateTime moderationDate;
 
     @ManyToOne
+    @NotNull(message = "Merci de sélectionner un jeu")
     private Game game;
 
     @ManyToOne
