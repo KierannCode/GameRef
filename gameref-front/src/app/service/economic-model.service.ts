@@ -12,7 +12,7 @@ export class EconomicModelService {
 
   constructor(private http: HttpClient) { }
 
-  getCategories(): Observable<Array<EconomicModel>> {
+  getEconomicModels(): Observable<Array<EconomicModel>> {
     let url = `${this.API_URL}/economicModels`;
     return this.http.get<Array<EconomicModel>>(url);
   }

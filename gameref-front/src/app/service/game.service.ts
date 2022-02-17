@@ -32,6 +32,7 @@ export class GameService {
   }
   
   updateGame(id: number, dto: GameDto): Observable<any> {
+    dto.releaseDate?.setHours(dto.releaseDate?.getUTCHours());
     return this.http.patch(`${this.API_URL}/game/${encodeURIComponent(id)}`, dto);
   }
 }

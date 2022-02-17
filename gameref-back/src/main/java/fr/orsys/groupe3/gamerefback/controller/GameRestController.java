@@ -46,7 +46,6 @@ public class GameRestController {
 
     @PatchMapping("/game/{id}")
     public Game updateGame(@PathVariable Long id, @RequestBody GameDto dto) throws NotFoundException {
-        System.out.println("Hello from update");
         return gameService.updateGame(id, dto);
 
     }

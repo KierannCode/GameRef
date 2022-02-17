@@ -30,9 +30,6 @@ public class Game {
     @Past(message = "La date de sortie doit être antérieure à aujourd'hui")
     private LocalDate releaseDate;
 
-    @Transient
-    private Boolean hasImage;
-
     @OneToMany(mappedBy = "game")
     @JsonIgnore
     private List<Review> reviews;

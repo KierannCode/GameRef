@@ -18,7 +18,7 @@ public class EconomicModelRestController {
 
     private EconomicModelService economicModelService;
 
-    @GetMapping("/ecomodels")
+    @GetMapping("/economicModels")
     public List<EconomicModel> getEconomicModels() {
         return economicModelService.getEconomicModels();
     }
