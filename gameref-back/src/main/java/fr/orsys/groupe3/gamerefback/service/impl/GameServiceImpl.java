@@ -57,7 +57,7 @@ public class GameServiceImpl implements GameService {
     @Override
     public Game updateGame(Long id, GameDto dto) throws NotFoundException {
         Game game = gameDao.findById(id).orElseThrow(() -> new NotFoundException("No game found with id " + id));
-        gameMapper.mapGame(game, dto);
+        game = gameMapper.mapGame(game, dto);
         return gameDao.save(game);
     }
 }
