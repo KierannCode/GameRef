@@ -20,7 +20,8 @@ import { LoginComponent } from './login/login.component';
 import { ReviewListComponent } from './review/review-list/review-list.component';
 import { HttpClientModule } from '@angular/common/http'
 import { GameItemComponent } from './game/game-item/game-item.component';
-import { MatCard, MatCardActions, MatCardModule } from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
 import { UpdateGameDialogComponent } from './game/update-game-dialog/update-game-dialog.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
@@ -57,6 +58,7 @@ const routes: Routes = [
     MatFormFieldModule,
     MatDialogModule,
     MatCardModule,
+    MatSelectModule,
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes)
