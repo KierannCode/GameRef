@@ -1,7 +1,7 @@
 package fr.orsys.groupe3.gamerefback.controller;
-import fr.orsys.groupe3.gamerefback.business.Category;
-import fr.orsys.groupe3.gamerefback.business.Editor;
-import fr.orsys.groupe3.gamerefback.service.CategoryService;
+
+import fr.orsys.groupe3.gamerefback.business.EconomicModel;
+import fr.orsys.groupe3.gamerefback.service.EconomicModelService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,12 +14,12 @@ import java.util.List;
 @RequestMapping("/api")
 @CrossOrigin(origins = "*", maxAge = 3600)
 @AllArgsConstructor
-public class CategoryController {
+public class EconomicModelRestController {
 
-    private CategoryService categoryService;
+    private EconomicModelService economicModelService;
 
-    @GetMapping("/categories")
-    public List<Category> getEditors() {
-        return categoryService.getCategories();
+    @GetMapping("/ecomodels")
+    public List<EconomicModel> getEconomicModels() {
+        return economicModelService.getEconomicModels();
     }
 }

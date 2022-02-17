@@ -7,9 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavContent, MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
-import { MatListModule, MatNavList } from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
 
 import { MatFormFieldModule} from '@angular/material/form-field';
@@ -23,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { GameItemComponent } from './game/game-item/game-item.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
+import {MatSidenavModule} from '@angular/material/sidenav';
 import { UpdateGameDialogComponent } from './game/update-game-dialog/update-game-dialog.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
@@ -52,18 +52,15 @@ const routes: Routes = [
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
-    MatSidenavModule,
     MatIconModule,
     MatButtonModule,
     MatListModule,
     MatInputModule,
     MatFormFieldModule,
     MatDialogModule,
-    
-    MatNavList,
-    MatSidenavContent,
     MatCardModule,
     MatSelectModule,
+    MatSidenavModule,
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes)

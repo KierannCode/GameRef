@@ -12,10 +12,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*", maxAge = 3600)
 @AllArgsConstructor
 public class EditorRestController {
+
     private EditorService editorService;
+
 
     @GetMapping("/editors")
     public List<Editor> getEditors() {
