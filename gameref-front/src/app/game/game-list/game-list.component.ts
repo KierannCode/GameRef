@@ -15,20 +15,25 @@ export class GameListComponent implements OnInit {
   games!: Array<Game>;
   totalElements!: number;
 
-  constructor(private dialog: MatDialog, private gameService: GameService) { }
+  constructor(private dialog: MatDialog, private gameService: GameService) {
+    this.loadPage();
+  }
 
   ngOnInit(): void {
-    this.gameService.getGames().subscribe(val => {
-      this.games = val.content;
-      this.totalElements = val.totalElements;
-      console.log(this.games);
-    });
   }
 
   openCreateGameDialog(): void {
     const dialogRef = this.dialog.open(CreateGameDialogComponent, {
       width: '500px',
       data: {},
+    });
+  }
+
+  loadPage(): void {
+    this.gameService.getGames().subscribe(val => {
+      this.games = val.content;
+      this.totalElements = val.totalElements;
+      console.log(this.games);
     });
   }
 

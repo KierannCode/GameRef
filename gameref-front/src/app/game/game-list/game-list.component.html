@@ -10,7 +10,7 @@
 </div>
 <div id="game-list">
     <div *ngFor="let game of games">
-        <app-game-item [game]="game"></app-game-item>
+        <app-game-item [game]="game" [parent]="this"></app-game-item>
     </div>
 </div>
 <mat-paginator [length]="totalElements"

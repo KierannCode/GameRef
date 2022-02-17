@@ -28,7 +28,7 @@ export class GameService {
     return this.http.post(`${this.API_URL}/game`, data);
   }
   delete(id: any): Observable<any> {
-    return this.http.delete(`${this.API_URL}/${id}`);
+    return this.http.delete(`${this.API_URL}/game/${encodeURIComponent(id)}`);
   }
   
   updateGame(id: number, dto: GameDto): Observable<any> {
