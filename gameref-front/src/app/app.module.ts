@@ -22,10 +22,10 @@ import { HttpClientModule } from '@angular/common/http'
 import { GameItemComponent } from './game/game-item/game-item.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { UpdateGameDialogComponent } from './game/update-game-dialog/update-game-dialog.component';
 import { NavbarComponent } from './navbar/navbar.component';
-
+import { MatPaginatorModule }from '@angular/material/paginator'
 
 
 const routes: Routes = [
@@ -61,6 +61,7 @@ const routes: Routes = [
     MatCardModule,
     MatSelectModule,
     MatSidenavModule,
+    MatPaginatorModule,
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes)

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
 import { Game } from 'src/app/model/Game';
 import { GameService } from 'src/app/service/game.service';
 import { CreateGameDialogComponent } from '../create-game-dialog/create-game-dialog.component';
@@ -12,11 +13,14 @@ import { CreateGameDialogComponent } from '../create-game-dialog/create-game-dia
 export class GameListComponent implements OnInit {
 
   games!: Array<Game>;
+  totalElements!: number;
 
   constructor(private dialog: MatDialog, private gameService: GameService) { }
 
   ngOnInit(): void {
-    this.gameService.getGames().subscribe(val => {this.games = val;
+    this.gameService.getGames().subscribe(val => {
+      this.games = val.content;
+      this.totalElements = val.totalElements;
       console.log(this.games);
     });
   }
@@ -25,6 +29,12 @@ export class GameListComponent implements OnInit {
     const dialogRef = this.dialog.open(CreateGameDialogComponent, {
       width: '250px',
       data: {},
+    });
+  }
+
+  nextPage(event: PageEvent) {
+    this.gameService.getGames(event.pageIndex).subscribe(val => {this.games = val.content;
+      console.log(this.games);
     });
   }
 }

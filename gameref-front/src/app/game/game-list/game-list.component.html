@@ -1,8 +1,21 @@
 <h2>Liste des jeux</h2>
-
-<button mat-raised-button (click)="openCreateGameDialog()">Ajouter un jeu</button>
+<div class="pagination-menu">
+    <mat-paginator [length]="totalElements"
+                   [pageSize]="5"
+                   aria-label="Select page"
+                   [showFirstLastButtons]="true" 
+                   (page)="nextPage($event)">
+    </mat-paginator>
+    <button mat-raised-button (click)="openCreateGameDialog()">Ajouter un jeu</button>
+</div>
 <div id="game-list">
     <div *ngFor="let game of games">
         <app-game-item [game]="game"></app-game-item>
     </div>
 </div>
+<mat-paginator [length]="totalElements"
+              [pageSize]="5"
+              aria-label="Select page"
+              [showFirstLastButtons]="true" 
+              (page)="nextPage($event)">
+</mat-paginator>

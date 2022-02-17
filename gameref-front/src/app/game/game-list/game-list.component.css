@@ -8,3 +8,11 @@ h2 {
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
+
+.pagination-menu {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    padding: 0 30px;
+    margin-bottom: 10px;
+}
