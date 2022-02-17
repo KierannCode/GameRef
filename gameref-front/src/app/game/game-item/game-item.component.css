@@ -1,12 +1,12 @@
 .card {
-    width: 300px;
+    width: 600px;
     height: 400px;
     margin: 0px 15px 15px;
 }
 
 .card div {
     display: flex;
-    justify-content: space-between;
+    
 }
 
 .bold {
@@ -34,6 +34,17 @@ mat-card-subtitle > mat-card-content {
 
 mat-raised-button {
     margin: 0!important;
+
+}
+
+mat-card-actions {
+    justify-content: space-evenly;
+    display: flex;
+}
+
+mat-card-actions button {
+    margin: 0;
+    padding: 4px 10px;
 }
 
 .platform-icon {
@@ -49,4 +60,42 @@ mat-card-title > p {
     margin: 0;
     display: flex;
     align-items: center;
+}
+
+.card-h {
+    height: 20%;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.card-m {
+    height: 80%;
+}
+
+.card-m > mat-card-content {
+    width: 50%;
+    margin: 15px;
+}
+
+
+.game-img {
+    display: flex;
+    justify-content: center!important;
+    margin-bottom: 10px;
+}
+
+.game-img > img {
+    height: 150px;
+}
+
+.game-infos {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    justify-content: space-evenly;
+}
+
+.game-infos > div {
+    display: flex;
+    justify-content: space-between;
 }
