@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/api")
 @CrossOrigin(origins = "*", maxAge = 3600)
 @AllArgsConstructor
-public class EconomicModelController {
+public class EconomicModelRestController {
 
     private EconomicModelService economicModelService;
 

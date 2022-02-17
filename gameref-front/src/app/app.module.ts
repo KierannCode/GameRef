@@ -7,9 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavContent, MatSidenavModule } from '@angular/material/sidenav';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
-import { MatListModule, MatNavList } from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
 
 import { MatFormFieldModule} from '@angular/material/form-field';
@@ -58,9 +58,6 @@ const routes: Routes = [
     MatInputModule,
     MatFormFieldModule,
     MatDialogModule,
-    
-    MatNavList,
-    MatSidenavContent,
     MatCardModule,
     FormsModule,
     HttpClientModule,

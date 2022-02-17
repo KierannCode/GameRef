@@ -1,8 +1,8 @@
 package fr.orsys.groupe3.gamerefback.controller;
 
-import fr.orsys.groupe3.gamerefback.business.AgeRating;
-import fr.orsys.groupe3.gamerefback.business.Editor;
-import fr.orsys.groupe3.gamerefback.service.AgeRatingService;
+import fr.orsys.groupe3.gamerefback.business.Category;
+import fr.orsys.groupe3.gamerefback.business.Platform;
+import fr.orsys.groupe3.gamerefback.service.PlatformService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,12 +15,12 @@ import java.util.List;
 @RequestMapping("/api")
 @CrossOrigin(origins = "*", maxAge = 3600)
 @AllArgsConstructor
-public class AgeRatingController {
+public class PlatformRestController {
 
-    private AgeRatingService ageRatingService;
+    private PlatformService platformService;
 
-    @GetMapping("/ageRatings")
-    public List<AgeRating> getAgeRating() {
-        return ageRatingService.getAgeRatings();
+    @GetMapping("/platforms")
+    public List<Platform> getPlatforms() {
+        return platformService.getPlatforms();
     }
 }
