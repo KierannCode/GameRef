@@ -1,11 +1,13 @@
 package fr.orsys.groupe3.gamerefback.service.impl;
 
 import fr.orsys.groupe3.gamerefback.business.Game;
+import fr.orsys.groupe3.gamerefback.business.Moderator;
 import fr.orsys.groupe3.gamerefback.dao.GameDao;
 import fr.orsys.groupe3.gamerefback.dto.GameDto;
 import fr.orsys.groupe3.gamerefback.exception.NotFoundException;
 import fr.orsys.groupe3.gamerefback.mapper.GameMapper;
 import fr.orsys.groupe3.gamerefback.service.GameService;
+import fr.orsys.groupe3.gamerefback.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -20,11 +22,15 @@ public class GameServiceImpl implements GameService {
     private GameMapper gameMapper;
     private GameDao gameDao;
 
+    private UserService userService;
+
     @Override
     public Game createGame(GameDto dto) throws NotFoundException {
         Game game = new Game();
         gameMapper.mapGame(game, dto);
-        game.setHasImage(false);
+        if (game.getModerator() == null) {
+            game.setModerator(userService.getModerator(6L));
+        }
         return gameDao.save(game);
     }
 

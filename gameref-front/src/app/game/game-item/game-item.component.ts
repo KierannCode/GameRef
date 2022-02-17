@@ -2,6 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Game } from 'src/app/model/Game';
 import { UpdateGameDialogComponent } from '../update-game-dialog/update-game-dialog.component';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr, 'fr');
 
 @Component({
   selector: 'app-game-item',

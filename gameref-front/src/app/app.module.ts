@@ -10,7 +10,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
-
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -24,10 +23,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatPaginatorModule }from '@angular/material/paginator';
 import { UpdateGameDialogComponent } from './game/update-game-dialog/update-game-dialog.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { MatNativeDateModule } from '@angular/material/core';
-
 
 
 const routes: Routes = [
@@ -65,6 +64,7 @@ const routes: Routes = [
     MatSidenavModule,
     MatNativeDateModule,
     MatDatepickerModule,
+    MatPaginatorModule,
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes)
