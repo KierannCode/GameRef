@@ -1,5 +1,6 @@
 package fr.orsys.groupe3.gamerefback.controller;
 
+import fr.orsys.groupe3.gamerefback.business.Moderator;
 import fr.orsys.groupe3.gamerefback.dto.*;
 import fr.orsys.groupe3.gamerefback.exception.NotFoundException;
 import fr.orsys.groupe3.gamerefback.service.*;
@@ -141,18 +142,19 @@ public class InitController {
             GameDto game11 = new GameDto("Ori", "Encore une petite bestiole brillante qui saute dans tous les sens", LocalDate.of(2015, Month.MARCH, 11), 2L, 1L, 5L, Arrays.asList(2L), 2L);
             GameDto game12 = new GameDto("Vagrant Story", "Découvrez Léamundis, la ville de tous les secrets", LocalDate.of(2000, Month.FEBRUARY, 10), 3L, 5L, 4L, Arrays.asList(3L), 2L);
             try {
-                gameService.createGame(game1);
-                gameService.createGame(game2);
-                gameService.createGame(game3);
-                gameService.createGame(game4);
-                gameService.createGame(game5);
-                gameService.createGame(game6);
-                gameService.createGame(game7);
-                gameService.createGame(game8);
-                gameService.createGame(game9);
-                gameService.createGame(game10);
-                gameService.createGame(game11);
-                gameService.createGame(game12);
+                Moderator moderator = userService.getModerator(6L);
+                gameService.createGame(game1, moderator);
+                gameService.createGame(game2, moderator);
+                gameService.createGame(game3, moderator);
+                gameService.createGame(game4, moderator);
+                gameService.createGame(game5, moderator);
+                gameService.createGame(game6, moderator);
+                gameService.createGame(game7, moderator);
+                gameService.createGame(game8, moderator);
+                gameService.createGame(game9, moderator);
+                gameService.createGame(game10, moderator);
+                gameService.createGame(game11, moderator);
+                gameService.createGame(game12, moderator);
             } catch (NotFoundException e) {
                 e.printStackTrace();
             }

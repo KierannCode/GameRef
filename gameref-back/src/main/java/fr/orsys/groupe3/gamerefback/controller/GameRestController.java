@@ -30,7 +30,7 @@ public class GameRestController {
     // Ajout d'un jeu
     @PostMapping("/game")
     public Game addGame(@RequestBody GameDto dto) throws NotFoundException {
-        return gameService.createGame(dto);
+        return gameService.createGame(dto, null);
     }
 
     // Suppression d'un jeu
