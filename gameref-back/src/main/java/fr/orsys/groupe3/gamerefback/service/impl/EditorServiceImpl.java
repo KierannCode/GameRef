@@ -32,6 +32,6 @@ public class EditorServiceImpl implements EditorService {
 
     @Override
     public Editor getEditor(Long id) throws NotFoundException {
-        return editorDao.findById(id).orElseThrow(() -> new NotFoundException("No editor found with id " + id));
+        return editorDao.findById(id).orElseThrow(() -> new NotFoundException("editor", "No editor found with id " + id));
     }
 }

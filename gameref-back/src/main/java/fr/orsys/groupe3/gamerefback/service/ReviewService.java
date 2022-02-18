@@ -1,6 +1,7 @@
 package fr.orsys.groupe3.gamerefback.service;
 
 import fr.orsys.groupe3.gamerefback.business.Game;
+import fr.orsys.groupe3.gamerefback.business.Player;
 import fr.orsys.groupe3.gamerefback.business.Review;
 import fr.orsys.groupe3.gamerefback.dto.GameDto;
 import fr.orsys.groupe3.gamerefback.dto.ReviewDto;
@@ -14,8 +15,7 @@ import java.util.List;
 @Service
 public interface ReviewService {
 
-
-    Review createReview(ReviewDto dto) throws NotFoundException;
+    Review createReview(ReviewDto dto, Player player) throws NotFoundException;
 
     Page<Review> getReviews(Pageable pageable);
     List<Review> getReviews();

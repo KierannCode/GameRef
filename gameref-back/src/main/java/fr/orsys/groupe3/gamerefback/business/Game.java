@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.time.LocalDate;
@@ -19,10 +20,10 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Merci de rentrer un nom pour le jeu")
+    @NotBlank(message = "Merci de rentrer le nom du jeu")
     private String name;
 
-    @NotBlank(message = "Merci de rentrer un nom description")
+    @NotBlank(message = "Merci de rentrer une description")
     @Lob
     private String description;
 
@@ -47,6 +48,7 @@ public class Game {
     private Editor editor;
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @NotEmpty(message = "Merci de sélectionner au moins une plateforme")
     private List<Platform> platforms;
 
     @ManyToOne
