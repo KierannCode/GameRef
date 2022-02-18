@@ -27,6 +27,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatPaginatorModule }from '@angular/material/paginator';
 import { UpdateGameDialogComponent } from './game/update-game-dialog/update-game-dialog.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ReviewItemComponent } from './review/review-item/review-item.component';
 
 
 const routes: Routes = [
@@ -40,6 +41,7 @@ const routes: Routes = [
     AppComponent,
     NavbarComponent,
     ReviewListComponent,
+    ReviewItemComponent,
     LoginComponent,
     GameListComponent,
     GameItemComponent,

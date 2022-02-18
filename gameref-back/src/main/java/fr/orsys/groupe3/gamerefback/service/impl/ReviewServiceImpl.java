@@ -1,6 +1,6 @@
 package fr.orsys.groupe3.gamerefback.service.impl;
 
-import fr.orsys.groupe3.gamerefback.business.Game;
+import fr.orsys.groupe3.gamerefback.business.Player;
 import fr.orsys.groupe3.gamerefback.business.Review;
 import fr.orsys.groupe3.gamerefback.dao.ReviewDao;
 import fr.orsys.groupe3.gamerefback.dto.ReviewDto;
@@ -12,19 +12,22 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
 @AllArgsConstructor
 public class ReviewServiceImpl implements ReviewService {
-
     private ReviewMapper reviewMapper;
     private ReviewDao reviewDao;
-    @Override
-    public Review createGame(ReviewDto dto) throws NotFoundException {
 
+    @Override
+    public Review createReview(ReviewDto dto, Player player) throws NotFoundException {
         Review review = new Review();
         reviewMapper.mapReview(review, dto);
+        LocalDateTime now = LocalDateTime.now();
+        review.setSubmitDate(now);
+        review.setPlayer(player);
         return reviewDao.save(review);
     }
 
