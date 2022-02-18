@@ -32,6 +32,6 @@ public class PlatformServiceImpl implements PlatformService {
 
     @Override
     public Platform getPlatform(Long id) throws NotFoundException {
-        return platformDao.findById(id).orElseThrow(() -> new NotFoundException("No platform found with id " + id));
+        return platformDao.findById(id).orElseThrow(() -> new NotFoundException("platform", "No platform found with id " + id));
     }
 }

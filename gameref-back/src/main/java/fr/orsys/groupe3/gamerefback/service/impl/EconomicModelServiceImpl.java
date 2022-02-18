@@ -32,6 +32,6 @@ public class EconomicModelServiceImpl implements EconomicModelService {
 
     @Override
     public EconomicModel getEconomicModel(Long id) throws NotFoundException {
-        return economicModelDao.findById(id).orElseThrow(() -> new NotFoundException("No economicModel found with id " + id));
+        return economicModelDao.findById(id).orElseThrow(() -> new NotFoundException("economicModel", "No economicModel found with id " + id));
     }
 }

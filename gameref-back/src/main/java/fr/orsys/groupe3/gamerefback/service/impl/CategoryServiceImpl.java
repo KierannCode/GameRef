@@ -32,6 +32,6 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category getCategory(Long id) throws NotFoundException {
-        return categoryDao.findById(id).orElseThrow(() -> new NotFoundException("No category found with id " + id));
+        return categoryDao.findById(id).orElseThrow(() -> new NotFoundException("category", "No category found with id " + id));
     }
 }

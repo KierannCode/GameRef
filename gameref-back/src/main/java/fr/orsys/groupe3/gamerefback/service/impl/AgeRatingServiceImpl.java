@@ -32,6 +32,6 @@ public class AgeRatingServiceImpl implements AgeRatingService {
 
     @Override
     public AgeRating getAgeRating(Long id) throws NotFoundException {
-        return ageRatingDao.findById(id).orElseThrow(() -> new NotFoundException("No ageRating found with id " + id));
+        return ageRatingDao.findById(id).orElseThrow(() -> new NotFoundException("ageRating", "No ageRating found with id " + id));
     }
 }

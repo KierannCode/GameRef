@@ -5,7 +5,6 @@ import fr.orsys.groupe3.gamerefback.dto.GameDto;
 import fr.orsys.groupe3.gamerefback.exception.NotFoundException;
 import fr.orsys.groupe3.gamerefback.service.GameService;
 import lombok.AllArgsConstructor;
-import org.springframework.data.util.Pair;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Page;
@@ -16,8 +15,8 @@ import org.springframework.data.domain.Pageable;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api")
@@ -52,16 +51,27 @@ public class GameRestController {
 
     @ExceptionHandler(NotFoundException.class)
     @ResponseStatus(code = HttpStatus.UNPROCESSABLE_ENTITY)
-    public String handleNotFoundException(NotFoundException e) {
-        return e.getMessage();
+    public Map<String, List<String>> handleNotFoundException(NotFoundException exception) {
+        Map<String, List<String>> errors = new HashMap<>();
+        if (exception.getEntity().equals("platform")) {
+            errors.put("platform", List.of(exception.getMessage()));
+        } else {
+            errors.put(exception.getEntity(), List.of(exception.getMessage()));
+        }
+        return errors;
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
     @ResponseStatus(code=HttpStatus.UNPROCESSABLE_ENTITY)
-    public List<Pair<String, String>> handleValidationErrors(ConstraintViolationException exception) {
-        List<Pair<String, String>> errors = new ArrayList<>();
+    public Map<String, List<String>> handleValidationErrors(ConstraintViolationException exception) {
+        Map<String, List<String>> errors = new HashMap<>();
         for (ConstraintViolation<?> violation : exception.getConstraintViolations()) {
-            errors.add(Pair.of(violation.getPropertyPath().toString(), violation.getMessage()));
+            String property = violation.getPropertyPath().toString();
+            if (errors.containsKey(property)) {
+                errors.get(property).add(violation.getMessage());
+            } else {
+                errors.put(property, List.of(violation.getMessage()));
+            }
         }
         return errors;
     }

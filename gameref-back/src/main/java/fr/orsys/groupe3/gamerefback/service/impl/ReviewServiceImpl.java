@@ -1,6 +1,7 @@
 package fr.orsys.groupe3.gamerefback.service.impl;
 
 import fr.orsys.groupe3.gamerefback.business.Player;
+
 import fr.orsys.groupe3.gamerefback.business.Review;
 import fr.orsys.groupe3.gamerefback.dao.ReviewDao;
 import fr.orsys.groupe3.gamerefback.dto.ReviewDto;
@@ -43,19 +44,19 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public Review getReview(Long id) throws NotFoundException {
-        return reviewDao.findById(id).orElseThrow(() -> new NotFoundException("No Review found with id " + id));
+        return reviewDao.findById(id).orElseThrow(() -> new NotFoundException("review", "No review found with id " + id));
     }
 
     @Override
     public Review deleteReview(Long id) throws NotFoundException {
-        Review review = reviewDao.findById(id).orElseThrow(()->new NotFoundException("No review found with id :" +id));
+        Review review = reviewDao.findById(id).orElseThrow(()->new NotFoundException("review", "No review found with id :" +id));
         reviewDao.deleteById(id);
         return review;
     }
 
     @Override
     public Review updateReview(Long id, ReviewDto dto) throws NotFoundException {
-        Review review = reviewDao.findById(id).orElseThrow(() -> new NotFoundException("No game found with id " + id));
+        Review review = reviewDao.findById(id).orElseThrow(() -> new NotFoundException("review", "No review found with id " + id));
         reviewMapper.mapReview(review, dto);
         return reviewDao.save(review);
 

@@ -44,19 +44,19 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public Game getGame(Long id) throws NotFoundException {
-        return gameDao.findById(id).orElseThrow(() -> new NotFoundException("No game found with id " + id));
+        return gameDao.findById(id).orElseThrow(() -> new NotFoundException("game", "No game found with id " + id));
     }
 
     @Override
     public Game deleteGame(Long id) throws NotFoundException {
-        Game game = gameDao.findById(id).orElseThrow(() -> new NotFoundException("No game found with id " + id));
+        Game game = gameDao.findById(id).orElseThrow(() -> new NotFoundException("game", "No game found with id " + id));
         gameDao.deleteById(id);
         return game;
     }
 
     @Override
     public Game updateGame(Long id, GameDto dto) throws NotFoundException {
-        Game game = gameDao.findById(id).orElseThrow(() -> new NotFoundException("No game found with id " + id));
+        Game game = gameDao.findById(id).orElseThrow(() -> new NotFoundException("game", "No game found with id " + id));
         game = gameMapper.mapGame(game, dto);
         return gameDao.save(game);
     }
