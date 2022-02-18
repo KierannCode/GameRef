@@ -8,15 +8,19 @@ import { AgeRating } from '../model/AgeRating';
 })
 export class AgeRatingService {
   
-
   private API_URL = "http://localhost:8080/api";
 
   constructor(private http: HttpClient) { 
-    
+
   }
 
   getAgeRatings(): Observable<Array<AgeRating>> {
     let url = `${this.API_URL}/ageRatings`;
+    return this.http.get<Array<AgeRating>>(url);
+  }
+
+  getAgeRatingsError(): Observable<Array<AgeRating>> {
+    let url = `${this.API_URL}/agePatings`;
     return this.http.get<Array<AgeRating>>(url);
   }
 }

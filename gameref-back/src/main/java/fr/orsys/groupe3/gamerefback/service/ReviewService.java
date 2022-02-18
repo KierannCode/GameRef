@@ -15,7 +15,7 @@ import java.util.List;
 public interface ReviewService {
 
 
-    Review createGame(ReviewDto dto) throws NotFoundException;
+    Review createReview(ReviewDto dto) throws NotFoundException;
 
     Page<Review> getReviews(Pageable pageable);
     List<Review> getReviews();

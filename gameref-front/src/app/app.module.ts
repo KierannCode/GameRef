@@ -31,8 +31,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },  // ce qui correspond http://localhost:4200
-  { path: 'avis', component: ReviewListComponent },   // ce qui correspond http://localhost:4200/avis
-  { path: 'jeux', component: GameListComponent }
+  { path: 'jeux', component: GameListComponent },
+  { path: 'avis', component: ReviewListComponent } // ce qui correspond http://localhost:4200/avis
 ];
 
 @NgModule({

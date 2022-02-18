@@ -31,6 +31,7 @@ public class InitController {
     private PlatformService platformService;
     private UserService userService;
     private GameService gameService;
+    private ReviewService reviewService;
 
     @PostConstruct
     public void initAll() {
@@ -125,6 +126,8 @@ public class InitController {
             userService.createPlayer(playerThree);
         }
     }
+
+    
 
     public void initGames() {
         if (gameService.getGames().isEmpty()) {

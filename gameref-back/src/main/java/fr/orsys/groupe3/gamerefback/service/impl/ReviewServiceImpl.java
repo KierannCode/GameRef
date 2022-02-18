@@ -21,7 +21,7 @@ public class ReviewServiceImpl implements ReviewService {
     private ReviewMapper reviewMapper;
     private ReviewDao reviewDao;
     @Override
-    public Review createGame(ReviewDto dto) throws NotFoundException {
+    public Review createReview(ReviewDto dto) throws NotFoundException {
 
         Review review = new Review();
         reviewMapper.mapReview(review, dto);
