@@ -148,6 +148,8 @@ public class InitController {
         }
     }
 
+    
+
     public void initGames() {
         if (gameService.getGames().isEmpty()) {
             GameDto game1 = new GameDto("Final Fantasy XIV", "Explorer Éorzéa avec de nombreux compagnons", LocalDate.of(2010, Month.SEPTEMBER, 30), 4L, 6L, 4L, Arrays.asList(2L, 3L), 3L);

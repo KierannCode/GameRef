@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>Ajouter un avis</h1>
+<div mat-dialog-content>
+ 
+  <mat-form-field appearance="fill">
+    <mat-label>Jeu</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let game of games" [value]="game.id">{{game.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+
+    <mat-label>Note</mat-label>
+    <mat-slider thumbLabel
+
+  tickInterval="1"
+  step="1"
+  min="0"
+  max="20"
+  aria-label="units"></mat-slider>
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>Avis</mat-label>
+    <textarea matInput [(ngModel)]="reviewdto.description"  placeholder="Parles nous de ce jeu"></textarea>
+  </mat-form-field>
+  
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onClose()">Fermer</button>
+  <button mat-button (click)="onSubmit()" cdkFocusInitial>Valider</button>
+</div>

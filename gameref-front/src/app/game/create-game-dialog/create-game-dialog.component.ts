@@ -40,11 +40,11 @@ export class CreateGameDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.listedesEditeurs();
-    this.listedesCategories();
-    this.listedesClassifications();
-    this.listedesModelsEco();
-    this.listedesPlatformes();
+    this.editorList();
+    this.categoriesList();
+    this.ageRatingList();
+    this.modelEcoList();
+    this.platformList();
   }
 
   onClose(): void {
@@ -53,17 +53,8 @@ export class CreateGameDialogComponent implements OnInit {
 
   onSubmit():void {
     //console.log(`Envoi de la requête de création du jeu "${this.game.name}"`);
-    const data = {
-      name: this.gamedto.name,
-      description: this.gamedto.description,
-      releaseDate: this.gamedto.releaseDate,
-      ageRatingId: this.gamedto.ageRatingId,
-      categoryId: this.gamedto.categoryId,
-      editorId: this.gamedto.editorId,
-      platformIds: this.gamedto.platformIds,
-      economicModelId: this.gamedto.platformIds
-    };
-    this.gameService.create(data)
+    
+    this.gameService.create(this.gamedto)
      .subscribe({
       next: (res) => {
         console.log(res);
@@ -73,7 +64,7 @@ export class CreateGameDialogComponent implements OnInit {
      });
   }
 
-  listedesEditeurs(): void{
+  editorList(): void{
     this.editorService.getEditors()
       .subscribe({
         next: (data) => {
@@ -85,8 +76,7 @@ export class CreateGameDialogComponent implements OnInit {
 
   }
 
-  listedesPlatformes(): void {
-
+  platformList(): void {
     this.platformService.getPlatforms()
       .subscribe({
         next: (data) => {
@@ -98,7 +88,7 @@ export class CreateGameDialogComponent implements OnInit {
 
   }
 
-  listedesCategories(): void {
+  categoriesList(): void {
     this.categoryService.getCategories()
       .subscribe({
         next: (data) => {
@@ -110,31 +100,27 @@ export class CreateGameDialogComponent implements OnInit {
     
   }
 
-  listedesClassifications(): void {
+  ageRatingList(): void {
     this.ageRatingService.getAgeRatings()
-      .subscribe({
-        next: (data) => {
-          this.ageratings = data;
-          console.log(data);
-        },
-        error: (e) => console.error(e)
-      });
-    
+    .subscribe({
+      next: (data) => {
+        this.ageratings = data;
+        console.log(data);
+      },
+      error: (e) => console.error(e)
+    });
   }
 
-  listedesModelsEco(): void {
+  modelEcoList(): void {
     this.economicModelService.getEconomicModels()
-      .subscribe({
-        next: (data) => {
-          this.economicModels = data;
-          console.log(data);
-        },
-        error: (e) => console.error(e)
-      });
-    
+    .subscribe({
+      next: (data) => {
+        this.economicModels = data;
+        console.log(data);
+      },
+      error: (e) => console.error(e)
+    });
   }
-
-  
 }
 
 

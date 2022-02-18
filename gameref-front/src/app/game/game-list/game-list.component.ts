@@ -24,7 +24,7 @@ export class GameListComponent implements OnInit {
 
   openCreateGameDialog(): void {
     const dialogRef = this.dialog.open(CreateGameDialogComponent, {
-      width: '500px',
+      width: '450px',
       data: {},
     });
   }

@@ -1,1 +1,53 @@
-<p>review-list works!</p>
+<div id="reviews-list">
+    <h1>Liste des avis</h1>
+    <div class="pagination-menu">
+        <mat-paginator [length]="totalElements"
+                       [pageSize]="10"
+                       aria-label="Select page"
+                       [showFirstLastButtons]="true" 
+                       (page)="nextPage($event)">
+        </mat-paginator>
+        <button mat-raised-button (click)="openCreateReviewDialog()">Ajouter un avis</button>
+    </div>
+    <mat-table  class="table" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="player">
+            <th class="player" mat-header-cell *matHeaderCellDef> Joueur </th>
+            <td mat-cell *matCellDef="let review"> {{ review.player.pseudo | titlecase }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+            <th class="description" class="description" mat-header-cell *matHeaderCellDef> Avis </th>
+            <td mat-cell *matCellDef="let review"> {{ review.description }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="game">
+            <th class="game" mat-header-cell *matHeaderCellDef> Jeu </th>
+            <td mat-cell *matCellDef="let review"> {{ review.game.name }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="submitDate">
+            <th class="submitDate" mat-header-cell *matHeaderCellDef> Date </th>
+            <td mat-cell *matCellDef="let review"> {{ review.submitDate | date:'d LLLL y hh:mm':'+0200':'fr' }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="moderator">
+            <th class="moderator" mat-header-cell *matHeaderCellDef>Modérateur</th>
+            <td mat-cell *matCellDef="let review"> {{ review.moderator }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="rating">
+            <th class="rating text-align-center" mat-header-cell *matHeaderCellDef>Note</th>
+            <td class="text-align-center" mat-cell *matCellDef="let review"> {{ review.rating }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef>Action</th>   
+            <td mat-cell *matCellDef="let element"> 
+              <button mat-raised-button>Action</button> 
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </mat-table>
+</div>

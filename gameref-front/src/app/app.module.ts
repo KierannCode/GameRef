@@ -28,6 +28,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { UpdateGameDialogComponent } from './game/update-game-dialog/update-game-dialog.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ReviewItemComponent } from './review/review-item/review-item.component';
+import { MatTableModule } from '@angular/material/table';
+import { CreateReviewDialogComponent } from './review/create-review-dialog/create-review-dialog.component';
+import { MatSliderModule } from '@angular/material/slider';
 
 
 const routes: Routes = [
@@ -51,7 +54,8 @@ const routes: Routes = [
     GameListComponent,
     GameItemComponent,
     CreateGameDialogComponent,
-    UpdateGameDialogComponent
+    UpdateGameDialogComponent,
+    CreateReviewDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -68,6 +72,8 @@ const routes: Routes = [
     MatDialogModule,
     MatCardModule,
     MatSelectModule,
+    MatTableModule,
+    MatSliderModule,
     MatSidenavModule,
     MatNativeDateModule,
     MatDatepickerModule,
