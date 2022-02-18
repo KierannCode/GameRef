@@ -4,6 +4,8 @@ import { Game } from 'src/app/model/Game';
 import { UpdateGameDialogComponent } from '../update-game-dialog/update-game-dialog.component';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+import { GameService } from 'src/app/service/game.service';
+import { GameListComponent } from '../game-list/game-list.component';
 registerLocaleData(localeFr, 'fr');
 
 @Component({
@@ -13,8 +15,10 @@ registerLocaleData(localeFr, 'fr');
 })
 export class GameItemComponent implements OnInit {
   @Input() game!: Game;
-
-  constructor(private dialog: MatDialog) { }
+  @Input() parent!: GameListComponent;
+  
+  constructor(private dialog: MatDialog, private gameService: GameService
+    ) { }
 
   ngOnInit(): void {
   }
@@ -26,5 +30,7 @@ export class GameItemComponent implements OnInit {
     });
   }
 
-  deleteGame(): void {}
+  deleteGame(): void {
+    this.gameService.delete(this.game.id).subscribe(() => this.parent.loadPage());
+  }
 }

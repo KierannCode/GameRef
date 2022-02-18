@@ -1,16 +1,57 @@
 <h1 mat-dialog-title>Ajouter un jeu</h1>
 <div mat-dialog-content>
+
   <mat-form-field appearance="fill">
     <mat-label>Nom du jeu</mat-label>
-    <input matInput [(ngModel)]="game.name">
+    <input matInput [(ngModel)]="gamedto.name">
   </mat-form-field>
-  <mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Editeurs</mat-label>
+    <mat-select>
+       <mat-option *ngFor="let editor of editors" [value]="editor.id"> {{editor.name}} </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
     <mat-label>Description du jeu</mat-label>
-    <textarea matInput [(ngModel)]="game.description"  placeholder="Parles nous de ce jeu"></textarea>
+    <textarea matInput [(ngModel)]="gamedto.description"  placeholder="Parles nous de ce jeu"></textarea>
   </mat-form-field>
-  <mat-form-field>
+
+  <mat-form-field appearance="fill">
     <mat-label>Date de sortie du jeu</mat-label>
-    <input matInput [(ngModel)]="game.releaseDate">
+    <input matInput [(ngModel)]="gamedto.releaseDate">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Categorie</mat-label>
+    <mat-select>
+       <mat-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Classification</mat-label>
+    <mat-select>
+       <mat-option *ngFor="let agerating of ageratings" [value]="agerating.id">{{agerating.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+ 
+  <!--
+     <mat-form-field appearance="fill">
+      <mat-label>Plateformes</mat-label>
+       <mat-selection-list #plat>
+          <mat-list-option *ngFor="let platform of platforms">
+            {{platform.name}}
+       </mat-list-option>
+    </mat-selection-list>
+</mat-form-field>
+  -->
+
+  <mat-form-field appearance="fill">
+    <mat-label>Modele Economique</mat-label>
+    <mat-select>
+       <mat-option *ngFor="let modeleEco of economicModels" [value]="modeleEco.id">{{modeleEco.name}}</mat-option>
+    </mat-select>
   </mat-form-field>
   
   

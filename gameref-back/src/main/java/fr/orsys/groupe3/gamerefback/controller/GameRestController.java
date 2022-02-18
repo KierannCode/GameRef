@@ -5,6 +5,7 @@ import fr.orsys.groupe3.gamerefback.dto.GameDto;
 import fr.orsys.groupe3.gamerefback.exception.NotFoundException;
 import fr.orsys.groupe3.gamerefback.service.GameService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.util.Pair;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Page;
@@ -15,6 +16,8 @@ import org.springframework.data.domain.Pageable;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,7 +33,7 @@ public class GameRestController {
     // Ajout d'un jeu
     @PostMapping("/game")
     public Game addGame(@RequestBody GameDto dto) throws NotFoundException {
-        return gameService.createGame(dto);
+        return gameService.createGame(dto, null);
     }
 
     // Suppression d'un jeu
@@ -58,7 +61,11 @@ public class GameRestController {
 
     @ExceptionHandler(ConstraintViolationException.class)
     @ResponseStatus(code=HttpStatus.UNPROCESSABLE_ENTITY)
-    public List<String> handleValidationErrors(ConstraintViolationException exception) {
-        return exception.getConstraintViolations().stream().map(ConstraintViolation::getMessage).collect(Collectors.toList());
+    public List<Pair<String, String>> handleValidationErrors(ConstraintViolationException exception) {
+        List<Pair<String, String>> errors = new ArrayList<>();
+        for (ConstraintViolation<?> violation : exception.getConstraintViolations()) {
+            errors.add(Pair.of(violation.getPropertyPath().toString(), violation.getMessage()));
+        }
+        return errors;
     }
 }

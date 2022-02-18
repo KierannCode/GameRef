@@ -8,9 +8,12 @@ import { Platform } from '../model/Platform';
 })
 export class PlatformService {
 
+
   private API_URL = "http://localhost:8080/api";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  
+   }
 
   getPlatforms(): Observable<Array<Platform>> {
     let url = `${this.API_URL}/platforms`;

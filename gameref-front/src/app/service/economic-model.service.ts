@@ -7,10 +7,13 @@ import { EconomicModel } from '../model/EconomicModel';
   providedIn: 'root'
 })
 export class EconomicModelService {
+  
 
   private API_URL = "http://localhost:8080/api";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    
+  }
 
   getEconomicModels(): Observable<Array<EconomicModel>> {
     let url = `${this.API_URL}/economicModels`;
