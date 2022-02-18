@@ -53,17 +53,8 @@ export class CreateGameDialogComponent implements OnInit {
 
   onSubmit():void {
     //console.log(`Envoi de la requête de création du jeu "${this.game.name}"`);
-    const data = {
-      name: this.gamedto.name,
-      description: this.gamedto.description,
-      releaseDate: this.gamedto.releaseDate,
-      ageRatingId: this.gamedto.ageRatingId,
-      categoryId: this.gamedto.categoryId,
-      editorId: this.gamedto.editorId,
-      platformIds: this.gamedto.platformIds,
-      economicModelId: this.gamedto.platformIds
-    };
-    this.gameService.create(data)
+    
+    this.gameService.create(this.gamedto)
      .subscribe({
       next: (res) => {
         console.log(res);
