@@ -34,4 +34,4 @@ Nous avons donc 3 dossiers :
 [ ] Utilisation du token JWT  
 [ ] Téléversement d'images pour les jeux  
 [ ] Export des avis en excel 
-
+[ ] Filtre des tableaux
