@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import java.util.List;
@@ -19,17 +20,17 @@ import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @RestController
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600, allowCredentials = "true")
 @RequestMapping("/api")
 public class ReviewRestController {
 
     private ReviewService reviewService;
-    private UserService userService;
+    private HttpSession httpSession;
 
     // Ajout d'un avis
     @PostMapping("/review")
     public Review addReview(@RequestBody ReviewDto dto) throws NotFoundException {
-        return reviewService.createReview(dto, null);
+        return reviewService.createReview(dto, (Player) httpSession.getAttribute("user"));
     }
 
     // Suppression d'un avis
