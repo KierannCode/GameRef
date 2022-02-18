@@ -54,21 +54,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUser(String pseudo, String password) throws NotFoundException {
-        User user = userDao.findByPseudo(pseudo).orElseThrow(() -> new NotFoundException("No user found with pseudo \"" + pseudo +"\""));
+        User user = userDao.findByPseudo(pseudo).orElseThrow(() -> new NotFoundException("user", "No user found with pseudo \"" + pseudo +"\""));
         if (passwordEncoder.matches(password, user.getPassword())) {
             return user;
         } else {
-            throw new NotFoundException("Incorrect password for user \"" + pseudo +"\"");
+            throw new NotFoundException("user", "Incorrect password for user \"" + pseudo +"\"");
         }
     }
 
     @Override
     public Player getPlayer(Long id) throws NotFoundException {
-        return playerDao.findById(id).orElseThrow(() -> new NotFoundException("No player found with id " + id));
+        return playerDao.findById(id).orElseThrow(() -> new NotFoundException("user", "No player found with id " + id));
     }
 
     @Override
     public Moderator getModerator(Long id) throws NotFoundException {
-        return moderatorDao.findById(id).orElseThrow(() -> new NotFoundException("No moderator found with id " + id));
+        return moderatorDao.findById(id).orElseThrow(() -> new NotFoundException("user", "No moderator found with id " + id));
     }
 }

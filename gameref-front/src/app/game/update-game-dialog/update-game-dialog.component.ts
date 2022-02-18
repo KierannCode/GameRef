@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { GameDto } from 'src/app/dto/GameDto';
@@ -31,6 +32,8 @@ export class UpdateGameDialogComponent implements OnInit {
   public economicModels!: Array<EconomicModel>;
   public ageRatings!: Array<AgeRating>;
 
+  public errorMap: Map<string, Array<string>> = new Map();
+
   constructor(private gameService: GameService, private editorService: EditorService,
     private platformService: PlatformService, private categoryService: CategoryService,
     private economicModelService: EconomicModelService, private ageRatingService: AgeRatingService,
@@ -53,9 +56,11 @@ export class UpdateGameDialogComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.gameService.updateGame(this.game.id, this.dto).subscribe(val => {
-      Object.assign(this.game, val);
-      this.dialogRef.close();
+    this.gameService.updateGame(this.game.id, this.dto).subscribe({
+      next: val => {
+        Object.assign(this.game, val);
+        this.dialogRef.close();
+      }, error: (response: HttpErrorResponse) => this.errorMap = new Map(Object.entries(response.error))
     });
   }
 }
