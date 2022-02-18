@@ -9,7 +9,7 @@ import { Page } from './Page';
 })
 export class ReviewService {
   private API_URL = "http://localhost:8080/api";
-  private pageSize = 5;
+  private pageSize = 10;
 
   constructor(private http: HttpClient) { }
 
@@ -19,5 +19,9 @@ export class ReviewService {
       url += `,${encodeURIComponent('desc')}`;
     }
     return this.http.get<Page<Review>>(url);
+  }
+
+  create(data: any): Observable<any> {
+    return this.http.post(`${this.API_URL}/review`, data);
   }
 }

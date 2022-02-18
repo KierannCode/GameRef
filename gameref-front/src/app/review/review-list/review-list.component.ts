@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { Review } from 'src/app/model/Review';
 import { ReviewService } from 'src/app/service/review.service';
+import { CreateReviewDialogComponent } from '../create-review-dialog/create-review-dialog.component';
 
 @Component({
   selector: 'app-review-list',
@@ -10,8 +11,9 @@ import { ReviewService } from 'src/app/service/review.service';
   styleUrls: ['./review-list.component.css']
 })
 export class ReviewListComponent implements OnInit {
+  displayedColumns: string[] = ['player', 'game', 'submitDate', 'moderator', 'rating', 'description', 'action'];
 
-  reviews!: Array<Review>;
+  dataSource!: Array<Review>;
   totalElements!: number;
 
   constructor(private dialog: MatDialog, private reviewService: ReviewService) {
@@ -23,9 +25,20 @@ export class ReviewListComponent implements OnInit {
 
   loadPage(): void {
     this.reviewService.getReviews().subscribe(val => {
-      this.reviews = val.content;
+      this.dataSource = val.content;
       this.totalElements = val.totalElements;
-      console.log(this.reviews);
+      console.log(this.dataSource);
     });
+  }
+
+  openCreateReviewDialog(): void {
+    const dialogRef = this.dialog.open(CreateReviewDialogComponent, {
+      width: '500px',
+      data: {},
+    });
+  }
+
+  nextPage(event: PageEvent) {
+    this.reviewService.getReviews(event.pageIndex).subscribe(val => this.dataSource = val.content);
   }
 }
