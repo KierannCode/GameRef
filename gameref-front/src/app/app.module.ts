@@ -17,22 +17,27 @@ import { GameListComponent } from './game/game-list/game-list.component';
 import { CreateGameDialogComponent } from './game/create-game-dialog/create-game-dialog.component';
 import { LoginComponent } from './login/login.component';
 import { ReviewListComponent } from './review/review-list/review-list.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClient, HttpClientModule } from '@angular/common/http'
 import { GameItemComponent } from './game/game-item/game-item.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { MatPaginatorModule }from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { UpdateGameDialogComponent } from './game/update-game-dialog/update-game-dialog.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 
 const routes: Routes = [
   { path: '', component: LoginComponent },  // ce qui correspond http://localhost:4200
-  { path: 'avis', component: ReviewListComponent },   // ce qui correspond http://localhost:4200/avis
-  { path: 'jeux', component: GameListComponent }
+  {
+    path: 'nav', component: NavbarComponent, children: [{
+      path: 'avis', component: ReviewListComponent
+    }, {
+      path: 'jeux', component: GameListComponent
+    }]
+  }
 ];
 
 @NgModule({
@@ -69,7 +74,7 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

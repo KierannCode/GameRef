@@ -14,25 +14,27 @@ export class GameService {
   private pageSize = 5;
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getGames(page: number = 0, sort: string = "id", descending: boolean = true): Observable<Page<Game>> {
+    console.log(this.http);
     let url = `${this.API_URL}/games?page=${encodeURIComponent(page)}&size=${encodeURIComponent(this.pageSize)}&sort=${encodeURIComponent(sort)}`;
     if (descending) {
       url += `,${encodeURIComponent('desc')}`;
     }
-    return this.http.get<Page<Game>>(url);
+    return this.http.get<Page<Game>>(url, {withCredentials: true});
   }
 
   create(data: any): Observable<any> {
-    return this.http.post(`${this.API_URL}/game`, data);
+    return this.http.post(`${this.API_URL}/game`, data, {withCredentials: true});
   }
   delete(id: any): Observable<any> {
-    return this.http.delete(`${this.API_URL}/game/${encodeURIComponent(id)}`);
+    return this.http.delete(`${this.API_URL}/game/${encodeURIComponent(id)}`, {withCredentials: true});
   }
   
   updateGame(id: number, dto: GameDto): Observable<any> {
     dto.releaseDate?.setHours(dto.releaseDate?.getUTCHours());
-    return this.http.patch(`${this.API_URL}/game/${encodeURIComponent(id)}`, dto);
+    return this.http.patch(`${this.API_URL}/game/${encodeURIComponent(id)}`, dto, {withCredentials: true});
   }
 }

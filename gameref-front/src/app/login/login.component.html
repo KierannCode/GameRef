@@ -1,1 +1,9 @@
-<p>login works!</p>
+<mat-form-field appearance="fill">
+    <mat-label>Pseudo</mat-label>
+    <input matInput type="text" [(ngModel)]="pseudo">
+</mat-form-field>
+<mat-form-field appearance="fill">
+    <mat-label>Passsword</mat-label>
+    <input matInput type="password" [(ngModel)]="password">
+</mat-form-field>
+<button (click)="onSubmit()">Connexion</button>
