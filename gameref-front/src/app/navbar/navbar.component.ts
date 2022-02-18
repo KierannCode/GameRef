@@ -21,6 +21,6 @@ export class NavbarComponent {
   constructor(private breakpointObserver: BreakpointObserver, private router: Router, public userService: UserService) {}
 
   logout(): void {
-    this.userService.logout().subscribe(() => this.router.navigate(['']));
+    this.userService.logout().then(() => this.router.navigate(['']));
   }
 }

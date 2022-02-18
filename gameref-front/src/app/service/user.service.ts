@@ -11,7 +11,7 @@ export class UserService {
 
   private API_URL = "http://localhost:8080/api";
 
-  private currentUser!: User;
+  private currentUser!: User | null;
 
   constructor(private http: HttpClient) {
 
@@ -23,12 +23,12 @@ export class UserService {
     return this.http.get<User>(url, {withCredentials: true}).forEach(user => this.currentUser = user);
   }
 
-  logout(): Observable<void> {
+  logout(): Promise<void> {
     let url = `${this.API_URL}/logout`
-    return this.http.post<void>(url, {withCredentials: true});
+    return this.http.post<void>(url, {withCredentials: true}).forEach(() => this.currentUser = null);
   }
 
-  getCurrentUser(): User {
+  getCurrentUser(): User | null {
     return this.currentUser;
   }
 }
