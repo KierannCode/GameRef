@@ -1,9 +1,11 @@
 package fr.orsys.groupe3.gamerefback.controller;
 
+import fr.orsys.groupe3.gamerefback.business.Player;
 import fr.orsys.groupe3.gamerefback.business.Review;
 import fr.orsys.groupe3.gamerefback.dto.ReviewDto;
 import fr.orsys.groupe3.gamerefback.exception.NotFoundException;
 import fr.orsys.groupe3.gamerefback.service.ReviewService;
+import fr.orsys.groupe3.gamerefback.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,15 +19,17 @@ import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @RestController
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/api")
 public class ReviewRestController {
 
     private ReviewService reviewService;
+    private UserService userService;
 
     // Ajout d'un avis
     @PostMapping("/review")
     public Review addReview(@RequestBody ReviewDto dto) throws NotFoundException {
-        return reviewService.createGame(dto);
+        return reviewService.createReview(dto, null);
     }
 
     // Suppression d'un avis

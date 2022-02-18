@@ -32,6 +32,7 @@ public class InitController {
     private PlatformService platformService;
     private UserService userService;
     private GameService gameService;
+    private ReviewService reviewService;
 
     @PostConstruct
     public void initAll() {
@@ -43,6 +44,7 @@ public class InitController {
         initPlayers();
         initModerators();
         initGames();
+        initReviews();
     }
 
     public void initAgeRatings() {
@@ -105,25 +107,44 @@ public class InitController {
 
     public void initModerators() {
         if (userService.getModerators().isEmpty()) {
-            ModeratorDto moderatorOne = new ModeratorDto("Moderator1", "azertyuiop", "moderator1@gmail.com", "0666666666");
-            ModeratorDto moderatorTwo = new ModeratorDto("Moderator2", "qwertyuiop", "moderator2@gmail.com", "0412345678");
-            ModeratorDto moderatorThree = new ModeratorDto("modo", "12345678", "moderator3@gmail.com", "0800000000");
+            ModeratorDto moderator4 = new ModeratorDto("Moderator1", "azertyuiop", "moderator1@gmail.com", "0666666666");
+            ModeratorDto moderator5 = new ModeratorDto("Moderator2", "qwertyuiop", "moderator2@gmail.com", "0412345678");
+            ModeratorDto moderator6 = new ModeratorDto("modo", "12345678", "moderator3@gmail.com", "0800000000");
 
-            userService.createModerator(moderatorOne);
-            userService.createModerator(moderatorTwo);
-            userService.createModerator(moderatorThree);
+            userService.createModerator(moderator4);
+            userService.createModerator(moderator5);
+            userService.createModerator(moderator6);
         }
     }
 
     public void initPlayers() {
         if (userService.getPlayers().isEmpty()) {
-            PlayerDto playerOne = new PlayerDto("Player1", "azertyuiop", "player1@gmail.com", LocalDate.of(1995, Month.APRIL, 15));
-            PlayerDto playerTwo = new PlayerDto("Player2", "qwertyuiop", "player2@gmail.com", LocalDate.of(1996, Month.JUNE, 2));
-            PlayerDto playerThree = new PlayerDto("player", "12345678", "player3@gmail.com", LocalDate.of(1993, Month.DECEMBER, 30));
+            PlayerDto player1 = new PlayerDto("Player1", "azertyuiop", "player1@gmail.com", LocalDate.of(1995, Month.APRIL, 15));
+            PlayerDto player2 = new PlayerDto("Player2", "qwertyuiop", "player2@gmail.com", LocalDate.of(1996, Month.JUNE, 2));
+            PlayerDto player3 = new PlayerDto("player", "12345678", "player3@gmail.com", LocalDate.of(1993, Month.DECEMBER, 30));
 
-            userService.createPlayer(playerOne);
-            userService.createPlayer(playerTwo);
-            userService.createPlayer(playerThree);
+            userService.createPlayer(player1);
+            userService.createPlayer(player2);
+            userService.createPlayer(player3);
+        }
+    }
+
+    public void initReviews() {
+        if(reviewService.getReviews().isEmpty()) {
+            ReviewDto review1 = new ReviewDto("Je trouve ce jeu trop balaise",18F,2L);
+            ReviewDto review2 = new ReviewDto("Jeu très moyen ",10F,5L);
+            ReviewDto review3 = new ReviewDto("Excellent scenario du debut à la fin",20F,1L);
+            ReviewDto review4 = new ReviewDto("Nul , nul , et Nul",5F,10L);
+            ReviewDto review5 = new ReviewDto("Graphisme à ameliorer mais je me suis bien amuser",18F,2L);
+            try {
+                reviewService.createReview(review1, userService.getPlayer(1L));
+                reviewService.createReview(review2, userService.getPlayer(2L));
+                reviewService.createReview(review3, userService.getPlayer(1L));
+                reviewService.createReview(review4, userService.getPlayer(3L));
+                reviewService.createReview(review5, userService.getPlayer(3L));
+            } catch (NotFoundException e) {
+                e.printStackTrace();
+            }
         }
     }
 
