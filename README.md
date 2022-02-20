@@ -22,9 +22,9 @@ Nous avons donc 3 dossiers :
 
 ## Fonctionnalités principales implémentées
 [X] CRUD des Jeux  
-[ ] Ajout des avis  
+[X] Ajout des avis  
 [ ] Modération des avis  
-[ ] Système de connexion  
+[X] Système de connexion  
 [ ] Tests basiques
 [X] Pagination
 

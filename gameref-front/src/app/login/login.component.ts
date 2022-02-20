@@ -11,6 +11,10 @@ export class LoginComponent implements OnInit {
   pseudo!: string;
   password!: string;
 
+  birthDate!: Date;
+  email!: string;
+  phoneNumber!: string;
+
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
@@ -19,5 +23,11 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
     this.userService.login(this.pseudo, this.password)
     .then(() => this.router.navigate(['nav/jeux']));
+  }
+
+  toggleForm():void {
+    document.querySelectorAll('.toggle-form').forEach((el) => {
+      el.classList.toggle('none');
+    })
   }
 }

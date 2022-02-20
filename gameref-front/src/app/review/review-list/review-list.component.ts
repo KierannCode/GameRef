@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { Review } from 'src/app/model/Review';
@@ -10,6 +10,9 @@ import { CreateReviewDialogComponent } from '../create-review-dialog/create-revi
   templateUrl: './review-list.component.html',
   styleUrls: ['./review-list.component.css']
 })
+@Injectable({
+  providedIn: 'root'
+})
 export class ReviewListComponent implements OnInit {
   displayedColumns: string[] = ['player', 'game', 'submitDate', 'moderator', 'rating', 'description', 'action'];
 
@@ -20,14 +23,12 @@ export class ReviewListComponent implements OnInit {
     this.loadPage();
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   loadPage(): void {
     this.reviewService.getReviews().subscribe(val => {
       this.dataSource = val.content;
       this.totalElements = val.totalElements;
-      console.log(this.dataSource);
     });
   }
 

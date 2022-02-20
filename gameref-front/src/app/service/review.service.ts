@@ -18,10 +18,10 @@ export class ReviewService {
     if (descending) {
       url += `,${encodeURIComponent('desc')}`;
     }
-    return this.http.get<Page<Review>>(url);
+    return this.http.get<Page<Review>>(url, {withCredentials: true});
   }
 
   create(data: any): Observable<any> {
-    return this.http.post(`${this.API_URL}/review`, data);
+    return this.http.post(`${this.API_URL}/review`, data, {withCredentials: true});
   }
 }
