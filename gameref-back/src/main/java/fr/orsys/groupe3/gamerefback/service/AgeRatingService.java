@@ -11,7 +11,7 @@ import java.util.List;
 public interface AgeRatingService {
     AgeRating createAgeRating(AgeRatingDto dto);
 
-    List<AgeRating> getAgeRatings();
-
     AgeRating getAgeRating(Long id) throws NotFoundException;
+
+    List<AgeRating> getAgeRatings();
 }

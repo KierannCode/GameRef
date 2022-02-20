@@ -23,16 +23,16 @@ public class Game {
     @NotBlank(message = "Merci de rentrer le nom du jeu")
     private String name;
 
-    @NotBlank(message = "Merci de rentrer une description")
     @Lob
+    @NotBlank(message = "Merci de rentrer une description")
     private String description;
 
     @NotNull(message = "Merci de rentrer une date de sortie")
-    @Past(message = "La date de sortie doit être antérieure à aujourd'hui")
+    @Past(message = "Impossible d'ajouter un jeu qui n'est pas encore sorti")
     private LocalDate releaseDate;
 
-    @OneToMany(mappedBy = "game")
     @JsonIgnore
+    @OneToMany(mappedBy = "game")
     private List<Review> reviews;
 
     @ManyToOne

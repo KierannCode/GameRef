@@ -14,24 +14,24 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class AgeRatingServiceImpl implements AgeRatingService {
-
     private AgeRatingMapper ageRatingMapper;
+
     private AgeRatingDao ageRatingDao;
 
     @Override
     public AgeRating createAgeRating(AgeRatingDto dto) {
         AgeRating ageRating = new AgeRating();
-        ageRatingMapper.mapAgeRating(ageRating, dto);
+        ageRating = ageRatingMapper.mapAgeRating(ageRating, dto);
         return ageRatingDao.save(ageRating);
+    }
+
+    @Override
+    public AgeRating getAgeRating(Long id) throws NotFoundException {
+        return ageRatingDao.findById(id).orElseThrow(() -> new NotFoundException("ageRating", "Aucune classification trouvée avec l'id " + id));
     }
 
     @Override
     public List<AgeRating> getAgeRatings() {
         return ageRatingDao.findAll();
-    }
-
-    @Override
-    public AgeRating getAgeRating(Long id) throws NotFoundException {
-        return ageRatingDao.findById(id).orElseThrow(() -> new NotFoundException("ageRating", "No ageRating found with id " + id));
     }
 }

@@ -14,8 +14,8 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class EconomicModelServiceImpl implements EconomicModelService {
-
     private EconomicModelMapper economicModelMapper;
+
     private EconomicModelDao economicModelDao;
 
     @Override
@@ -26,12 +26,12 @@ public class EconomicModelServiceImpl implements EconomicModelService {
     }
 
     @Override
-    public List<EconomicModel> getEconomicModels() {
-        return economicModelDao.findAll();
+    public EconomicModel getEconomicModel(Long id) throws NotFoundException {
+        return economicModelDao.findById(id).orElseThrow(() -> new NotFoundException("economicModel", "Aucun modèle économique trouvé avec l'id " + id));
     }
 
     @Override
-    public EconomicModel getEconomicModel(Long id) throws NotFoundException {
-        return economicModelDao.findById(id).orElseThrow(() -> new NotFoundException("economicModel", "No economicModel found with id " + id));
+    public List<EconomicModel> getEconomicModels() {
+        return economicModelDao.findAll();
     }
 }

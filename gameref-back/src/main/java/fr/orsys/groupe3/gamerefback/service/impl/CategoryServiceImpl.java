@@ -14,8 +14,8 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
-
     private CategoryMapper categoryMapper;
+
     private CategoryDao categoryDao;
 
     @Override
@@ -26,12 +26,12 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<Category> getCategories() {
-        return categoryDao.findAll();
+    public Category getCategory(Long id) throws NotFoundException {
+        return categoryDao.findById(id).orElseThrow(() -> new NotFoundException("category", "Aucun genre trouvée avec l'id " + id));
     }
 
     @Override
-    public Category getCategory(Long id) throws NotFoundException {
-        return categoryDao.findById(id).orElseThrow(() -> new NotFoundException("category", "No category found with id " + id));
+    public List<Category> getCategories() {
+        return categoryDao.findAll();
     }
 }

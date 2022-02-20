@@ -11,7 +11,7 @@ import java.util.List;
 public interface PlatformService {
     Platform createPlatform(PlatformDto dto);
 
-    List<Platform> getPlatforms();
-
     Platform getPlatform(Long id) throws NotFoundException;
+
+    List<Platform> getPlatforms();
 }

@@ -17,8 +17,8 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Merci de rentrer une description")
     @Lob
+    @NotBlank(message = "Merci de rentrer une description")
     private String description;
 
     private LocalDateTime submitDate;
@@ -30,7 +30,7 @@ public class Review {
     private LocalDateTime moderationDate;
 
     @ManyToOne
-    @NotNull(message = "Merci de sélectionner un jeu")
+    @NotNull(message = "Merci de sélectionner le jeu à évaluer")
     private Game game;
 
     @ManyToOne

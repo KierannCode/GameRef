@@ -16,10 +16,10 @@ import java.util.List;
 @Setter
 public class Player extends User {
     @NotNull(message = "Merci de rentrer une date de naissance")
-    @Past
+    @Past(message = "Merci de saisir une date de naissance valide")
     private LocalDate birthDate;
 
-    @OneToMany(mappedBy = "player")
     @JsonIgnore
+    @OneToMany(mappedBy = "player")
     private List<Review> reviews;
 }

@@ -14,8 +14,8 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class EditorServiceImpl implements EditorService {
-
     private EditorMapper editorMapper;
+
     private EditorDao editorDao;
 
     @Override
@@ -26,12 +26,12 @@ public class EditorServiceImpl implements EditorService {
     }
 
     @Override
-    public List<Editor> getEditors() {
-        return editorDao.findAll();
+    public Editor getEditor(Long id) throws NotFoundException {
+        return editorDao.findById(id).orElseThrow(() -> new NotFoundException("editor", "Aucun éditeur trouvé avec l'id " + id));
     }
 
     @Override
-    public Editor getEditor(Long id) throws NotFoundException {
-        return editorDao.findById(id).orElseThrow(() -> new NotFoundException("editor", "No editor found with id " + id));
+    public List<Editor> getEditors() {
+        return editorDao.findAll();
     }
 }

@@ -9,6 +9,7 @@ import fr.orsys.groupe3.gamerefback.dao.UserDao;
 import fr.orsys.groupe3.gamerefback.dto.ModeratorDto;
 import fr.orsys.groupe3.gamerefback.dto.PlayerDto;
 import fr.orsys.groupe3.gamerefback.exception.NotFoundException;
+import fr.orsys.groupe3.gamerefback.exception.PseudoAlreadyTakenException;
 import fr.orsys.groupe3.gamerefback.mapper.ModeratorMapper;
 import fr.orsys.groupe3.gamerefback.mapper.PlayerMapper;
 import fr.orsys.groupe3.gamerefback.service.UserService;
@@ -29,6 +30,26 @@ public class UserServiceImpl implements UserService {
     private ModeratorMapper moderatorMapper;
 
     @Override
+    public Player createPlayer(PlayerDto dto) throws PseudoAlreadyTakenException {
+        if (userDao.findByPseudo(dto.getPseudo()).isPresent()) {
+            throw new PseudoAlreadyTakenException("Ce pseudo est déjà utilisé");
+        }
+        Player player = new Player();
+        playerMapper.mapPlayer(player, dto);
+        return playerDao.save(player);
+    }
+
+    @Override
+    public Player getPlayer(Long id) throws NotFoundException {
+        return playerDao.findById(id).orElseThrow(() -> new NotFoundException("user", "Aucun utilisateur trouvé ave l'id " + id));
+    }
+
+    @Override
+    public List<Player> getPlayers() {
+        return playerDao.findAll();
+    }
+
+    @Override
     public Moderator createModerator(ModeratorDto dto) {
         Moderator moderator = new Moderator();
         moderatorMapper.mapModerator(moderator, dto);
@@ -36,15 +57,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Player createPlayer(PlayerDto dto) {
-        Player player = new Player();
-        playerMapper.mapPlayer(player, dto);
-        return playerDao.save(player);
-    }
-
-    @Override
-    public List<Player> getPlayers() {
-        return playerDao.findAll();
+    public Moderator getModerator(Long id) throws NotFoundException {
+        return moderatorDao.findById(id).orElseThrow(() -> new NotFoundException("user", "Aucun modérateur trouvé avec l'id " + id));
     }
 
     @Override
@@ -54,21 +68,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUser(String pseudo, String password) throws NotFoundException {
-        User user = userDao.findByPseudo(pseudo).orElseThrow(() -> new NotFoundException("user", "No user found with pseudo \"" + pseudo +"\""));
+        User user = userDao.findByPseudo(pseudo).orElseThrow(() -> new NotFoundException("user", "Aucun utilisateur trouvé avec le pseudo \"" + pseudo + "\""));
         if (passwordEncoder.matches(password, user.getPassword())) {
             return user;
         } else {
-            throw new NotFoundException("user", "Incorrect password for user \"" + pseudo +"\"");
+            throw new NotFoundException("user", "Mot de passe incorrect pour l'utilisateur \"" + pseudo + "\"");
         }
-    }
-
-    @Override
-    public Player getPlayer(Long id) throws NotFoundException {
-        return playerDao.findById(id).orElseThrow(() -> new NotFoundException("user", "No player found with id " + id));
-    }
-
-    @Override
-    public Moderator getModerator(Long id) throws NotFoundException {
-        return moderatorDao.findById(id).orElseThrow(() -> new NotFoundException("user", "No moderator found with id " + id));
     }
 }

@@ -6,21 +6,22 @@ import fr.orsys.groupe3.gamerefback.business.User;
 import fr.orsys.groupe3.gamerefback.dto.ModeratorDto;
 import fr.orsys.groupe3.gamerefback.dto.PlayerDto;
 import fr.orsys.groupe3.gamerefback.exception.NotFoundException;
+import fr.orsys.groupe3.gamerefback.exception.PseudoAlreadyTakenException;
 
 import java.util.List;
 
 public interface UserService {
-    Moderator createModerator(ModeratorDto dto);
+    Player createPlayer(PlayerDto dto) throws PseudoAlreadyTakenException;
 
-    Player createPlayer(PlayerDto dto);
+    Player getPlayer(Long id)  throws NotFoundException;
 
     List<Player> getPlayers();
+
+    Moderator createModerator(ModeratorDto dto);
+
+    Moderator getModerator(Long id)  throws NotFoundException;
 
     List<Moderator> getModerators();
 
     User getUser(String pseudo, String password) throws NotFoundException;
-
-    Player getPlayer(Long id)  throws NotFoundException;
-
-    Moderator getModerator(Long id)  throws NotFoundException;
 }

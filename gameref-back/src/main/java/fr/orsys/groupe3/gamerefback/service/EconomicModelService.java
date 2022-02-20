@@ -11,7 +11,7 @@ import java.util.List;
 public interface EconomicModelService {
     EconomicModel createEconomicModel(EconomicModelDto dto);
 
-    List<EconomicModel> getEconomicModels();
-
     EconomicModel getEconomicModel(Long id) throws NotFoundException;
+
+    List<EconomicModel> getEconomicModels();
 }

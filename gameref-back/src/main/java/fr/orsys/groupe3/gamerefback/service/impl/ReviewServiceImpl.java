@@ -1,8 +1,9 @@
 package fr.orsys.groupe3.gamerefback.service.impl;
 
+import fr.orsys.groupe3.gamerefback.business.Moderator;
 import fr.orsys.groupe3.gamerefback.business.Player;
-
 import fr.orsys.groupe3.gamerefback.business.Review;
+import fr.orsys.groupe3.gamerefback.business.User;
 import fr.orsys.groupe3.gamerefback.dao.ReviewDao;
 import fr.orsys.groupe3.gamerefback.dto.ReviewDto;
 import fr.orsys.groupe3.gamerefback.exception.NotFoundException;
@@ -20,16 +21,39 @@ import java.util.List;
 @AllArgsConstructor
 public class ReviewServiceImpl implements ReviewService {
     private ReviewMapper reviewMapper;
+
     private ReviewDao reviewDao;
 
     @Override
     public Review createReview(ReviewDto dto, Player player) throws NotFoundException {
         Review review = new Review();
         reviewMapper.mapReview(review, dto);
-        LocalDateTime now = LocalDateTime.now();
-        review.setSubmitDate(now);
+        review.setSubmitDate(LocalDateTime.now());
         review.setPlayer(player);
         return reviewDao.save(review);
+    }
+
+    @Override
+    public Review validateReview(Long id, Moderator moderator) throws NotFoundException {
+        Review review = getReview(id);
+        review.setModerationDate(LocalDateTime.now());
+        review.setModerator(moderator);
+        return reviewDao.save(review);
+    }
+
+    @Override
+    public Review deleteReview(Long id, User user) throws NotFoundException, SecurityException {
+        Review review = getReview(id);
+        if (user instanceof Player && user.getId() != review.getPlayer().getId()) {
+            throw new SecurityException("Impossible de supprimer l'avis d'un autre joueur");
+        }
+        reviewDao.deleteById(id);
+        return review;
+    }
+
+    @Override
+    public Review getReview(Long id) throws NotFoundException {
+        return reviewDao.findById(id).orElseThrow(() -> new NotFoundException("review", "Aucun avis trouvé avec l'id " + id));
     }
 
     @Override
@@ -40,25 +64,5 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public List<Review> getReviews() {
         return reviewDao.findAll();
-    }
-
-    @Override
-    public Review getReview(Long id) throws NotFoundException {
-        return reviewDao.findById(id).orElseThrow(() -> new NotFoundException("review", "No review found with id " + id));
-    }
-
-    @Override
-    public Review deleteReview(Long id) throws NotFoundException {
-        Review review = reviewDao.findById(id).orElseThrow(()->new NotFoundException("review", "No review found with id :" +id));
-        reviewDao.deleteById(id);
-        return review;
-    }
-
-    @Override
-    public Review updateReview(Long id, ReviewDto dto) throws NotFoundException {
-        Review review = reviewDao.findById(id).orElseThrow(() -> new NotFoundException("review", "No review found with id " + id));
-        reviewMapper.mapReview(review, dto);
-        return reviewDao.save(review);
-
     }
 }

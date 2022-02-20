@@ -13,18 +13,15 @@ public class ReviewMapper {
     private GameService gameService;
 
     public Review mapReview(Review review, ReviewDto dto) throws NotFoundException {
-
         if (dto.getDescription() != null) {
             review.setDescription(dto.getDescription());
         }
         if (dto.getRating() != null) {
             review.setRating(dto.getRating());
         }
-
         if (dto.getGameId() != null) {
             review.setGame(gameService.getGame(dto.getGameId()));
         }
-
         return review;
     }
 }

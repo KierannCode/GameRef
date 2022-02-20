@@ -3,24 +3,15 @@ package fr.orsys.groupe3.gamerefback.controller;
 import fr.orsys.groupe3.gamerefback.business.Moderator;
 import fr.orsys.groupe3.gamerefback.dto.*;
 import fr.orsys.groupe3.gamerefback.exception.NotFoundException;
+import fr.orsys.groupe3.gamerefback.exception.PseudoAlreadyTakenException;
 import fr.orsys.groupe3.gamerefback.service.*;
-
-import fr.orsys.groupe3.gamerefback.dto.AgeRatingDto;
-import fr.orsys.groupe3.gamerefback.dto.GameDto;
-import fr.orsys.groupe3.gamerefback.dto.ModeratorDto;
-import fr.orsys.groupe3.gamerefback.dto.PlayerDto;
-import fr.orsys.groupe3.gamerefback.service.AgeRatingService;
-import fr.orsys.groupe3.gamerefback.service.GameService;
-import fr.orsys.groupe3.gamerefback.service.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.Arrays;
-import java.util.Date;
+import java.util.List;
 
 @Controller
 @AllArgsConstructor
@@ -105,65 +96,40 @@ public class InitController {
         }
     }
 
-    public void initModerators() {
-        if (userService.getModerators().isEmpty()) {
-            ModeratorDto moderator4 = new ModeratorDto("Moderator1", "azertyuiop", "moderator1@gmail.com", "0666666666");
-            ModeratorDto moderator5 = new ModeratorDto("Moderator2", "qwertyuiop", "moderator2@gmail.com", "0412345678");
-            ModeratorDto moderator6 = new ModeratorDto("modo", "12345678", "moderator3@gmail.com", "0800000000");
-
-            userService.createModerator(moderator4);
-            userService.createModerator(moderator5);
-            userService.createModerator(moderator6);
-        }
-    }
-
     public void initPlayers() {
         if (userService.getPlayers().isEmpty()) {
-            PlayerDto player1 = new PlayerDto("Player1", "azertyuiop", "player1@gmail.com", LocalDate.of(1995, Month.APRIL, 15));
-            PlayerDto player2 = new PlayerDto("Player2", "qwertyuiop", "player2@gmail.com", LocalDate.of(1996, Month.JUNE, 2));
-            PlayerDto player3 = new PlayerDto("player", "12345678", "player3@gmail.com", LocalDate.of(1993, Month.DECEMBER, 30));
-
-            userService.createPlayer(player1);
-            userService.createPlayer(player2);
-            userService.createPlayer(player3);
-        }
-    }
-
-    public void initReviews() {
-        if(reviewService.getReviews().isEmpty()) {
-            ReviewDto review1 = new ReviewDto("Je trouve ce jeu trop balaise",18F,2L);
-            ReviewDto review2 = new ReviewDto("Jeu très moyen ",10F,5L);
-            ReviewDto review3 = new ReviewDto("Excellent scenario du debut à la fin",20F,1L);
-            ReviewDto review4 = new ReviewDto("Nul , nul , et Nul",5F,10L);
-            ReviewDto review5 = new ReviewDto("Graphisme à ameliorer mais je me suis bien amuser",18F,2L);
             try {
-                reviewService.createReview(review1, userService.getPlayer(1L));
-                reviewService.createReview(review2, userService.getPlayer(2L));
-                reviewService.createReview(review3, userService.getPlayer(1L));
-                reviewService.createReview(review4, userService.getPlayer(3L));
-                reviewService.createReview(review5, userService.getPlayer(3L));
-            } catch (NotFoundException e) {
-                e.printStackTrace();
+                userService.createPlayer(new PlayerDto("Player1", "azertyuiop", "player1@gmail.com", LocalDate.of(1995, Month.APRIL, 15)));
+                userService.createPlayer(new PlayerDto("Player2", "qwertyuiop", "player2@gmail.com", LocalDate.of(1996, Month.JUNE, 2)));
+                userService.createPlayer(new PlayerDto("player", "12345678", "player3@gmail.com", LocalDate.of(1993, Month.DECEMBER, 30)));
+            } catch (PseudoAlreadyTakenException e) {
+                System.out.println("Players initialization failed : " + e.getMessage());
             }
         }
     }
 
-    
+    public void initModerators() {
+        if (userService.getModerators().isEmpty()) {
+            userService.createModerator(new ModeratorDto("Moderator1", "azertyuiop", "moderator1@gmail.com", "0666666666"));
+            userService.createModerator(new ModeratorDto("Moderator2", "qwertyuiop", "moderator2@gmail.com", "0412345678"));
+            userService.createModerator(new ModeratorDto("modo", "12345678", "moderator3@gmail.com", "0800000000"));
+        }
+    }
 
     public void initGames() {
         if (gameService.getGames().isEmpty()) {
-            GameDto game1 = new GameDto("Final Fantasy XIV", "Explorer Éorzéa avec de nombreux compagnons", LocalDate.of(2010, Month.SEPTEMBER, 30), 4L, 6L, 4L, Arrays.asList(2L, 3L), 3L);
-            GameDto game2 = new GameDto("Zelda : Breath Of The Wild", "Partez à l'aventure en incarnant Zel...Link, et confrontez-vous une nouvelle fois au mal qui ronge le monde", LocalDate.of(2017, Month.MARCH, 3), 3L, 1L, 6L, Arrays.asList(1L), 2L);
-            GameDto game3 = new GameDto("Hollow Knight", "Sautez dans tous les sens avec un insecte agile", LocalDate.of(2017, Month.FEBRUARY, 24), 1L, 3L, 9L, Arrays.asList(2L), 2L);
-            GameDto game4 = new GameDto("Minecraft", "Minecraft, ou comment faire suer votre carte graphique dernier cri avec des cubes", LocalDate.of(2011, Month.NOVEMBER, 18), 2L, 9L, 8L, Arrays.asList(2L, 4L), 2L);
-            GameDto game5 = new GameDto("Céleste", "Accompagnez Madeline dans son escalade sans fin", LocalDate.of(2018, Month.JANUARY, 25), 2L, 8L, 7L, Arrays.asList(2L), 2L);
-            GameDto game6 = new GameDto("Final Fantasy VII", "Suivez l'histoire d'un mercenaire avec une épée beaucoup trop grosse pour lui", LocalDate.of(1997, Month.JANUARY, 31), 3L, 5L, 4L, Arrays.asList(2L, 3L, 5L), 2L);
-            GameDto game7 = new GameDto("Tomb Raider", "Une archéologue avec deux flingues, que demander de plus ?", LocalDate.of(2013, Month.MARCH, 5), 1L, 1L, 4L, Arrays.asList(2L, 3L, 4L), 2L);
-            GameDto game8 = new GameDto("Pokémon Go", "Attrapez-les (presque) tous ! Et (presque) en vrai !", LocalDate.of(2016, Month.JULY, 6), 1L, 1L, 6L, Arrays.asList(5L), 2L);
-            GameDto game9 = new GameDto("Mario Kart 8", "Si vous ralez à cause des carapaces bleues, c'est que vous n'êtes pas si mauvais que ça !", LocalDate.of(2017, Month.APRIL, 28), 1L, 10L, 6L, Arrays.asList(1L), 2L);
-            GameDto game10 = new GameDto("Soulcalibur 6", "Hadoken ! Ah non, mauvais jeu...", LocalDate.of(2018, Month.OCTOBER, 19), 3L, 7L, 10L, Arrays.asList(3L, 4L), 2L);
-            GameDto game11 = new GameDto("Ori", "Encore une petite bestiole brillante qui saute dans tous les sens", LocalDate.of(2015, Month.MARCH, 11), 2L, 1L, 5L, Arrays.asList(2L), 2L);
-            GameDto game12 = new GameDto("Vagrant Story", "Découvrez Léamundis, la ville de tous les secrets", LocalDate.of(2000, Month.FEBRUARY, 10), 3L, 5L, 4L, Arrays.asList(3L), 2L);
+            GameDto game1 = new GameDto("Final Fantasy XIV", "Explorer Éorzéa avec de nombreux compagnons", LocalDate.of(2010, Month.SEPTEMBER, 30), 4L, 6L, 4L, List.of(2L, 3L), 3L);
+            GameDto game2 = new GameDto("Zelda : Breath Of The Wild", "Partez à l'aventure en incarnant Zel...Link, et confrontez-vous une nouvelle fois au mal qui ronge le monde", LocalDate.of(2017, Month.MARCH, 3), 3L, 1L, 6L, List.of(1L), 2L);
+            GameDto game3 = new GameDto("Hollow Knight", "Sautez dans tous les sens avec un insecte agile", LocalDate.of(2017, Month.FEBRUARY, 24), 1L, 3L, 9L, List.of(2L), 2L);
+            GameDto game4 = new GameDto("Minecraft", "Minecraft, ou comment faire suer votre carte graphique dernier cri avec des cubes", LocalDate.of(2011, Month.NOVEMBER, 18), 2L, 9L, 8L, List.of(2L, 4L), 2L);
+            GameDto game5 = new GameDto("Céleste", "Accompagnez Madeline dans son escalade sans fin", LocalDate.of(2018, Month.JANUARY, 25), 2L, 8L, 7L, List.of(2L), 2L);
+            GameDto game6 = new GameDto("Final Fantasy VII", "Suivez l'histoire d'un mercenaire avec une épée beaucoup trop grosse pour lui", LocalDate.of(1997, Month.JANUARY, 31), 3L, 5L, 4L, List.of(2L, 3L, 5L), 2L);
+            GameDto game7 = new GameDto("Tomb Raider", "Une archéologue avec deux flingues, que demander de plus ?", LocalDate.of(2013, Month.MARCH, 5), 1L, 1L, 4L, List.of(2L, 3L, 4L), 2L);
+            GameDto game8 = new GameDto("Pokémon Go", "Attrapez-les (presque) tous ! Et (presque) en vrai !", LocalDate.of(2016, Month.JULY, 6), 1L, 1L, 6L, List.of(5L), 2L);
+            GameDto game9 = new GameDto("Mario Kart 8", "Si vous ralez à cause des carapaces bleues, c'est que vous n'êtes pas si mauvais que ça !", LocalDate.of(2017, Month.APRIL, 28), 1L, 10L, 6L, List.of(1L), 2L);
+            GameDto game10 = new GameDto("Soulcalibur 6", "Hadoken ! Ah non, mauvais jeu...", LocalDate.of(2018, Month.OCTOBER, 19), 3L, 7L, 10L, List.of(3L, 4L), 2L);
+            GameDto game11 = new GameDto("Ori", "Encore une petite bestiole brillante qui saute dans tous les sens", LocalDate.of(2015, Month.MARCH, 11), 2L, 1L, 5L, List.of(2L), 2L);
+            GameDto game12 = new GameDto("Vagrant Story", "Découvrez Léamundis, la ville de tous les secrets", LocalDate.of(2000, Month.FEBRUARY, 10), 3L, 5L, 4L, List.of(3L), 2L);
             try {
                 Moderator moderator = userService.getModerator(6L);
                 gameService.createGame(game1, moderator);
@@ -179,7 +145,26 @@ public class InitController {
                 gameService.createGame(game11, moderator);
                 gameService.createGame(game12, moderator);
             } catch (NotFoundException e) {
-                e.printStackTrace();
+                System.out.println("Games initialization failed : " + e.getMessage());
+            }
+        }
+    }
+
+    public void initReviews() {
+        if (reviewService.getReviews().isEmpty()) {
+            ReviewDto review1 = new ReviewDto("Je trouve ce jeu trop balaise", 18F, 2L);
+            ReviewDto review2 = new ReviewDto("Jeu très moyen ", 10F, 5L);
+            ReviewDto review3 = new ReviewDto("Excellent scenario du debut à la fin", 20F, 1L);
+            ReviewDto review4 = new ReviewDto("Nul, nul, et nul!", 5F, 10L);
+            ReviewDto review5 = new ReviewDto("Graphismes à améliorer, mais je me suis bien amusé", 18F, 2L);
+            try {
+                reviewService.createReview(review1, userService.getPlayer(1L));
+                reviewService.createReview(review2, userService.getPlayer(2L));
+                reviewService.createReview(review3, userService.getPlayer(1L));
+                reviewService.createReview(review4, userService.getPlayer(3L));
+                reviewService.createReview(review5, userService.getPlayer(3L));
+            } catch (NotFoundException e) {
+                System.out.println("Reviews initialization failed : " + e.getMessage());
             }
         }
     }

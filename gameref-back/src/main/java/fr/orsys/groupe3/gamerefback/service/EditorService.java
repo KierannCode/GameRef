@@ -11,7 +11,7 @@ import java.util.List;
 public interface EditorService {
     Editor createEditor(EditorDto dto);
 
-    List<Editor> getEditors();
-
     Editor getEditor(Long id) throws NotFoundException;
+
+    List<Editor> getEditors();
 }

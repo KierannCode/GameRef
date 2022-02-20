@@ -10,7 +10,6 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @Setter
 public class Moderator extends User {
-
     @NotBlank(message = "Merci de renseigner un numéro de téléphone")
     private String phoneNumber;
 }

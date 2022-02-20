@@ -19,7 +19,6 @@ public class GameMapper {
     private EditorService editorService;
     private PlatformService platformService;
     private EconomicModelService economicModelService;
-    private UserService userService;
 
     public Game mapGame(Game game, GameDto dto) throws NotFoundException {
         if (dto.getName() != null) {

@@ -10,12 +10,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @SpringBootApplication(exclude = SecurityAutoConfiguration.class)
 public class GamerefBackApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(GamerefBackApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(GamerefBackApplication.class, args);
+    }
 
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 }

@@ -14,8 +14,8 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class PlatformServiceImpl implements PlatformService {
-
     private PlatformMapper platformMapper;
+
     private PlatformDao platformDao;
 
     @Override
@@ -26,12 +26,12 @@ public class PlatformServiceImpl implements PlatformService {
     }
 
     @Override
-    public List<Platform> getPlatforms() {
-        return platformDao.findAll();
+    public Platform getPlatform(Long id) throws NotFoundException {
+        return platformDao.findById(id).orElseThrow(() -> new NotFoundException("platform", "Aucune plateforme trouvée avec l'id " + id));
     }
 
     @Override
-    public Platform getPlatform(Long id) throws NotFoundException {
-        return platformDao.findById(id).orElseThrow(() -> new NotFoundException("platform", "No platform found with id " + id));
+    public List<Platform> getPlatforms() {
+        return platformDao.findAll();
     }
 }

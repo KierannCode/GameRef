@@ -16,10 +16,10 @@ public class Editor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Merci de donner un nom à cet éditeur")
-    private String name;
-
     @JsonIgnore
     @OneToMany(mappedBy = "editor")
     public List<Game> games;
+
+    @NotBlank(message = "Merci de donner un nom à cet éditeur")
+    private String name;
 }

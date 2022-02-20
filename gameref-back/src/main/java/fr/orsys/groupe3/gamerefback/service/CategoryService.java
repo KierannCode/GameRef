@@ -11,7 +11,7 @@ import java.util.List;
 public interface CategoryService {
     Category createCategory(CategoryDto dto);
 
-    List<Category> getCategories();
-
     Category getCategory(Long id) throws NotFoundException;
+
+    List<Category> getCategories();
 }

@@ -3,94 +3,90 @@ package fr.orsys.groupe3.gamerefback.controller;
 import fr.orsys.groupe3.gamerefback.business.Game;
 import fr.orsys.groupe3.gamerefback.business.Moderator;
 import fr.orsys.groupe3.gamerefback.dto.GameDto;
+import fr.orsys.groupe3.gamerefback.exception.ErrorMap;
 import fr.orsys.groupe3.gamerefback.exception.NotFoundException;
 import fr.orsys.groupe3.gamerefback.exception.SecurityException;
 import fr.orsys.groupe3.gamerefback.service.GameService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.data.domain.Pageable;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import java.util.HashMap;
 import java.util.List;
-import java.util.*;
+import java.util.Map;
 
 @RestController
-@RequestMapping("/api")
 @AllArgsConstructor
+@RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600, allowCredentials = "true")
 public class GameRestController {
-
     private GameService gameService;
 
     private HttpSession httpSession;
 
-    // Ajout d'un jeu
     @PostMapping("/game")
     public Game addGame(@RequestBody GameDto dto) throws NotFoundException, SecurityException {
         Object user = httpSession.getAttribute("user");
         if (user == null) {
-            throw new SecurityException("Session expired, please login as a moderator and try again");
+            throw new SecurityException("La session a expiré, veuillez retourner sur la page de connexion pour vous authentifier à nouveau");
         }
         if (!(user instanceof Moderator)) {
-            throw new SecurityException("Forbidden");
+            throw new SecurityException("L'ajout de jeux est réservée aux modérateurs");
         }
         return gameService.createGame(dto, (Moderator) user);
-    }
-
-    // Suppression d'un jeu
-    @DeleteMapping("game/{id}")
-    public Game deleteGame(@PathVariable("id") long id) throws NotFoundException, SecurityException {
-        Object user = httpSession.getAttribute("user");
-        if (user == null) {
-            throw new SecurityException("Session expired, please login as a moderator and try again");
-        }
-        if (!(user instanceof Moderator)) {
-            throw new SecurityException("Forbidden");
-        }
-        return gameService.deleteGame(id);
-    }
-
-    @GetMapping("/games")
-    public Page<Game> getGames(Pageable pageable) throws NotFoundException {
-        return gameService.getGames(pageable);
     }
 
     @PatchMapping("/game/{id}")
     public Game updateGame(@PathVariable Long id, @RequestBody GameDto dto) throws NotFoundException, SecurityException {
         Object user = httpSession.getAttribute("user");
         if (user == null) {
-            throw new SecurityException("Session expired, please login as a moderator and try again");
+            throw new SecurityException("La session a expiré, veuillez retourner sur la page de connexion pour vous authentifier à nouveau");
         }
         if (!(user instanceof Moderator)) {
-            throw new SecurityException("Forbidden");
+            throw new SecurityException("La modification de jeux est réservée aux modérateurs");
         }
         return gameService.updateGame(id, dto);
 
     }
 
-    @ExceptionHandler(NotFoundException.class)
-    @ResponseStatus(code = HttpStatus.UNPROCESSABLE_ENTITY)
-    public Map<String, List<String>> handleNotFoundException(NotFoundException exception) {
-        Map<String, List<String>> errors = new HashMap<>();
-        if (exception.getEntity().equals("platform")) {
-            errors.put("platform", List.of(exception.getMessage()));
-        } else {
-            errors.put(exception.getEntity(), List.of(exception.getMessage()));
+    @DeleteMapping("game/{id}")
+    public Game deleteGame(@PathVariable("id") Long id) throws NotFoundException, SecurityException {
+        Object user = httpSession.getAttribute("user");
+        if (user == null) {
+            throw new SecurityException("La session a expiré, veuillez retourner sur la page de connexion pour vous authentifier à nouveau");
         }
+        if (!(user instanceof Moderator)) {
+            throw new SecurityException("La suppression de jeux est réservée aux modérateurs");
+        }
+        return gameService.deleteGame(id);
+    }
+
+    @GetMapping("/games")
+    public Page<Game> getGames(Pageable pageable) throws SecurityException {
+        Object user = httpSession.getAttribute("user");
+        if (user == null) {
+            throw new SecurityException("La session a expiré, veuillez retourner sur la page de connexion pour vous authentifier à nouveau");
+        }
+        return gameService.getGames(pageable);
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    @ResponseStatus(code = HttpStatus.NOT_FOUND)
+    public ErrorMap handleNotFoundException(NotFoundException exception) {
+        ErrorMap errors = new ErrorMap();
+        errors.put(exception.getEntity(), List.of(exception.getMessage()));
         return errors;
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
-    @ResponseStatus(code=HttpStatus.UNPROCESSABLE_ENTITY)
-    public Map<String, List<String>> handleValidationErrors(ConstraintViolationException exception) {
-        Map<String, List<String>> errors = new HashMap<>();
+    @ResponseStatus(code = HttpStatus.UNPROCESSABLE_ENTITY)
+    public ErrorMap handleValidationErrors(ConstraintViolationException exception) {
+        ErrorMap errors = new ErrorMap();
         for (ConstraintViolation<?> violation : exception.getConstraintViolations()) {
             String property = violation.getPropertyPath().toString();
             if (errors.containsKey(property)) {
@@ -103,8 +99,10 @@ public class GameRestController {
     }
 
     @ExceptionHandler(SecurityException.class)
-    @ResponseStatus(code=HttpStatus.FORBIDDEN)
-    public Map<String, List<String>> handleSecurityException(SecurityException exception) {
-        return Map.of("access", List.of(exception.getMessage()));
+    @ResponseStatus(code = HttpStatus.FORBIDDEN)
+    public ErrorMap handleSecurityException(SecurityException exception) {
+        ErrorMap errors = new ErrorMap();
+        errors.put("access", List.of(exception.getMessage()));
+        return errors;
     }
 }

@@ -1,9 +1,9 @@
 package fr.orsys.groupe3.gamerefback.service;
 
-import fr.orsys.groupe3.gamerefback.business.Game;
+import fr.orsys.groupe3.gamerefback.business.Moderator;
 import fr.orsys.groupe3.gamerefback.business.Player;
 import fr.orsys.groupe3.gamerefback.business.Review;
-import fr.orsys.groupe3.gamerefback.dto.GameDto;
+import fr.orsys.groupe3.gamerefback.business.User;
 import fr.orsys.groupe3.gamerefback.dto.ReviewDto;
 import fr.orsys.groupe3.gamerefback.exception.NotFoundException;
 import org.springframework.data.domain.Page;
@@ -14,14 +14,15 @@ import java.util.List;
 
 @Service
 public interface ReviewService {
-
     Review createReview(ReviewDto dto, Player player) throws NotFoundException;
 
-    Page<Review> getReviews(Pageable pageable);
-    List<Review> getReviews();
+    Review validateReview(Long id, Moderator moderator) throws NotFoundException;
+
+    Review deleteReview(Long id, User user) throws NotFoundException, SecurityException;
+
     Review getReview(Long id) throws NotFoundException;
 
-    Review deleteReview(Long id) throws NotFoundException;
+    Page<Review> getReviews(Pageable pageable);
 
-    Review updateReview(Long id, ReviewDto dto) throws NotFoundException;
+    List<Review> getReviews();
 }
