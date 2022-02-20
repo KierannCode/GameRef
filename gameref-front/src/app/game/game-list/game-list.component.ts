@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { Game } from 'src/app/model/Game';
@@ -9,6 +9,9 @@ import { CreateGameDialogComponent } from '../create-game-dialog/create-game-dia
   selector: 'app-game-list',
   templateUrl: './game-list.component.html',
   styleUrls: ['./game-list.component.css']
+})
+@Injectable({
+  providedIn: 'root'
 })
 export class GameListComponent implements OnInit {
 

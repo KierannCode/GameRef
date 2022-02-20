@@ -15,9 +15,8 @@ registerLocaleData(localeFr, 'fr');
 })
 export class GameItemComponent implements OnInit {
   @Input() game!: Game;
-  @Input() parent!: GameListComponent;
   
-  constructor(private dialog: MatDialog, private gameService: GameService) { }
+  constructor(private dialog: MatDialog, private gameService: GameService, private parent: GameListComponent) { }
 
   ngOnInit(): void {
   }

@@ -23,7 +23,6 @@ public class AuthenticationRestController {
     public Pair<User, Boolean> login(@PathVariable String pseudo, @PathVariable String password) throws NotFoundException {
         User user = userService.getUser(pseudo, password);
         httpSession.setAttribute("user", user);
-        System.out.println(httpSession.getId());
         return Pair.of(user, user instanceof Moderator);
     }
 
