@@ -61,3 +61,7 @@ mat-table {
     padding: 0 30px;
     margin-bottom: 10px;
 }
+
+tr:nth-child(odd) {
+    background-color: #e5e3e3;
+}

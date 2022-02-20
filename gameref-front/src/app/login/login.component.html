@@ -1,9 +1,38 @@
-<mat-form-field appearance="fill">
-    <mat-label>Pseudo</mat-label>
-    <input matInput type="text" [(ngModel)]="pseudo">
-</mat-form-field>
-<mat-form-field appearance="fill">
-    <mat-label>Passsword</mat-label>
-    <input matInput type="password" [(ngModel)]="password">
-</mat-form-field>
-<button (click)="onSubmit()">Connexion</button>
+<div id="connection-form" class="toggle-form">
+    <div>
+        <h1>Connectez-vous !</h1>
+        <mat-form-field appearance="fill">
+            <mat-label>Pseudo</mat-label>
+            <input matInput type="text" [(ngModel)]="pseudo">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Mot de passe</mat-label>
+            <input matInput type="password" [(ngModel)]="password">
+        </mat-form-field>
+        <button (click)="onSubmit()">Connexion</button>
+        <p>Pas de compte ? Inscrivez-vous <span (click)="toggleForm()">ici</span></p>
+    </div>
+</div>
+<div id="inscription-form" class="toggle-form none">
+    <div>
+        <h1>Inscription !</h1>
+        <mat-form-field appearance="fill">
+            <mat-label>Pseudo</mat-label>
+            <input matInput type="text" [(ngModel)]="pseudo">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Mot de passe</mat-label>
+            <input matInput type="password" [(ngModel)]="password">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Date de naissance</mat-label>
+            <input matInput type="date" [(ngModel)]="birthDate">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" [(ngModel)]="email">
+        </mat-form-field>
+        <button (click)="onSubmit()">Inscription</button>
+        <p>Déjà un compte ? Connectez-vous <span (click)="toggleForm()">ici</span></p>
+    </div>
+</div>

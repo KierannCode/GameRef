@@ -20,8 +20,10 @@
           *ngIf="isHandset$ | async">
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
-        <span>Bienvenue {{userService.getCurrentUser()?.first?.pseudo}}</span>
-        <span style="text-align: center; color: greenyellow;">GameRef, la reference des jeux</span>
+        <div class="header-title">
+          <span>Bienvenue {{userService.getCurrentUser()?.first?.pseudo}}</span>
+          <span style="text-align: center; color: greenyellow;">GameRef, la reference des jeux</span>
+        </div>
       </mat-toolbar>
       <router-outlet></router-outlet>
     </mat-sidenav-content>
