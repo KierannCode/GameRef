@@ -16,4 +16,8 @@ public class PlayerDto extends UserDto {
         this.email = email;
         this.birthDate = birthDate;
     }
+
+    public PlayerDto() {
+
+    }
 }

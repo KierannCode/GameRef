@@ -43,26 +43,9 @@ it('should return expected economicsModels (HttpClient called once)', (done: Don
     .toBe(1);
 });
 
-it('should return an error when the server returns a 404', (done: DoneFn) => {
-  const errorResponse = new HttpErrorResponse({
-    error: 'test 404 error',
-    status: 404, statusText: 'Not Found'
-  });
-
-  httpClientSpy.get.and.returnValue(of(errorResponse));
-
-  economicModelService.getEconomicModels().subscribe({
-    next: _ageRatings => done.fail('expected an error, not economicModels'),
-    error: error  => {
-      expect(error.message).toContain('test 404 error');
-      done();
-    }
-  });
 
 });
   
-
-})
 
 
 

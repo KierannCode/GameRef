@@ -11,4 +11,8 @@ public class ReviewDto {
     private String description;
     private Float rating;
     private Long gameId;
+
+    public ReviewDto() {
+
+    }
 }
