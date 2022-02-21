@@ -25,7 +25,11 @@ public interface ReviewService {
 
     Review getReview(Long id) throws NotFoundException;
 
-    Page<Review> getReviews(Pageable pageable);
+    Page<Review> getReviews(Pageable pageable, User user);
+
+    Page<Review> getValidatedReviews(Pageable pageable);
+
+    Page<Review> getUnvalidatedReviews(Pageable pageable);
 
     List<Review> getReviews();
 }

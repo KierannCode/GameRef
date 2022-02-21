@@ -1,84 +1,96 @@
 <h1 mat-dialog-title>Ajouter un jeu</h1>
-<div mat-dialog-content>
-
+<div mat-dialog-content layout="column">
   <div>
     <mat-form-field appearance="fill">
-    <mat-label>Nom du jeu</mat-label>
-    <input matInput [(ngModel)]="gamedto.name">
-  </mat-form-field>
+      <mat-label>Nom du jeu</mat-label>
+      <input matInput type="text" [(ngModel)]="gameDto.name">
+      <div *ngIf="this.errorMap.has('name')">
+        <mat-error *ngFor="let message of this.errorMap.get('name')">{{message}}</mat-error>
+      </div>
+    </mat-form-field>
   </div>
-  
-
   <div>
     <mat-form-field appearance="fill">
-    <mat-label>Editeurs</mat-label>
-    <mat-select [(ngModel)]="gamedto.editorId">
-       <mat-option *ngFor="let editor of editors" [value]="editor.id"> {{editor.name}} </mat-option>
-    </mat-select>
-  </mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea matInput rows="3" [(ngModel)]="gameDto.description"></textarea>
+      <div *ngIf="this.errorMap.has('description')">
+        <mat-error *ngFor="let message of this.errorMap.get('description')">{{message}}</mat-error>
+      </div>
+    </mat-form-field>
   </div>
-
   <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Éditeur</mat-label>
+      <mat-select [(ngModel)]="gameDto.editorId">
+        <mat-option *ngFor="let editor of editors" [value]="editor.id">{{editor.name}}</mat-option>
+      </mat-select>
+      <div *ngIf="this.errorMap.has('editor')">
+        <mat-error *ngFor="let message of this.errorMap.get('editor')">{{message}}</mat-error>
+      </div>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Classification</mat-label>
+      <mat-select [(ngModel)]="gameDto.ageRatingId">
+        <mat-option *ngFor="let ageRating of ageRatings" [value]="ageRating.id">{{ageRating.name}}</mat-option>
+      </mat-select>
+      <div *ngIf="this.errorMap.has('ageRating')">
+        <mat-error *ngFor="let message of this.errorMap.get('ageRating')">{{message}}</mat-error>
+      </div>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Plateformes</mat-label>
+      <mat-select [(ngModel)]="gameDto.platformIds" multiple>
+        <mat-option *ngFor="let platform of platforms" [value]="platform.id">{{platform.name}}</mat-option>
+      </mat-select>
+      <div *ngIf="this.errorMap.has('platforms')">
+        <mat-error *ngFor="let message of this.errorMap.get('platforms')">{{message}}</mat-error>
+      </div>
+      <div *ngIf="this.errorMap.has('platform')">
+        <mat-error *ngFor="let message of this.errorMap.get('platform')">{{message}}</mat-error>
+      </div>
+    </mat-form-field>
+  </div>
   <mat-form-field appearance="fill">
     <mat-label>Date de sortie</mat-label>
-    <input matInput [ngModel]="gamedto.releaseDate" (ngModelChange)="gamedto.releaseDate = $event" [matDatepicker]="picker">
+    <input matInput [(ngModel)]="gameDto.releaseDate" [matDatepicker]="picker">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
+    <div *ngIf="this.errorMap.has('releaseDate')">
+      <mat-error *ngFor="let message of this.errorMap.get('releaseDate')">{{message}}</mat-error>
+    </div>
   </mat-form-field>
-  <div>
-  
-
   <div>
     <mat-form-field appearance="fill">
-    <mat-label>Description du jeu</mat-label>
-    <textarea matInput [(ngModel)]="gamedto.description"  placeholder="Parles nous de ce jeu"></textarea>
-  </mat-form-field>
+      <mat-label>Genre</mat-label>
+      <mat-select [(ngModel)]="gameDto.categoryId">
+        <mat-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</mat-option>
+      </mat-select>
+      <div *ngIf="this.errorMap.has('category')">
+        <mat-error *ngFor="let message of this.errorMap.get('category')">{{message}}</mat-error>
+      </div>
+    </mat-form-field>
   </div>
-  
-  
-
   <div>
     <mat-form-field appearance="fill">
-    <mat-label>Categorie</mat-label>
-    <mat-select [(ngModel)]="gamedto.categoryId">
-       <mat-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</mat-option>
-    </mat-select>
-  </mat-form-field>
+      <mat-label>Modèle économique</mat-label>
+      <mat-select [(ngModel)]="gameDto.economicModelId">
+        <mat-option *ngFor="let economicModel of economicModels" [value]="economicModel.id">{{economicModel.name}}
+        </mat-option>
+      </mat-select>
+      <div *ngIf="this.errorMap.has('economicModel')">
+        <mat-error *ngFor="let message of this.errorMap.get('economicModel')">{{message}}</mat-error>
+      </div>
+    </mat-form-field>
   </div>
-  
-  <div>
-    <mat-form-field appearance="fill">
-    <mat-label>Classification</mat-label>
-    <mat-select [(ngModel)]="gamedto.ageRatingId">
-       <mat-option *ngFor="let agerating of ageratings" [value]="agerating.id">{{agerating.name}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-  </div>
-  
-
-  <div>
-    <mat-form-field appearance="fill">
-    <mat-label>Plateformes</mat-label>
-    <mat-select [(ngModel)]="gamedto.platformIds" (ngModelChange)="this.gamedto.platformIds = $event" multiple>
-      <mat-option *ngFor="let platform of platforms" [value]="platform.id">{{platform.name}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-  </div>
-  
- 
-  <div>
-    <mat-form-field appearance="fill">
-    <mat-label>Modele Economique</mat-label>
-    <mat-select [(ngModel)]="gamedto.economicModelId">
-       <mat-option *ngFor="let modeleEco of economicModels" [value]="modeleEco.id">{{modeleEco.name}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-  </div>
-  
-  
-  
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onClose()">Fermer</button>
+  <button mat-button (click)="closeDialog()">Fermer</button>
   <button mat-button (click)="onSubmit()" cdkFocusInitial>Valider</button>
+  <div *ngIf="this.errorMap.has('access')">
+    <mat-error *ngFor="let message of this.errorMap.get('access')">{{message}}</mat-error>
+  </div>
 </div>

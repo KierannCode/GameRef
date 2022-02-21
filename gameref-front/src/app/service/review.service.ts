@@ -13,9 +13,9 @@ export class ReviewService {
 
   constructor(private http: HttpClient) { }
 
-  getReviews(page: number = 0, sort: string = "id", descending: boolean = true): Observable<Page<Review>> {
-    let url = `${this.API_URL}/reviews?page=${encodeURIComponent(page)}&size=${encodeURIComponent(this.pageSize)}&sort=${encodeURIComponent(sort)}`;
-    if (descending) {
+  getReviews(page: number = 0, sort: string = "id", descending: string = "true", filter: string = "all"): Observable<Page<Review>> {
+    let url = `${this.API_URL}/reviews/${filter}?page=${encodeURIComponent(page)}&size=${encodeURIComponent(this.pageSize)}&sort=${encodeURIComponent(sort)}`;
+    if (String(descending).toLowerCase() == "true") {
       url += `,${encodeURIComponent('desc')}`;
     }
     return this.http.get<Page<Review>>(url, {withCredentials: true});

@@ -17,9 +17,9 @@ export class GameService {
   constructor(private http: HttpClient) {
   }
 
-  getGames(page: number = 0, sort: string = "id", descending: boolean = true): Observable<Page<Game>> {
+  getGames(page: number = 0, sort: string = "id", descending: string = 'true'): Observable<Page<Game>> {
     let url = `${this.API_URL}/games?page=${encodeURIComponent(page)}&size=${encodeURIComponent(this.pageSize)}&sort=${encodeURIComponent(sort)}`;
-    if (descending) {
+    if (String(descending).toLowerCase() == "true") {
       url += `,${encodeURIComponent('desc')}`;
     }
     return this.http.get<Page<Game>>(url, {withCredentials: true});
@@ -28,6 +28,7 @@ export class GameService {
   create(data: any): Observable<any> {
     return this.http.post(`${this.API_URL}/game`, data, {withCredentials: true});
   }
+
   delete(id: any): Observable<any> {
     return this.http.delete(`${this.API_URL}/game/${encodeURIComponent(id)}`, {withCredentials: true});
   }

@@ -92,13 +92,28 @@ public class ReviewRestController {
      * @return
      * @throws SecurityException
      */
-    @GetMapping("/reviews")
-    public Page<Review> getReviews(Pageable pageable) throws SecurityException {
+
+    @GetMapping("/reviews/{filter}")
+    public Page<Review> getReviews(@PathVariable String filter, Pageable pageable) throws SecurityException {
         Object user = httpSession.getAttribute("user");
         if (user == null) {
             throw new SecurityException("La session a expiré, veuillez retourner sur la page de connexion pour vous authentifier à nouveau");
         }
-        return reviewService.getReviews(pageable);
+        switch (filter) {
+            case "all":
+                return reviewService.getReviews(pageable, (User) user);
+            case "validated":
+                if (!(user instanceof Moderator)) {
+                    throw new SecurityException("Seul les modérateurs peuvent filtrer les avis");
+                }
+                return reviewService.getValidatedReviews(pageable);
+            case "unvalidated":
+                if (!(user instanceof Moderator)) {
+                    throw new SecurityException("Seul les modérateurs peuvent filtrer les avis");
+                }
+                return reviewService.getUnvalidatedReviews(pageable);
+        }
+        throw new SecurityException("Chemin inconnu : \"reviews/" + filter + "\"");
     }
 
     @ExceptionHandler(NotFoundException.class)

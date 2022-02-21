@@ -60,8 +60,24 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public Page<Review> getReviews(Pageable pageable) {
-        return reviewDao.findAll(pageable);
+    public Page<Review> getReviews(Pageable pageable, User user) {
+        switch (user.getRole()) {
+            case "Player":
+                return reviewDao.findByPlayerOrModeratorIsNotNull((Player) user, pageable);
+            case "Moderator":
+                return reviewDao.findAll(pageable);
+        }
+        return Page.empty();
+    }
+
+    @Override
+    public Page<Review> getValidatedReviews(Pageable pageable) {
+        return reviewDao.findByModeratorIsNotNull(pageable);
+    }
+
+    @Override
+    public Page<Review> getUnvalidatedReviews(Pageable pageable) {
+        return reviewDao.findByModeratorIsNull(pageable);
     }
 
     @Override
