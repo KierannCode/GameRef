@@ -69,19 +69,19 @@ public class ReviewRestController {
         }
         switch (filter) {
             case "all":
-                return reviewService.getReviews(pageable);
+                return reviewService.getReviews(pageable, (User) user);
             case "validated":
                 if (!(user instanceof Moderator)) {
-                    throw  new SecurityException("Seul les modérateurs peuvent filtrer les avis");
+                    throw new SecurityException("Seul les modérateurs peuvent filtrer les avis");
                 }
                 return reviewService.getValidatedReviews(pageable);
             case "unvalidated":
                 if (!(user instanceof Moderator)) {
-                    throw  new SecurityException("Seul les modérateurs peuvent filtrer les avis");
+                    throw new SecurityException("Seul les modérateurs peuvent filtrer les avis");
                 }
                 return reviewService.getUnvalidatedReviews(pageable);
         }
-        return Page.empty();
+        throw new SecurityException("Chemin inconnu : \"reviews/" + filter + "\"");
     }
 
     @ExceptionHandler(NotFoundException.class)

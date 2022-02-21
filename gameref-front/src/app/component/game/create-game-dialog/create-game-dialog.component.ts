@@ -1,6 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, _closeDialogVia } from '@angular/material/dialog';
 import { GameDto } from 'src/app/dto/GameDto';
 import { AgeRating } from 'src/app/model/AgeRating';
 import { Category } from 'src/app/model/Category';
@@ -13,6 +14,7 @@ import { EconomicModelService } from 'src/app/service/economic-model.service';
 import { EditorService } from 'src/app/service/editor.service';
 import { GameService } from 'src/app/service/game.service';
 import { PlatformService } from 'src/app/service/platform.service';
+import { GameListComponent } from '../game-list/game-list.component';
 
 @Component({
   selector: 'app-create-game-dialog',
@@ -21,105 +23,46 @@ import { PlatformService } from 'src/app/service/platform.service';
 })
 export class CreateGameDialogComponent implements OnInit {
 
-  ageratings?: AgeRating[];
-  editors?: Editor[];
-  categories?: Category[];
-  economicModels? : EconomicModel[];
-  platforms? : Platform[];
-  
-  submitted = false ;
+  public gameDto: GameDto = {};
+
+  public editors!: Array<Editor>;
+  public ageRatings!: Array<AgeRating>;
+  public platforms!: Array<Platform>;
+  public categories!: Array<Category>;
+  public economicModels!: Array<EconomicModel>;
+
+  public errorMap: Map<string, Array<string>> = new Map();
 
   constructor(private gameService: GameService,
-    private editorService : EditorService,
-    private categoryService : CategoryService,
-    private ageRatingService : AgeRatingService,
-    private economicModelService : EconomicModelService,
-    private platformService : PlatformService,
-    public dialogRef: MatDialogRef<CreateGameDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public gamedto: GameDto
-  ) {}
+    private editorService: EditorService,
+    private ageRatingService: AgeRatingService,
+    private platformService: PlatformService,
+    private categoryService: CategoryService,
+    private economicModelService: EconomicModelService,
+    public dialogRef: MatDialogRef<CreateGameDialogComponent>) {
 
-  ngOnInit(): void {
-    this.editorList();
-    this.categoriesList();
-    this.ageRatingList();
-    this.modelEcoList();
-    this.platformList();
+    this.editorService.getEditors().subscribe(val => this.editors = val);
+    this.platformService.getPlatforms().subscribe(val => this.platforms = val);
+    this.categoryService.getCategories().subscribe(val => this.categories = val);
+    this.economicModelService.getEconomicModels().subscribe(val => this.economicModels = val);
+    this.ageRatingService.getAgeRatings().subscribe(val => this.ageRatings = val);
   }
 
-  onClose(): void {
+  ngOnInit(): void {
+  }
+
+  closeDialog(): void {
     this.dialogRef.close();
   }
 
-  onSubmit():void {
-    //console.log(`Envoi de la requête de création du jeu "${this.game.name}"`);
-    
-    this.gameService.create(this.gamedto)
-     .subscribe({
-      next: (res) => {
-        console.log(res);
-        this.submitted = true;
-      },
-      error: (e) => console.error(e)
-     });
-  }
-
-  editorList(): void{
-    this.editorService.getEditors()
+  onSubmit(): void {
+    this.gameService.create(this.gameDto)
       .subscribe({
-        next: (data) => {
-          this.editors = data;
-          console.log(data);
+        next: () => {
+          this.closeDialog();
         },
-        error: (e) => console.error(e)
+        error: (response: HttpErrorResponse) => this.errorMap = new Map(Object.entries(response.error))
       });
-
-  }
-
-  platformList(): void {
-    this.platformService.getPlatforms()
-      .subscribe({
-        next: (data) => {
-          this.platforms = data;
-          console.log(data);
-        },
-        error: (e) => console.error(e)
-      });
-
-  }
-
-  categoriesList(): void {
-    this.categoryService.getCategories()
-      .subscribe({
-        next: (data) => {
-          this.categories = data;
-          console.log(data);
-        },
-        error: (e) => console.error(e)
-      });
-    
-  }
-
-  ageRatingList(): void {
-    this.ageRatingService.getAgeRatings()
-    .subscribe({
-      next: (data) => {
-        this.ageratings = data;
-        console.log(data);
-      },
-      error: (e) => console.error(e)
-    });
-  }
-
-  modelEcoList(): void {
-    this.economicModelService.getEconomicModels()
-    .subscribe({
-      next: (data) => {
-        this.economicModels = data;
-        console.log(data);
-      },
-      error: (e) => console.error(e)
-    });
   }
 }
 

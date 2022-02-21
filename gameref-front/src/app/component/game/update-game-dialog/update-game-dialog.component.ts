@@ -22,7 +22,7 @@ import { PlatformService } from 'src/app/service/platform.service';
 })
 export class UpdateGameDialogComponent implements OnInit {
 
-  dto: GameDto = {};
+  gameDto: GameDto = {};
 
   public gamePlatformIds!: Array<number>;
 
@@ -51,16 +51,17 @@ export class UpdateGameDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onClose(): void {
+  closeDialog(): void {
     this.dialogRef.close();
   }
 
   onSubmit(): void {
-    this.gameService.updateGame(this.game.id, this.dto).subscribe({
+    this.gameService.updateGame(this.game.id, this.gameDto).subscribe({
       next: val => {
         Object.assign(this.game, val);
         this.dialogRef.close();
-      }, error: (response: HttpErrorResponse) => this.errorMap = new Map(Object.entries(response.error))
+      },
+      error: (response: HttpErrorResponse) => this.errorMap = new Map(Object.entries(response.error))
     });
   }
 }

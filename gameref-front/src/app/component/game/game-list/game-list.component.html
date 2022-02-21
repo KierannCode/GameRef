@@ -17,10 +17,10 @@
             <option value="true">Desc</option>
         </select>
     </div>
-    <button mat-raised-button (click)="openCreateGameDialog()">Ajouter un jeu</button>
+    <button *ngIf="user?.role == 'Moderator'" mat-raised-button (click)="openCreateGameDialog()">Ajouter un jeu</button>
 </div>
 <div id="game-list">
     <div *ngFor="let game of games">
-        <app-game-item [game]="game"></app-game-item>
+        <app-game-item [game]="game" [user]="user"></app-game-item>
     </div>
 </div>

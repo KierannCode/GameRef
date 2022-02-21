@@ -6,6 +6,8 @@ import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { GameService } from 'src/app/service/game.service';
 import { GameListComponent } from '../game-list/game-list.component';
+import { User } from 'src/app/model/User';
+import { CreateReviewDialogComponent } from '../../review/create-review-dialog/create-review-dialog.component';
 registerLocaleData(localeFr, 'fr');
 
 @Component({
@@ -15,6 +17,8 @@ registerLocaleData(localeFr, 'fr');
 })
 export class GameItemComponent implements OnInit {
   @Input() game!: Game;
+
+  @Input() user!: User;
   
   constructor(private dialog: MatDialog, private gameService: GameService, private parent: GameListComponent) { }
 
@@ -22,9 +26,16 @@ export class GameItemComponent implements OnInit {
   }
 
   openModifyGameDialog(): void {
-    const dialogRef = this.dialog.open(UpdateGameDialogComponent, {
+    this.dialog.open(UpdateGameDialogComponent, {
       width: '500px',
       data: this.game
+    });
+  }
+
+  openCreateReviewDialog(): void {
+    this.dialog.open(CreateReviewDialogComponent, {
+      width: '500px',
+      data: {gameId: this.game.id}
     });
   }
 
