@@ -7,8 +7,13 @@ p {
     font-size: 12px;
 }
 
-span {
+span.inscription, .close {
     font-weight: bold;
     cursor: pointer;
     font-size: 13px;
+}
+
+.close {
+    float: right;
+    height: 22px;
 }

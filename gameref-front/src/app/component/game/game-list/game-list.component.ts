@@ -17,6 +17,8 @@ export class GameListComponent implements OnInit {
 
   games!: Array<Game>;
   totalElements!: number;
+  sort!: string;
+  descending!: string;
 
   constructor(private dialog: MatDialog, private gameService: GameService) {
     this.loadPage();
@@ -42,6 +44,12 @@ export class GameListComponent implements OnInit {
 
   nextPage(event: PageEvent) {
     this.gameService.getGames(event.pageIndex).subscribe(val => {this.games = val.content;
+      console.log(this.games);
+    });
+  }
+
+  sortGames(): void {
+    this.gameService.getGames(0, this.sort, this.descending).subscribe(val => {this.games = val.content;
       console.log(this.games);
     });
   }

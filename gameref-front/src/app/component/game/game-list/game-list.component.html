@@ -6,6 +6,17 @@
                    [showFirstLastButtons]="true" 
                    (page)="nextPage($event)">
     </mat-paginator>
+    <div class="sort">
+        <span>Trier par :</span>
+        <select [(ngModel)]="sort" (change)="sortGames()">
+            <option value="name">Nom</option>
+            <option value="editor">Éditeur</option>
+        </select>
+        <select [(ngModel)]="descending" (change)="sortGames()">
+            <option value="false">Asc</option>
+            <option value="true">Desc</option>
+        </select>
+    </div>
     <button mat-raised-button (click)="openCreateGameDialog()">Ajouter un jeu</button>
 </div>
 <div id="game-list">

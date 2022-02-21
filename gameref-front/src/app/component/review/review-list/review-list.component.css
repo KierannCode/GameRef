@@ -65,3 +65,10 @@ mat-table {
 tr:nth-child(odd) {
     background-color: #e5e3e3;
 }
+
+.sort {
+    display: flex;
+    align-items: center;
+    width: 350px;
+    justify-content: space-evenly;
+}
