@@ -10,7 +10,7 @@ import { UserService } from '../service/user.service';
 export class LoginComponent implements OnInit {
   pseudo!: string;
   password!: string;
-
+  
   birthDate!: Date;
   email!: string;
   phoneNumber!: string;

@@ -18,11 +18,9 @@ describe('AgeRatingService', () => {
   it('should be created', () => {
     expect(ageRatingservice).toBeTruthy();
   }); 
-
-
-  
+ 
 it('should return expected ageRatings (HttpClient called once)', (done: DoneFn) => {
-  
+
   const expectedAgeRatings: AgeRating[] =
     [{ id: 1, name: 'PEGI 3'}, { id: 2, name: 'PEGI 7'},{ id: 3, name: 'PEGI 12'},
     { id: 4, name: 'PEGI 16'}, { id: 5, name: 'PEGI 18'}

@@ -10,6 +10,7 @@ export class CategoryService {
 
 
   private API_URL = "http://localhost:8080/api";
+  private API_URLerror = "http://localhost:8080/aprili";
 
   constructor(private http: HttpClient) {
     
@@ -17,6 +18,12 @@ export class CategoryService {
 
   getCategories(): Observable<Array<Category>> {
     let url = `${this.API_URL}/categories`;
+    return this.http.get<Array<Category>>(url);
+  }
+
+
+  getCategoriesError(): Observable<Array<Category>> {
+    let url = `${this.API_URLerror}/categories`;
     return this.http.get<Array<Category>>(url);
   }
 }

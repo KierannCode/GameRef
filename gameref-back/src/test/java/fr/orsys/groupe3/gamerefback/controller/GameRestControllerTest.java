@@ -1,13 +1,17 @@
 package fr.orsys.groupe3.gamerefback.controller;
 
+import fr.orsys.groupe3.gamerefback.business.Moderator;
+import fr.orsys.groupe3.gamerefback.dto.GameDto;
+
 import fr.orsys.groupe3.gamerefback.service.GameService;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest
 public class GameRestControllerTest {
     @InjectMocks
     GameRestController gameRestController;
@@ -16,7 +20,7 @@ public class GameRestControllerTest {
     GameService gameService;
 
     @Test
-    public void testAddGame() {
+    public void testAddGame()  {
 
     }
 

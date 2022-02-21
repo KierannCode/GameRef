@@ -9,6 +9,8 @@ import { User } from '../model/User';
 })
 export class UserService {
 
+  
+
   private API_URL = "http://localhost:8080/api";
 
   private currentUser!: User | null;
@@ -16,6 +18,7 @@ export class UserService {
   constructor(private http: HttpClient) {
 
   }
+  
 
   login(pseudo: string, password: string): Promise<void> {
     console.log(this.http);
