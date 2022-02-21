@@ -32,8 +32,9 @@
                 <p>{{ game.moderator.pseudo }}</p>
             </div>
             <mat-card-actions class="">
-                <button mat-raised-button (click)="openModifyGameDialog()">Modifier le jeu</button>
-                <button mat-raised-button (click)="deleteGame()">Supprimer le jeu</button> 
+                <button *ngIf="user.role == 'Moderator'" mat-raised-button (click)="openModifyGameDialog()">Modifier le jeu</button>
+                <button *ngIf="user.role == 'Moderator'" mat-raised-button (click)="deleteGame()">Supprimer le jeu</button>
+                <button *ngIf="user.role == 'Player'" mat-raised-button (click)="openCreateReviewDialog()">Ajouter un avis</button>
             </mat-card-actions>
         </mat-card-content>
         <mat-card-content>

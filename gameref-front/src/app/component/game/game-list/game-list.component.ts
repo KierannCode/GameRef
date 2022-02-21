@@ -2,7 +2,9 @@ import { Component, Injectable, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { Game } from 'src/app/model/Game';
+import { User } from 'src/app/model/User';
 import { GameService } from 'src/app/service/game.service';
+import { UserService } from 'src/app/service/user.service';
 import { CreateGameDialogComponent } from '../create-game-dialog/create-game-dialog.component';
 
 @Component({
@@ -18,8 +20,15 @@ export class GameListComponent implements OnInit {
   games!: Array<Game>;
   totalElements!: number;
 
-  constructor(private dialog: MatDialog, private gameService: GameService) {
-    this.loadPage();
+  user!: User;
+
+  constructor(private dialog: MatDialog,
+    private gameService: GameService,
+    userService: UserService) {
+      userService.getSessionUser().subscribe(user => {
+        this.user = user;
+        this.loadPage();
+      });
   }
 
   ngOnInit(): void {
