@@ -17,7 +17,7 @@ import { CreateGameDialogComponent } from '../create-game-dialog/create-game-dia
 })
 export class GameListComponent implements OnInit {
 
-  games!: Array<Game>;
+  games: Array<Game> = [];
   totalElements!: number;
 
   user!: User;
@@ -38,7 +38,8 @@ export class GameListComponent implements OnInit {
     const dialogRef = this.dialog.open(CreateGameDialogComponent, {
       width: '450px',
       data: {},
-    });
+    }).afterClosed()
+    .subscribe(() => this.loadPage());
   }
 
   loadPage(): void {
@@ -50,8 +51,9 @@ export class GameListComponent implements OnInit {
   }
 
   nextPage(event: PageEvent) {
-    this.gameService.getGames(event.pageIndex).subscribe(val => {this.games = val.content;
-      console.log(this.games);
+    this.gameService.getGames(event.pageIndex).subscribe(val => {
+      this.games = val.content;
+      this.totalElements = val.totalElements;
     });
   }
 }
