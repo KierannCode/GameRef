@@ -2,7 +2,7 @@ package fr.orsys.groupe3.gamerefback.controller;
 
 import fr.orsys.groupe3.gamerefback.business.Game;
 import fr.orsys.groupe3.gamerefback.business.Moderator;
-import fr.orsys.groupe3.gamerefback.dto.GameDto;
+import fr.orsys.groupe3.gamerefback.business.dto.GameDto;
 import fr.orsys.groupe3.gamerefback.exception.ErrorMap;
 import fr.orsys.groupe3.gamerefback.exception.NotFoundException;
 import fr.orsys.groupe3.gamerefback.exception.SecurityException;
@@ -16,9 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @AllArgsConstructor

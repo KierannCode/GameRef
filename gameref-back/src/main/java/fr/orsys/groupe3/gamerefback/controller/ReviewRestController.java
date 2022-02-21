@@ -4,7 +4,7 @@ import fr.orsys.groupe3.gamerefback.business.Moderator;
 import fr.orsys.groupe3.gamerefback.business.Player;
 import fr.orsys.groupe3.gamerefback.business.Review;
 import fr.orsys.groupe3.gamerefback.business.User;
-import fr.orsys.groupe3.gamerefback.dto.ReviewDto;
+import fr.orsys.groupe3.gamerefback.business.dto.ReviewDto;
 import fr.orsys.groupe3.gamerefback.exception.ErrorMap;
 import fr.orsys.groupe3.gamerefback.exception.NotFoundException;
 import fr.orsys.groupe3.gamerefback.exception.SecurityException;

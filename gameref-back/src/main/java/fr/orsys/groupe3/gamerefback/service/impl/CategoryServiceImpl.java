@@ -2,9 +2,9 @@ package fr.orsys.groupe3.gamerefback.service.impl;
 
 import fr.orsys.groupe3.gamerefback.business.Category;
 import fr.orsys.groupe3.gamerefback.dao.CategoryDao;
-import fr.orsys.groupe3.gamerefback.dto.CategoryDto;
+import fr.orsys.groupe3.gamerefback.business.dto.CategoryDto;
 import fr.orsys.groupe3.gamerefback.exception.NotFoundException;
-import fr.orsys.groupe3.gamerefback.mapper.CategoryMapper;
+import fr.orsys.groupe3.gamerefback.business.mapper.CategoryMapper;
 import fr.orsys.groupe3.gamerefback.service.CategoryService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

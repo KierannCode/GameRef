@@ -1,7 +1,8 @@
-import { Moderator } from "./Moderator";
-import { Player } from "./Player";
-
 export interface User {
-    first: Player | Moderator;
-    second: boolean;
+    id: number;
+    pseudo: string;
+    email: string;
+    birthDate?: Date;
+    phoneNumber?: string;
+    role: string;
 }

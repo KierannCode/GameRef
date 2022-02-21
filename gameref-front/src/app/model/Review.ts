@@ -1,13 +1,12 @@
 import { Game } from "./Game";
-import { Moderator } from "./Moderator";
-import { Player } from "./Player";
+import { User } from "./User";
 
 export interface Review {
     id: number;
     description: string;
     submitDate: Date;
-    moderator: Moderator;
+    moderator: User;
     rating: number;
     game: Game;
-    player: Player;
+    player: User;
 }

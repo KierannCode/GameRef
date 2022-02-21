@@ -1,0 +1,14 @@
+mat-form-field {
+    width: 100%;
+}
+
+p {
+    font-style: italic;
+    font-size: 12px;
+}
+
+span {
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 13px;
+}

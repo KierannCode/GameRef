@@ -2,9 +2,9 @@ package fr.orsys.groupe3.gamerefback.service.impl;
 
 import fr.orsys.groupe3.gamerefback.business.EconomicModel;
 import fr.orsys.groupe3.gamerefback.dao.EconomicModelDao;
-import fr.orsys.groupe3.gamerefback.dto.EconomicModelDto;
+import fr.orsys.groupe3.gamerefback.business.dto.EconomicModelDto;
 import fr.orsys.groupe3.gamerefback.exception.NotFoundException;
-import fr.orsys.groupe3.gamerefback.mapper.EconomicModelMapper;
+import fr.orsys.groupe3.gamerefback.business.mapper.EconomicModelMapper;
 import fr.orsys.groupe3.gamerefback.service.EconomicModelService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

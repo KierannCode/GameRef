@@ -2,8 +2,8 @@ import { AgeRating } from "./AgeRating";
 import { Category } from "./Category";
 import { EconomicModel } from "./EconomicModel";
 import { Editor } from "./Editor";
-import { Moderator } from "./Moderator";
 import { Platform } from "./Platform";
+import { User } from "./User";
 
 
 export interface Game {
@@ -12,7 +12,7 @@ export interface Game {
     description: string;
     releaseDate: Date;
     ageRating: AgeRating;
-    moderator: Moderator;
+    moderator: User;
     category: Category;
     economicModel: EconomicModel;
     platforms: Array<Platform>;

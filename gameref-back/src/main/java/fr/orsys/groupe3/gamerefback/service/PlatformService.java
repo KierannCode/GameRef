@@ -1,7 +1,7 @@
 package fr.orsys.groupe3.gamerefback.service;
 
 import fr.orsys.groupe3.gamerefback.business.Platform;
-import fr.orsys.groupe3.gamerefback.dto.PlatformDto;
+import fr.orsys.groupe3.gamerefback.business.dto.PlatformDto;
 import fr.orsys.groupe3.gamerefback.exception.NotFoundException;
 import org.springframework.stereotype.Service;
 

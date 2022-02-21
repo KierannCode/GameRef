@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { ThisReceiver } from '@angular/compiler';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
+import { PlayerDto } from '../dto/PlayerDto';
+import { UserDto } from '../dto/UserDto';
 import { User } from '../model/User';
 
 @Injectable({
@@ -11,24 +13,27 @@ export class UserService {
 
   private API_URL = "http://localhost:8080/api";
 
-  private currentUser!: User | null;
-
   constructor(private http: HttpClient) {
 
   }
 
-  login(pseudo: string, password: string): Promise<void> {
-    console.log(this.http);
-    let url = `${this.API_URL}/login/${pseudo}/${password}`;
-    return this.http.get<User>(url, {withCredentials: true}).forEach(user => this.currentUser = user);
+  login(dto: UserDto): Observable<User> {
+    let url = `${this.API_URL}/login`;
+    return this.http.post<User>(url, dto, { withCredentials: true });
   }
 
-  logout(): Promise<void> {
+  logout(): Observable<void> {
     let url = `${this.API_URL}/logout`
-    return this.http.post<void>(url, {withCredentials: true}).forEach(() => this.currentUser = null);
+    return this.http.post<void>(url, {}, { withCredentials: true });
   }
 
-  getCurrentUser(): User | null {
-    return this.currentUser;
+  signIn(dto: PlayerDto): Observable<User> {
+    let url = `${this.API_URL}/signIn`;
+    return this.http.post<User>(url, dto, { withCredentials: true });
+  }
+
+  getSessionUser(): Observable<User> {
+    let url = `${this.API_URL}/user`;
+    return this.http.get<User>(url, { withCredentials: true });
   }
 }

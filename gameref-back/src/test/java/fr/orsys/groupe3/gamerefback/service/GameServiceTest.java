@@ -2,9 +2,9 @@ package fr.orsys.groupe3.gamerefback.service;
 
 import fr.orsys.groupe3.gamerefback.business.*;
 import fr.orsys.groupe3.gamerefback.dao.GameDao;
-import fr.orsys.groupe3.gamerefback.dto.GameDto;
+import fr.orsys.groupe3.gamerefback.business.dto.GameDto;
 import fr.orsys.groupe3.gamerefback.exception.NotFoundException;
-import fr.orsys.groupe3.gamerefback.mapper.GameMapper;
+import fr.orsys.groupe3.gamerefback.business.mapper.GameMapper;
 import fr.orsys.groupe3.gamerefback.service.impl.GameServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;

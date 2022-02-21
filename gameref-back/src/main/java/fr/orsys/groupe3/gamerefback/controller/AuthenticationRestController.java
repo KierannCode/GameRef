@@ -1,11 +1,12 @@
 package fr.orsys.groupe3.gamerefback.controller;
 
 import fr.orsys.groupe3.gamerefback.business.User;
-import fr.orsys.groupe3.gamerefback.dto.PlayerDto;
-import fr.orsys.groupe3.gamerefback.dto.UserDto;
+import fr.orsys.groupe3.gamerefback.business.dto.PlayerDto;
+import fr.orsys.groupe3.gamerefback.business.dto.UserDto;
 import fr.orsys.groupe3.gamerefback.exception.ErrorMap;
 import fr.orsys.groupe3.gamerefback.exception.NotFoundException;
 import fr.orsys.groupe3.gamerefback.exception.PseudoAlreadyTakenException;
+import fr.orsys.groupe3.gamerefback.exception.SecurityException;
 import fr.orsys.groupe3.gamerefback.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -14,9 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @AllArgsConstructor
@@ -41,6 +40,15 @@ public class AuthenticationRestController {
     @PostMapping("/signIn")
     public User signIn(@RequestBody PlayerDto dto) throws PseudoAlreadyTakenException {
         return userService.createPlayer(dto);
+    }
+
+    @GetMapping("/user")
+    public User getSessionUser() throws SecurityException {
+        Object user = httpSession.getAttribute("user");
+        if (user == null) {
+            throw new SecurityException("La session a expiré, veuillez vous authentifier à nouveau");
+        }
+        return (User) user;
     }
 
     @ExceptionHandler(NotFoundException.class)
@@ -71,6 +79,14 @@ public class AuthenticationRestController {
     public ErrorMap handlePseudoAlreadyTakenException(PseudoAlreadyTakenException exception) {
         ErrorMap errors = new ErrorMap();
         errors.put("pseudo", List.of(exception.getMessage()));
+        return errors;
+    }
+
+    @ExceptionHandler(SecurityException.class)
+    @ResponseStatus(code = HttpStatus.FORBIDDEN)
+    public ErrorMap handleSecurityException(SecurityException exception) {
+        ErrorMap errors = new ErrorMap();
+        errors.put("access", List.of(exception.getMessage()));
         return errors;
     }
 }

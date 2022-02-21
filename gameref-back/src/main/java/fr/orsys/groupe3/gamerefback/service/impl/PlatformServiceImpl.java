@@ -2,9 +2,9 @@ package fr.orsys.groupe3.gamerefback.service.impl;
 
 import fr.orsys.groupe3.gamerefback.business.Platform;
 import fr.orsys.groupe3.gamerefback.dao.PlatformDao;
-import fr.orsys.groupe3.gamerefback.dto.PlatformDto;
+import fr.orsys.groupe3.gamerefback.business.dto.PlatformDto;
 import fr.orsys.groupe3.gamerefback.exception.NotFoundException;
-import fr.orsys.groupe3.gamerefback.mapper.PlatformMapper;
+import fr.orsys.groupe3.gamerefback.business.mapper.PlatformMapper;
 import fr.orsys.groupe3.gamerefback.service.PlatformService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

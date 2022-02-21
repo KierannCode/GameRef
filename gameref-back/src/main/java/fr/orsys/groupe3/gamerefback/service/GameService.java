@@ -2,7 +2,7 @@ package fr.orsys.groupe3.gamerefback.service;
 
 import fr.orsys.groupe3.gamerefback.business.Game;
 import fr.orsys.groupe3.gamerefback.business.Moderator;
-import fr.orsys.groupe3.gamerefback.dto.GameDto;
+import fr.orsys.groupe3.gamerefback.business.dto.GameDto;
 import fr.orsys.groupe3.gamerefback.exception.NotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

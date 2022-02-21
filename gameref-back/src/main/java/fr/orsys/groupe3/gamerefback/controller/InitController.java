@@ -1,7 +1,7 @@
 package fr.orsys.groupe3.gamerefback.controller;
 
 import fr.orsys.groupe3.gamerefback.business.Moderator;
-import fr.orsys.groupe3.gamerefback.dto.*;
+import fr.orsys.groupe3.gamerefback.business.dto.*;
 import fr.orsys.groupe3.gamerefback.exception.NotFoundException;
 import fr.orsys.groupe3.gamerefback.exception.PseudoAlreadyTakenException;
 import fr.orsys.groupe3.gamerefback.service.*;

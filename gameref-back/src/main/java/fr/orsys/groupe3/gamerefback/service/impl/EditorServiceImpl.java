@@ -2,9 +2,9 @@ package fr.orsys.groupe3.gamerefback.service.impl;
 
 import fr.orsys.groupe3.gamerefback.business.Editor;
 import fr.orsys.groupe3.gamerefback.dao.EditorDao;
-import fr.orsys.groupe3.gamerefback.dto.EditorDto;
+import fr.orsys.groupe3.gamerefback.business.dto.EditorDto;
 import fr.orsys.groupe3.gamerefback.exception.NotFoundException;
-import fr.orsys.groupe3.gamerefback.mapper.EditorMapper;
+import fr.orsys.groupe3.gamerefback.business.mapper.EditorMapper;
 import fr.orsys.groupe3.gamerefback.service.EditorService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

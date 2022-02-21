@@ -1,0 +1,37 @@
+#connection-form {
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+#connection-form > div {
+    display: flex;
+    flex-direction: column;
+    width: 340px;
+    height: 380px;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #e7e6e6;
+    border: 2px solid #a1a1a1;
+}
+
+.mat-form-field-wrapper > .mat-form-field-flex {
+    background-color: white;
+}
+
+mat-form-field {
+    width: 65%;
+}
+
+p {
+    font-style: italic;
+    font-size: 12px;
+}
+
+span {
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 13px;
+}
