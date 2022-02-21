@@ -1,3 +1,4 @@
+<img class="close" src="../../../assets/img/close.png" alt="" (click)=closeDialog()>
 <h1 mat-dialog-title>Modifier le jeu</h1>
 <div mat-dialog-content layout="column">
   <div>
@@ -90,7 +91,6 @@
   </div>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="closeDialog()">Fermer</button>
   <button mat-button (click)="onSubmit()" cdkFocusInitial>Valider</button>
   <div *ngIf="this.errorMap.has('access')">
     <mat-error *ngFor="let message of this.errorMap.get('access')">{{message}}</mat-error>

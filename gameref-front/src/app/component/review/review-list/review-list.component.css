@@ -29,28 +29,36 @@ mat-table {
     width: 90%;
 }
 
-.description {
-    width: 53%;
+tr {
+    width: 100% !important;
 }
 
-.rating {
+.mat-column-submitDate {
+    width: 15%;
+}
+
+.mat-column-player {
     width: 5%;
 }
 
-.player {
+.mat-column-game {
     width: 10%;
 }
 
-.moderator {
-    width: 10%;
+.mat-column-rating {
+    width: 5%;
 }
 
-.submitDate {
-    width: 12%;
+.mat-column-description {
+    width: 30%;
 }
 
-.game {
-    width: 10%;
+.mat-column-status {
+    width: 20%;
+}
+
+.mat-column-actions {
+    width: 15%;
 }
 
 .pagination-menu {
@@ -71,4 +79,10 @@ tr:nth-child(odd) {
     align-items: center;
     width: 350px;
     justify-content: space-evenly;
+}
+
+.actionsButtons {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }

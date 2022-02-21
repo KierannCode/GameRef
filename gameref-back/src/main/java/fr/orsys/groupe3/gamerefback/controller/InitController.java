@@ -2,8 +2,8 @@ package fr.orsys.groupe3.gamerefback.controller;
 
 import fr.orsys.groupe3.gamerefback.business.Moderator;
 import fr.orsys.groupe3.gamerefback.business.dto.*;
+import fr.orsys.groupe3.gamerefback.exception.CustomValidationException;
 import fr.orsys.groupe3.gamerefback.exception.NotFoundException;
-import fr.orsys.groupe3.gamerefback.exception.PseudoAlreadyTakenException;
 import fr.orsys.groupe3.gamerefback.service.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -106,7 +106,7 @@ public class InitController {
                 userService.createPlayer(new PlayerDto("Player1", "azertyuiop", "player1@gmail.com", LocalDate.of(1995, Month.APRIL, 15)));
                 userService.createPlayer(new PlayerDto("Player2", "qwertyuiop", "player2@gmail.com", LocalDate.of(1996, Month.JUNE, 2)));
                 userService.createPlayer(new PlayerDto("player", "12345678", "player3@gmail.com", LocalDate.of(1993, Month.DECEMBER, 30)));
-            } catch (PseudoAlreadyTakenException e) {
+            } catch (CustomValidationException e) {
                 System.out.println("Players initialization failed : " + e.getMessage());
             }
         }

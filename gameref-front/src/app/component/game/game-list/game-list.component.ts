@@ -27,10 +27,10 @@ export class GameListComponent implements OnInit {
   constructor(private dialog: MatDialog,
     private gameService: GameService,
     userService: UserService) {
-      userService.getSessionUser().subscribe(user => {
-        this.user = user;
-        this.loadPage();
-      });
+    userService.getSessionUser().subscribe(user => {
+      this.user = user;
+      this.loadPage();
+    });
   }
 
   ngOnInit(): void {
@@ -41,14 +41,13 @@ export class GameListComponent implements OnInit {
       width: '450px',
       data: {},
     }).afterClosed()
-    .subscribe(() => this.loadPage());
+      .subscribe(() => this.loadPage());
   }
 
   loadPage(): void {
     this.gameService.getGames().subscribe(val => {
       this.games = val.content;
       this.totalElements = val.totalElements;
-      console.log(this.games);
     });
   }
 
@@ -60,8 +59,9 @@ export class GameListComponent implements OnInit {
   }
 
   sortGames(): void {
-    this.gameService.getGames(0, this.sort, this.descending).subscribe(val => {this.games = val.content;
-      console.log(this.games);
+    this.gameService.getGames(0, this.sort, this.descending).subscribe(val => {
+      this.games = val.content;
+      this.totalElements = val.totalElements;
     });
   }
 }

@@ -19,7 +19,7 @@ export class GameItemComponent implements OnInit {
   @Input() game!: Game;
 
   @Input() user!: User;
-  
+
   constructor(private dialog: MatDialog, private gameService: GameService, private parent: GameListComponent) { }
 
   ngOnInit(): void {
@@ -35,7 +35,7 @@ export class GameItemComponent implements OnInit {
   openCreateReviewDialog(): void {
     this.dialog.open(CreateReviewDialogComponent, {
       width: '500px',
-      data: {gameId: this.game.id}
+      data: { gameId: this.game.id }
     });
   }
 

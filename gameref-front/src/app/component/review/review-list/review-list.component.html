@@ -1,11 +1,8 @@
 <div id="reviews-list">
     <h1>Liste des avis</h1>
     <div class="pagination-menu">
-        <mat-paginator [length]="totalElements"
-                       [pageSize]="10"
-                       aria-label="Select page"
-                       [showFirstLastButtons]="true" 
-                       (page)="nextPage($event)">
+        <mat-paginator [length]="totalElements" [pageSize]="5" aria-label="Select page" [showFirstLastButtons]="true"
+            (page)="nextPage($event)">
         </mat-paginator>
         <div class="sort">
             <span>Trier par :</span>
@@ -13,55 +10,62 @@
                 <option value="player.pseudo">Joueur</option>
                 <option value="rating">Note</option>
                 <option value="game.name">Jeu</option>
-                <option value="moderator.pseudo">Modérateur</option>
+                <option value="moderator">Status</option>
             </select>
             <select [(ngModel)]="descending" (change)="sortReviews()">
                 <option value="false">Asc</option>
                 <option value="true">Desc</option>
             </select>
-            <select [(ngModel)]="filter" (change)="sortReviews()">
-                <option value="all">Tout</option>
-                <option value="unvalidated">A modérer</option>
-                <option value="validated">Modérer</option>
+            <select *ngIf="user?.role == 'Moderator'" [(ngModel)]="filter" (change)="sortReviews()">
+                <option value="all">Tous</option>
+                <option value="unvalidated">À valider</option>
+                <option value="validated">Validés</option>
             </select>
         </div>
-        <button mat-raised-button (click)="openCreateReviewDialog()">Ajouter un avis</button>
+        <button mat-raised-button *ngIf="user?.role == 'Player'" (click)="openCreateReviewDialog()">Ajouter un
+            avis</button>
     </div>
-    <mat-table class="table" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-        <ng-container matColumnDef="player">
-            <th class="player" mat-header-cell *matHeaderCellDef > Joueur </th>
-            <td mat-cell *matCellDef="let review"> {{ review.player.pseudo | titlecase }} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="description">
-            <th class="description" class="description" mat-header-cell *matHeaderCellDef> Avis </th>
-            <td mat-cell *matCellDef="let review"> {{ review.description }} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="game">
-            <th class="game" mat-header-cell *matHeaderCellDef> Jeu </th>
-            <td mat-cell *matCellDef="let review"> {{ review.game.name }} </td>
-        </ng-container>
-
+    <mat-table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <ng-container matColumnDef="submitDate">
-            <th class="submitDate" mat-header-cell *matHeaderCellDef> Date </th>
+            <th mat-header-cell *matHeaderCellDef> Date </th>
             <td mat-cell *matCellDef="let review"> {{ review.submitDate | date:'d LLLL y hh:mm':'+0200':'fr' }} </td>
         </ng-container>
 
-        <ng-container matColumnDef="moderator">
-            <th class="moderator" mat-header-cell *matHeaderCellDef>Modérateur</th>
-            <td mat-cell *matCellDef="let review"> {{ review.moderator?.pseudo }} </td>
+        <ng-container matColumnDef="player">
+            <th mat-header-cell *matHeaderCellDef> Joueur </th>
+            <td mat-cell *matCellDef="let review"> {{ review.player.pseudo | titlecase }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="game">
+            <th mat-header-cell *matHeaderCellDef> Jeu </th>
+            <td mat-cell *matCellDef="let review"> {{ review.game.name }} </td>
         </ng-container>
 
         <ng-container matColumnDef="rating">
-            <th class="rating text-align-center" mat-header-cell *matHeaderCellDef>Note</th>
+            <th class="text-align-center" mat-header-cell *matHeaderCellDef>Note</th>
             <td class="text-align-center" mat-cell *matCellDef="let review"> {{ review.rating }} </td>
         </ng-container>
 
-        <ng-container matColumnDef="action">
-            <th mat-header-cell *matHeaderCellDef>Modérer</th>   
-            <td mat-cell *matCellDef="let element"> 
-              <button mat-raised-button>Action</button> 
+        <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef>Avis</th>
+            <td mat-cell *matCellDef="let review"> {{ review.description }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+            <th class="text-align-center" mat-header-cell *matHeaderCellDef>Statut</th>
+            <td class="text-align-center" mat-cell *matCellDef="let review"> {{ review.moderator == null ? 'en attente de validation' : 'validé'
+                }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <th class="text-align-center" mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let review">
+                <div class="actionsButtons">
+                    <button *ngIf="user?.role != 'Player' || user?.id == review.player.id" mat-raised-button
+                        (click)="delete(review.id)">Supprimer</button>
+                    <button *ngIf="user?.role == 'Moderator'" mat-raised-button
+                        (click)="validate(review)">Valider</button>
+                </div>
             </td>
         </ng-container>
 

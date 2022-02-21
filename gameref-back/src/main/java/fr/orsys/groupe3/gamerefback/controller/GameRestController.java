@@ -94,6 +94,14 @@ public class GameRestController {
         return gameService.deleteGame(id);
     }
 
+    /**
+     * Cette methode renvoit une liste de tous les jeux présents en base
+     * @return
+     */
+    @GetMapping("/allGames")
+    public List<Game> getGames() {
+        return gameService.getGames();
+    }
 
     /**
      * Cette methode prends en parametre un objet de type Pageable et retourne une liste de jeux organisé sous forme de pages de 5

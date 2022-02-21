@@ -11,14 +11,14 @@ describe('GameListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GameListComponent ],
+      declarations: [GameListComponent],
       providers: [
         {
           provide: Router, useValue: routerSpy
         }
       ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -28,17 +28,17 @@ describe('GameListComponent', () => {
   });
 
 
-it('should navigate to GameList page', () => {      
-  //component.openCreateGameDialog();
-  const navArgs = routerSpy.navigateByUrl.calls.first.args[1];
-  console.log(navArgs);
-  expect(navArgs).toEqual("/jeux");
-});
+  it('should navigate to GameList page', () => {
+    //component.openCreateGameDialog();
+    const navArgs = routerSpy.navigateByUrl.calls.first.args[1];
+    console.log(navArgs);
+    expect(navArgs).toEqual("/jeux");
+  });
 
 
-it('should create', () => {
-  expect(component).toBeTruthy();
-});
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 
 });
 

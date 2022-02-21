@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     this.userService.login(this.loginDto).subscribe({
-      next: () => this.router.navigate(['jeux']),
+      next: () => this.router.navigate(['avis']),
       error: (response: HttpErrorResponse) => this.errorMap = new Map(Object.entries(response.error))
     });
   }

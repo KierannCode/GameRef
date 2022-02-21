@@ -21,7 +21,6 @@ import { PlatformService } from 'src/app/service/platform.service';
   styleUrls: ['./update-game-dialog.component.css']
 })
 export class UpdateGameDialogComponent implements OnInit {
-
   gameDto: GameDto = {};
 
   public gamePlatformIds!: Array<number>;

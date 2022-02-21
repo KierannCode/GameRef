@@ -3,15 +3,15 @@ package fr.orsys.groupe3.gamerefback.service.impl;
 import fr.orsys.groupe3.gamerefback.business.Moderator;
 import fr.orsys.groupe3.gamerefback.business.Player;
 import fr.orsys.groupe3.gamerefback.business.User;
+import fr.orsys.groupe3.gamerefback.business.dto.ModeratorDto;
+import fr.orsys.groupe3.gamerefback.business.dto.PlayerDto;
+import fr.orsys.groupe3.gamerefback.business.mapper.ModeratorMapper;
+import fr.orsys.groupe3.gamerefback.business.mapper.PlayerMapper;
 import fr.orsys.groupe3.gamerefback.dao.ModeratorDao;
 import fr.orsys.groupe3.gamerefback.dao.PlayerDao;
 import fr.orsys.groupe3.gamerefback.dao.UserDao;
-import fr.orsys.groupe3.gamerefback.business.dto.ModeratorDto;
-import fr.orsys.groupe3.gamerefback.business.dto.PlayerDto;
+import fr.orsys.groupe3.gamerefback.exception.CustomValidationException;
 import fr.orsys.groupe3.gamerefback.exception.NotFoundException;
-import fr.orsys.groupe3.gamerefback.exception.PseudoAlreadyTakenException;
-import fr.orsys.groupe3.gamerefback.business.mapper.ModeratorMapper;
-import fr.orsys.groupe3.gamerefback.business.mapper.PlayerMapper;
 import fr.orsys.groupe3.gamerefback.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -30,9 +30,9 @@ public class UserServiceImpl implements UserService {
     private ModeratorMapper moderatorMapper;
 
     @Override
-    public Player createPlayer(PlayerDto dto) throws PseudoAlreadyTakenException {
+    public Player createPlayer(PlayerDto dto) throws CustomValidationException {
         if (userDao.findByPseudo(dto.getPseudo()).isPresent()) {
-            throw new PseudoAlreadyTakenException("Ce pseudo est déjà utilisé");
+            throw new CustomValidationException("pseudo", "Ce pseudo est déjà utilisé");
         }
         Player player = new Player();
         playerMapper.mapPlayer(player, dto);

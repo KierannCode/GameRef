@@ -7,15 +7,15 @@ import { NavbarComponent } from './navbar.component';
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
   let fixture: ComponentFixture<NavbarComponent>;
-  
+
   beforeEach(async () => {
-     TestBed.configureTestingModule({
-      declarations: [ NavbarComponent ]
+    TestBed.configureTestingModule({
+      declarations: [NavbarComponent]
     })
-    .compileComponents();
+      .compileComponents();
     fixture = TestBed.createComponent(NavbarComponent);
     component = fixture.componentInstance;
-  
+
 
   });
 

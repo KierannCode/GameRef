@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ReviewDto } from '../dto/ReviewDto';
 import { Review } from '../model/Review';
 import { Page } from './Page';
 
@@ -9,7 +10,7 @@ import { Page } from './Page';
 })
 export class ReviewService {
   private API_URL = "http://localhost:8080/api";
-  private pageSize = 10;
+  private pageSize = 5;
 
   constructor(private http: HttpClient) { }
 
@@ -21,7 +22,17 @@ export class ReviewService {
     return this.http.get<Page<Review>>(url, {withCredentials: true});
   }
 
-  create(data: any): Observable<any> {
-    return this.http.post(`${this.API_URL}/review`, data, {withCredentials: true});
+  create(data: ReviewDto): Observable<Review> {
+    return this.http.post<Review>(`${this.API_URL}/review`, data, {withCredentials: true});
+  }
+
+  delete(reviewId: number): Observable<Review> {
+    let url = `${this.API_URL}/review/${reviewId}`
+    return this.http.delete<Review>(url, {withCredentials: true});
+  }
+
+  validate(reviewId: number): Observable<Review> {
+    let url = `${this.API_URL}/review/${reviewId}/validate`
+    return this.http.patch<Review>(url, {}, {withCredentials: true});
   }
 }

@@ -1,27 +1,35 @@
-<div id="inscription-form" class="toggle-form none">
-    <div>
-        <img class="close" src="../../../assets/img/close.png" alt="" (click)=closeDialog()>
-        <h1 mat-dialog-title>Inscription</h1>
-        <div mat-dialog-content>
-            <mat-form-field appearance="fill">
-                <mat-label>Pseudo</mat-label>
-                <input matInput type="text" [(ngModel)]="playerDto.pseudo">
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label>Mot de passe</mat-label>
-                <input matInput type="password" [(ngModel)]="playerDto.password">
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label>Email</mat-label>
-                <input matInput type="email" [(ngModel)]="playerDto.email">
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label>Date de naissance</mat-label>
-                <input matInput type="date" [(ngModel)]="playerDto.birthDate">
-            </mat-form-field>
+<img class="close" src="../../../assets/img/close.png" alt="" (click)=closeDialog()>
+<h1 mat-dialog-title>Inscription</h1>
+<div mat-dialog-content>
+    <mat-form-field appearance="fill">
+        <mat-label>Pseudo</mat-label>
+        <input matInput type="text" [(ngModel)]="playerDto.pseudo">
+        <div *ngIf="this.errorMap.has('pseudo')">
+            <mat-error *ngFor="let message of this.errorMap.get('pseudo')">{{message}}</mat-error>
         </div>
-        <div mat-dialog-actions>
-            <button class="inscription" mat-raised-button (click)="onSubmit()">Inscription</button>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Mot de passe</mat-label>
+        <input matInput type="password" [(ngModel)]="playerDto.password">
+        <div *ngIf="this.errorMap.has('password')">
+            <mat-error *ngFor="let message of this.errorMap.get('password')">{{message}}</mat-error>
         </div>
-    </div>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" [(ngModel)]="playerDto.email">
+        <div *ngIf="this.errorMap.has('email')">
+            <mat-error *ngFor="let message of this.errorMap.get('email')">{{message}}</mat-error>
+        </div>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Date de naissance</mat-label>
+        <input matInput type="date" [(ngModel)]="playerDto.birthDate">
+        <div *ngIf="this.errorMap.has('birthDate')">
+            <mat-error *ngFor="let message of this.errorMap.get('birthDate')">{{message}}</mat-error>
+        </div>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button class="inscription" mat-raised-button (click)="onSubmit()">Inscription</button>
 </div>

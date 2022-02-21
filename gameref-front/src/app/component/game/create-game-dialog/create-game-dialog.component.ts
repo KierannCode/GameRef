@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import { MatDialogRef, MAT_DIALOG_DATA, _closeDialogVia } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { GameDto } from 'src/app/dto/GameDto';
 import { AgeRating } from 'src/app/model/AgeRating';
 import { Category } from 'src/app/model/Category';
@@ -14,7 +14,6 @@ import { EconomicModelService } from 'src/app/service/economic-model.service';
 import { EditorService } from 'src/app/service/editor.service';
 import { GameService } from 'src/app/service/game.service';
 import { PlatformService } from 'src/app/service/platform.service';
-import { GameListComponent } from '../game-list/game-list.component';
 
 @Component({
   selector: 'app-create-game-dialog',

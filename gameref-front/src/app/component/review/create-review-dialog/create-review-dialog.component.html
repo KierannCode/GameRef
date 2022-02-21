@@ -1,32 +1,34 @@
+<img class="close" src="../../../assets/img/close.png" alt="" (click)=closeDialog()>
 <h1 mat-dialog-title>Ajouter un avis</h1>
 <div mat-dialog-content>
- 
   <mat-form-field appearance="fill">
     <mat-label>Jeu</mat-label>
-    <mat-select [(ngModel)]="reviewdto.gameId">
+    <mat-select [(ngModel)]="reviewDto.gameId">
       <mat-option *ngFor="let game of games" [value]="game.id">{{game.name}}</mat-option>
     </mat-select>
+    <div *ngIf="this.errorMap.has('game')">
+      <mat-error *ngFor="let message of this.errorMap.get('game')">{{message}}</mat-error>
+    </div>
   </mat-form-field>
-  
-
+  <div class="mmf">
     <mat-label>Note</mat-label>
-    <mat-slider thumbLabel
-                [(ngModel)]="reviewdto.rating"
-                tickInterval="1"
-                step="1"
-                min="0"
-                max="20"
-                aria-label="units">
+    <mat-slider thumbLabel [(ngModel)]="reviewDto.rating" tickInterval="1" step="1" min="0" max="20" aria-label="units">
     </mat-slider>
-
-
+    <div *ngIf="this.errorMap.has('rating')">
+      <mat-error *ngFor="let message of this.errorMap.get('rating')">{{message}}</mat-error>
+    </div>
+  </div>
   <mat-form-field appearance="fill">
     <mat-label>Avis</mat-label>
-    <textarea matInput [(ngModel)]="reviewdto.description"  placeholder="Parles nous de ce jeu"></textarea>
+    <textarea matInput [(ngModel)]="reviewDto.description" placeholder="Parles nous de ce jeu"></textarea>
+    <div *ngIf="this.errorMap.has('description')">
+      <mat-error *ngFor="let message of this.errorMap.get('description')">{{message}}</mat-error>
+    </div>
   </mat-form-field>
-  
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onClose()">Fermer</button>
   <button mat-button (click)="onSubmit()" cdkFocusInitial>Valider</button>
+  <div *ngIf="this.errorMap.has('access')">
+    <mat-error *ngFor="let message of this.errorMap.get('access')">{{message}}</mat-error>
+  </div>
 </div>

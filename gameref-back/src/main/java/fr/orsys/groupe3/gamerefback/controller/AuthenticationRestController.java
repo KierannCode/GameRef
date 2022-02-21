@@ -3,19 +3,21 @@ package fr.orsys.groupe3.gamerefback.controller;
 import fr.orsys.groupe3.gamerefback.business.User;
 import fr.orsys.groupe3.gamerefback.business.dto.PlayerDto;
 import fr.orsys.groupe3.gamerefback.business.dto.UserDto;
-import fr.orsys.groupe3.gamerefback.exception.ErrorMap;
-import fr.orsys.groupe3.gamerefback.exception.NotFoundException;
-import fr.orsys.groupe3.gamerefback.exception.PseudoAlreadyTakenException;
+import fr.orsys.groupe3.gamerefback.exception.*;
 import fr.orsys.groupe3.gamerefback.exception.SecurityException;
 import fr.orsys.groupe3.gamerefback.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import javax.validation.Valid;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @AllArgsConstructor
@@ -38,7 +40,10 @@ public class AuthenticationRestController {
     }
 
     @PostMapping("/signIn")
-    public User signIn(@RequestBody PlayerDto dto) throws PseudoAlreadyTakenException {
+    public User signIn(@RequestBody @Valid PlayerDto dto, BindingResult result) throws CustomValidationException {
+        if (result.hasErrors()) {
+            throw new CustomValidationException("password", Objects.requireNonNull(result.getFieldError("password")).getDefaultMessage());
+        }
         return userService.createPlayer(dto);
     }
 
@@ -74,11 +79,11 @@ public class AuthenticationRestController {
         return errors;
     }
 
-    @ExceptionHandler(PseudoAlreadyTakenException.class)
+    @ExceptionHandler(CustomValidationException.class)
     @ResponseStatus(code = HttpStatus.UNPROCESSABLE_ENTITY)
-    public ErrorMap handlePseudoAlreadyTakenException(PseudoAlreadyTakenException exception) {
+    public ErrorMap handleCustomValidationException(CustomValidationException exception) {
         ErrorMap errors = new ErrorMap();
-        errors.put("pseudo", List.of(exception.getMessage()));
+        errors.put(exception.getAttribute(), List.of(exception.getMessage()));
         return errors;
     }
 
