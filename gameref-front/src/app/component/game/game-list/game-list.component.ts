@@ -19,6 +19,8 @@ export class GameListComponent implements OnInit {
 
   games: Array<Game> = [];
   totalElements!: number;
+  sort!: string;
+  descending!: string;
 
   user!: User;
 
@@ -54,6 +56,12 @@ export class GameListComponent implements OnInit {
     this.gameService.getGames(event.pageIndex).subscribe(val => {
       this.games = val.content;
       this.totalElements = val.totalElements;
+    });
+  }
+
+  sortGames(): void {
+    this.gameService.getGames(0, this.sort, this.descending).subscribe(val => {this.games = val.content;
+      console.log(this.games);
     });
   }
 }

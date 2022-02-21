@@ -8,4 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ReviewDao extends JpaRepository<Review, Long> {
     Page<Review> findByPlayerOrModeratorIsNotNull(Player player, Pageable pageable);
+
+    Page<Review> findByModeratorIsNotNull(Pageable pageable);
+
+    Page<Review> findByModeratorIsNull(Pageable pageable);
 }

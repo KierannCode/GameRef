@@ -24,5 +24,9 @@ public interface ReviewService {
 
     Page<Review> getReviews(Pageable pageable, User user);
 
+    Page<Review> getValidatedReviews(Pageable pageable);
+
+    Page<Review> getUnvalidatedReviews(Pageable pageable);
+
     List<Review> getReviews();
 }

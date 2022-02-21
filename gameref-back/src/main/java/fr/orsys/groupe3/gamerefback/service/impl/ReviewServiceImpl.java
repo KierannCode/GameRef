@@ -68,6 +68,16 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
+    public Page<Review> getValidatedReviews(Pageable pageable) {
+        return reviewDao.findByModeratorIsNotNull(pageable);
+    }
+
+    @Override
+    public Page<Review> getUnvalidatedReviews(Pageable pageable) {
+        return reviewDao.findByModeratorIsNull(pageable);
+    }
+
+    @Override
     public List<Review> getReviews() {
         return reviewDao.findAll();
     }
