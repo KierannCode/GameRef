@@ -17,6 +17,9 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * Classe de type Service dans laquelle on definit l'ensemble de nos methodes metiers
+ */
 @Service
 @AllArgsConstructor
 public class ReviewServiceImpl implements ReviewService {

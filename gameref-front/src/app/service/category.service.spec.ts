@@ -19,19 +19,19 @@ describe('CategoryService', () => {
 
   });
 
+  it('should be created', () => {
+    expect(categoryService).toBeTruthy();
+  }); 
+
+  
+
   it('Le service est bien injecté', inject([CategoryService],
     (categoryService: CategoryService) => {
         expect(categoryService).toBeTruthy();
     }));
 
-  it('should be created', () => {
-    expect(categoryService).toBeTruthy();
-  }); 
-
 
  
-
-  
 it('should return expected categories (HttpClient called once)', (done: DoneFn) => {
 
   const expectedcategories: Category[] =

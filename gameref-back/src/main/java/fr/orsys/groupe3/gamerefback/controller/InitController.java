@@ -13,6 +13,10 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
 
+/**
+ * Cette classe est une classe de type Controller, elle va nous permetre de
+ * initier des objets de notre projet dans la base de données.
+ */
 @Controller
 @AllArgsConstructor
 public class InitController {

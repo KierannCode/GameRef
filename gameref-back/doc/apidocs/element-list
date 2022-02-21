@@ -1,0 +1,9 @@
+fr.orsys.groupe3.gamerefback
+fr.orsys.groupe3.gamerefback.business
+fr.orsys.groupe3.gamerefback.business.dto
+fr.orsys.groupe3.gamerefback.business.mapper
+fr.orsys.groupe3.gamerefback.controller
+fr.orsys.groupe3.gamerefback.dao
+fr.orsys.groupe3.gamerefback.exception
+fr.orsys.groupe3.gamerefback.service
+fr.orsys.groupe3.gamerefback.service.impl

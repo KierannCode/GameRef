@@ -1,5 +1,6 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AppComponent } from 'src/app/app.component';
 
 import { NavbarComponent } from './navbar.component';
 
@@ -8,7 +9,7 @@ describe('NavbarComponent', () => {
   let fixture: ComponentFixture<NavbarComponent>;
   
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
+     TestBed.configureTestingModule({
       declarations: [ NavbarComponent ]
     })
     .compileComponents();
@@ -24,8 +25,11 @@ describe('NavbarComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create the Component', () => {
+
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app).toBeTruthy();
   });
 
 });

@@ -14,6 +14,9 @@ import java.time.LocalDate;
 
 import static org.mockito.Mockito.verify;
 
+/**
+ * Cette classe est une classe de test de la classe ReviewController
+ */
 @SpringBootTest
 public class ReviewRestControllerTest {
 
@@ -24,6 +27,10 @@ public class ReviewRestControllerTest {
     ReviewService reviewService;
 
 
+    /**
+     * methode de test de la methode
+     * @throws NotFoundException
+     */
     @Test
     public void testAddReview() throws NotFoundException {
 

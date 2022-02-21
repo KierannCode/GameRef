@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Interface contenant l'ensemble des methodes metiers
+ */
 @Service
 public interface ReviewService {
     Review createReview(ReviewDto dto, Player player) throws NotFoundException;

@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"fr.orsys.groupe3.gamerefback"},{"l":"fr.orsys.groupe3.gamerefback.business"},{"l":"fr.orsys.groupe3.gamerefback.controller"},{"l":"fr.orsys.groupe3.gamerefback.dao"},{"l":"fr.orsys.groupe3.gamerefback.service"}];updateSearchResults();

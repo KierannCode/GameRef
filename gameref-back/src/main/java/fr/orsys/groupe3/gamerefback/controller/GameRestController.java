@@ -18,6 +18,12 @@ import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import java.util.List;
 
+/**
+ * Cette classe est une classe de type Controller qui permet de definir nos methodes auxquels sont rattachées nos API Rest
+ * qui seront appelé par Angular en front.
+ * @param
+ * @author groupe3
+ */
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api")
@@ -27,6 +33,13 @@ public class GameRestController {
 
     private HttpSession httpSession;
 
+    /**
+     * Methode qui prends en parametre un dto et qui retourne un objet de type Game qui est crée en base de donnée
+     * @param dto
+     * @return
+     * @throws NotFoundException
+     * @throws SecurityException
+     */
     @PostMapping("/game")
     public Game addGame(@RequestBody GameDto dto) throws NotFoundException, SecurityException {
         Object user = httpSession.getAttribute("user");
@@ -39,6 +52,15 @@ public class GameRestController {
         return gameService.createGame(dto, (Moderator) user);
     }
 
+    /**
+     * Cette methode prends en parametre un id de type Long et un dto de type GameDto et retourne un objet de type Game
+     * qui a été mis à jour
+     * @param id
+     * @param dto
+     * @return
+     * @throws NotFoundException
+     * @throws SecurityException
+     */
     @PatchMapping("/game/{id}")
     public Game updateGame(@PathVariable Long id, @RequestBody GameDto dto) throws NotFoundException, SecurityException {
         Object user = httpSession.getAttribute("user");
@@ -52,6 +74,14 @@ public class GameRestController {
 
     }
 
+    /**
+     * Cette methode prends en parametre un id de type Long , supprime et retourne l'objet de
+     * type Game correspondant supprimé
+     * @param id
+     * @return
+     * @throws NotFoundException
+     * @throws SecurityException
+     */
     @DeleteMapping("game/{id}")
     public Game deleteGame(@PathVariable("id") Long id) throws NotFoundException, SecurityException {
         Object user = httpSession.getAttribute("user");
@@ -64,6 +94,13 @@ public class GameRestController {
         return gameService.deleteGame(id);
     }
 
+
+    /**
+     * Cette methode prends en parametre un objet de type Pageable et retourne une liste de jeux organisé sous forme de pages de 5
+     * @param pageable
+     * @return
+     * @throws SecurityException
+     */
     @GetMapping("/games")
     public Page<Game> getGames(Pageable pageable) throws SecurityException {
         Object user = httpSession.getAttribute("user");

@@ -12,6 +12,10 @@ import javax.validation.constraints.Past;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Cette classe permet de conceptualiser la notion de Jeu dans le cahier de charges donné,
+ * on y trouve les attributs permettant de caracteriser un Jeu(Game)
+ */
 @Entity
 @Getter
 @Setter

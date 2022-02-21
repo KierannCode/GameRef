@@ -9,6 +9,7 @@ import org.hibernate.validator.constraints.UniqueElements;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -34,4 +35,17 @@ public abstract class User {
 
     @Transient
     private String role = this.getClass().getSimpleName();
+
+
+    void createNewPlayer() {
+        Player p = new Player();
+        p.setEmail("jiji@hotmail.com");
+        p.setPseudo("bibi");
+        p.setBirthDate(LocalDate.of(1988,1,3));
+        p.setPassword("azerty");
+        System.out.println("pseudo :" +p.getPseudo()
+                + " email : " +p.getEmail()
+                + "password :" +p.getPassword()
+                + "Date de naissance :" +p.getBirthDate());
+    }
 }
