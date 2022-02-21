@@ -27,7 +27,7 @@
                 <p class="bold">Modèle économique :</p>
                 <p>{{ game.economicModel.name }}</p>
             </div>
-            <div>
+            <div *ngIf="user.role == 'Moderator'">
                 <p class="bold">Modérateur : </p>
                 <p>{{ game.moderator.pseudo }}</p>
             </div>

@@ -22,7 +22,7 @@ public interface ReviewService {
 
     Review getReview(Long id) throws NotFoundException;
 
-    Page<Review> getReviews(Pageable pageable);
+    Page<Review> getReviews(Pageable pageable, User user);
 
     List<Review> getReviews();
 }

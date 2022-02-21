@@ -67,7 +67,7 @@ public class ReviewRestController {
         if (user == null) {
             throw new SecurityException("La session a expiré, veuillez retourner sur la page de connexion pour vous authentifier à nouveau");
         }
-        return reviewService.getReviews(pageable);
+        return reviewService.getReviews(pageable, (User) user);
     }
 
     @ExceptionHandler(NotFoundException.class)
