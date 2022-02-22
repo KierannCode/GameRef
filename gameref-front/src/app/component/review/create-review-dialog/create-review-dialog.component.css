@@ -11,3 +11,8 @@ mat-slider {
     float: right;
     height: 22px;
 }
+
+.note {
+    display: flex;
+    align-items: center;
+}
